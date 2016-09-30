@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+a:link {
+
+    /*line-height: 25px;*/
+    color: #333333;
+    text-decoration: none;
+}
+a:hover {
+
+    /*line-height: 25px;*/
+    color: #666666;
+    text-decoration: none;
+}
+a:visited {
+
+    /*line-height: 14px;*/
+    color: #333333;
+    text-decoration: none;
+}
+
+.table{
+    margin-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+.pagination{
+    float: right;
+    margin-right: 100px;
+}
+
+.subject_name{
+    height: 47px;
+    width: 70%;
+    margin: 0px auto;
+    margin-left: 40px;
+    float: left;
+}
+.subject_name span {
+    line-height: 48px;
+    color: #999999;
+}
+
+/*Sam  搜索框*/
+.widget-box {
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 3px 0;
+    border-bottom: 1px solid #CCC;
+    width: 90%;
+    height:60px;
+}
+.widget-header-small {
+    min-height: 31px;
+    padding-left: 10px;
+}
+.widget-body {
+    border: 1px solid #CCC;
+    border-top: 0;
+    background-color: #FFF;
+}
+.widget-main {
+    padding: 12px;
+    height: 60px;
+}
+.widget-main>form {
+    margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
