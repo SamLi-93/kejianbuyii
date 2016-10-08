@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
 use yii\web\Controller;
@@ -48,6 +49,8 @@ class ProjectController extends Controller
 
         $this->layout = 'main';
         $searchModel = new ProjectSearch();
+//        $query = Yii::$app->request->queryParams;
+//        var_dump($query);
 
         $dataProvider = new ActiveDataProvider([
             'query' => Project::find(),

@@ -15,9 +15,11 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/sims.css',
         'css/style.css',
-        'css/login.css'
+        'css/login.css',
+        'css/chosen.css',
     ];
     public $js = [
+        'js/chosen.jquery.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

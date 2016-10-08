@@ -17,6 +17,14 @@ use yii\data\ArrayDataProvider;
 class ProjectSearch extends Project
 {
 
+    public function rules()
+    {
+        return [
+            [['id', 'over', 'free', 'time', 'endtime'], 'integer'],
+            [['projectname', 'school', 'teacher'], 'safe'],
+        ];
+    }
+
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class

@@ -50,23 +50,23 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'projectname' => 'Projectname',
-            'school' => 'School',
-            'over' => 'Over',
-            'free' => 'Free',
-            'teacher' => 'Teacher',
-            'time' => 'Time',
-            'endtime' => 'Endtime',
-            'original_path' => 'Original Path',
-            'making_path' => 'Making Path',
-            'uploadname' => 'Uploadname',
+            'projectname' => '项目名称',
+            'school' => '学校',
+            'over' => '是否结束',
+            'free' => '费用结算',
+            'teacher' => '讲课老师',
+            'time' => '开始时间',
+            'endtime' => '结束时间',
+            'original_path' => '原始路径',
+            'making_path' => '制作路径',
+            'uploadname' => '上传人',
         ];
     }
 
     public function getProjectName()
     {
         $list = self::findBySql('select DISTINCT projectname from project')->all();
-        $pro_list = [];
+        $pro_list = [0 => '请选择'];
         foreach ($list as $k => $v) {
             array_push($pro_list, $v['projectname']);
         }
@@ -76,7 +76,7 @@ class Project extends \yii\db\ActiveRecord
     public function getSchoolName()
     {
         $list = self::findBySql('select DISTINCT school from project')->all();
-        $school_list = [];
+        $school_list = [0 => '请选择'];
         foreach ($list as $k => $v) {
             array_push($school_list, $v['school']);
         }
@@ -86,7 +86,7 @@ class Project extends \yii\db\ActiveRecord
     public function getTeacherName()
     {
         $list = self::findBySql('select DISTINCT teacher from project')->all();
-        $teacher_list = [];
+        $teacher_list = [0 => '请选择'];
         foreach ($list as $k => $v) {
             array_push($teacher_list, $v['teacher']);
         }
@@ -96,6 +96,7 @@ class Project extends \yii\db\ActiveRecord
     public function getOverList()
     {
         $list = self::findBySql('select DISTINCT over from project')->all();
+//        $over_list = [0 => '请选择'];
         $over_list = [];
         foreach ($list as $k => $v) {
             array_push($over_list, $v['over']);
