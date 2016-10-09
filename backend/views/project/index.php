@@ -106,6 +106,29 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
+        ['class' => 'yii\grid\ActionColumn',
+            'header' => '操作',
+            'template' => '{edit} {delete}',
+            'buttons' => [
+                'edit' => function ($url, $model, $key) {
+                    $options = [
+                        'title' => '修改',
+                        'aria-label' => Yii::t('yii', 'Update'),
+                        'data-pjax' => '0',
+                        'class' =>'btn btn-xs btn-info',
+                    ];
+                    return Html::a('<i class="icon-edit bigger-120"></i>', $url, $options);
+                },
+                'delete' => function ($url, $model, $key) {
+                    $options = [
+                    ];
+                    $url = Url::to(['menu/dodelete','id'=>$model['id']]);
+                    return Html::a('<lable class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></lable>', '#', ['onclick'=>'javascript:sweetConfirmChange(\'你确定要删除吗?\',\''.$url.'\')']);
+
+                },
+            ],
+        ],
+
     ],
 
 ]);

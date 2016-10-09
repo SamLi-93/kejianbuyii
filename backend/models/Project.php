@@ -66,19 +66,24 @@ class Project extends \yii\db\ActiveRecord
     public function getProjectName()
     {
         $list = self::findBySql('select DISTINCT projectname from project')->all();
-        $pro_list = [0 => '请选择'];
+        $pro_list = [];
         foreach ($list as $k => $v) {
-            array_push($pro_list, $v['projectname']);
+//            array_push($pro_list, $v['projectname']);
+            $key = $v['projectname'];
+            $pro_list[$key] = $v['projectname'] ;
         }
+//        print_r($pro_list);exit;
         return $pro_list;
     }
 
     public function getSchoolName()
     {
         $list = self::findBySql('select DISTINCT school from project')->all();
-        $school_list = [0 => '请选择'];
+        $school_list = [];
         foreach ($list as $k => $v) {
-            array_push($school_list, $v['school']);
+//            array_push($school_list, $v['school']);
+            $key = $v['school'];
+            $school_list[$key] = $v['school'] ;
         }
         return $school_list;
     }
@@ -86,9 +91,11 @@ class Project extends \yii\db\ActiveRecord
     public function getTeacherName()
     {
         $list = self::findBySql('select DISTINCT teacher from project')->all();
-        $teacher_list = [0 => '请选择'];
+        $teacher_list = [];
         foreach ($list as $k => $v) {
-            array_push($teacher_list, $v['teacher']);
+//            array_push($teacher_list, $v['teacher']);
+            $key = $v['teacher'];
+            $teacher_list[$key] = $v['teacher'] ;
         }
         return $teacher_list;
     }
@@ -99,7 +106,9 @@ class Project extends \yii\db\ActiveRecord
 //        $over_list = [0 => '请选择'];
         $over_list = [];
         foreach ($list as $k => $v) {
-            array_push($over_list, $v['over']);
+//            array_push($over_list, $v['over']);
+            $key = $v['over'];
+            $over_list[$key] = $v['over'] ;
         }
         return $over_list;
     }
