@@ -36,7 +36,7 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['over', 'free', 'time', 'endtime'], 'integer'],
+            [['over', 'free', ], 'integer'],
             [['projectname', 'school'], 'string', 'max' => 100],
             [['teacher', 'uploadname'], 'string', 'max' => 50],
             [['original_path', 'making_path'], 'string', 'max' => 255],
@@ -54,7 +54,7 @@ class Project extends \yii\db\ActiveRecord
             'school' => '学校',
             'over' => '是否结束',
             'free' => '费用结算',
-            'teacher' => '讲课老师',
+            'teacher' => '项目联系人',
             'time' => '开始时间',
             'endtime' => '结束时间',
             'original_path' => '原始路径',

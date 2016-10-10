@@ -37,6 +37,8 @@ a:visited {
     margin: 0px auto;
     margin-left: 40px;
     float: left;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 30px;
 }
 .subject_name span {
     line-height: 48px;
@@ -79,8 +81,17 @@ a:visited {
 .form-group{
     margin-left: 3px;
 }
-
-
+.col-xs-12{
+    width: 70%;
+    margin-left: 20px;
+}
+.form-group-btn{
+    margin-top: 20px;
+    margin-left: 110px;
+}
+.back-btn{
+    margin-left: 40px;
+}
 
 
 

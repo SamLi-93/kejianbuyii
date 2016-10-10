@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use app\models\SmsAdmin;
 use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
@@ -54,86 +55,44 @@ class ProjectController extends Controller
         ]);
     }
 
-
     public function actionIndex()
     {
-
         $this->layout = 'main';
         $searchModel = new ProjectSearch();
         $query = Yii::$app->request->queryParams;
-//        print_r($query['ProjectSearch']['projectname']); exit;
-
-//        if (empty($query)) {
-//            $projectname = "'%%'";
-//            $school = "'%%'";
-//            $teacher = "'%%'";
-//            $over = "'%%'";
-//        } else {
-//            $projectname = $query['ProjectSearch']['projectname'];
-//            $school = $query['ProjectSearch']['school'];
-//            $teacher = $query['ProjectSearch']['teacher'];
-//            $over = $query['ProjectSearch']['over'];
-//        }
-
-        $projectname = "'%%'";
-        $school = "'%%'";
-        $teacher = "'%%'";
-        $over = "'%%'";
-        $sql_add = '';
-
+        $sql_parms = '';
         if (!empty($query['ProjectSearch'])) {
-            $sql_add = "where";
-            if(empty($query['ProjectSearch']['projectname'])) {
-                $projectname = "'%%'";
-            } else {
-                $projectname = $query['ProjectSearch']['projectname'];
-                $sql_add .= " projectname like " . '. $projectname  .'  ;
-            }
-            if(empty($query['ProjectSearch']['school'])) {
-                $school = "'%%'";
-            } else {
-                $school = $query['ProjectSearch']['school'];
-                $sql_add .= " school like " . '. $school  .'  ;
-            }
-            if(empty($query['ProjectSearch']['teacher'])) {
-                $teacher = "'%%'";
-            } else {
-                $teacher = $query['ProjectSearch']['teacher'];
-                $sql_add .= " teacher like " . '. $teacher  .'  ;
-            }
-            if(empty($query['ProjectSearch']['over'])) {
-                $over = "'%%'";
-            } else {
-                $over = $query['ProjectSearch']['over'];
-                $sql_add .= " over like " . '. $over  .'  ;
-            }
+            $query_parms = array_filter($query['ProjectSearch']);
+            $sql_parms = 'where true';
         }
 
+        if(isset($query_parms['projectname'])) {
+            $sql_parms .= " and projectname = '" . $query_parms['projectname'] . "'";
+        }
 
+        if(isset($query_parms['school'])) {
+            $sql_parms .= " and school = '" . $query_parms['school'] . "'";
+        }
 
+        if(isset($query_parms['teacher'])) {
+            $sql_parms .= " and teacher = '" . $query_parms['teacher'] . "'";
+        }
 
-//        $dataProvider = new ActiveDataProvider([
-//            'query' => Project::find(),
-//            'pagination' => [
-//                'pageSize' => 20,
-//            ],
-//        ]);
+        if(isset($query_parms['over'])) {
+            $sql_parms .= " and over = '" . $query_parms['over'] . "'";
+        }
 
-//        $test1 = Project::findBySql("select * from project
-//where projectname=:projectname and school=:school and teacher=:teacher and over=:over ")->all();
+        $sql = "select * from project " . $sql_parms;
 
-        var_dump($sql_add);exit;
-
-        $conn = Yii::$app->db;
-        $sql = "select * from project " . $sql_add;
-        $test1 = $conn->createCommand($sql)->queryAll();
-
-
-        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project')->queryScalar();
+        $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project '.$sql_parms );
+        $command->bindParam(':projectname', $projectname);
+        $command->bindParam(':school', $school);
+        $command->bindParam(':teacher', $teacher);
+        $command->bindParam(':over', $over);
+        $count = $command->queryScalar();
 
         $dataProvider = new SqlDataProvider([
-            'sql' => "select * from project 
-where projectname like ". $projectname." and school like " . $school. " and teacher like " . $teacher. " and over like " . $over,
+            'sql' => $sql ,
 //            'params' => [':status' => 1],
             'totalCount' => $count,
             'pagination' => [
@@ -150,22 +109,6 @@ where projectname like ". $projectname." and school like " . $school. " and teac
             'dataProvider' => $dataProvider,
         ]);
 
-        $test = Project::find()->orFilterWhere([
-            'projectname' => $projectname,
-            'school' =>  $school,
-            'teacher' => $teacher,
-            'over' => $over,
-        ])->all();
-
-        $test1 = Project::findBySql("select * from project 
-where projectname like ". $projectname." and school like " . $school. " and teacher like " . $teacher. " and over like " . $over)->all();
-
-//        print_r($test1);exit;
-
-//        print_r($test);exit;
-
-//        print_r($dataProvider);exit;
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -173,23 +116,64 @@ where projectname like ". $projectname." and school like " . $school. " and teac
             'pro_school' => $this->pro_school,
             'pro_teacher' => $this->pro_teacher,
             'pro_over' => $this->pro_over,
-
         ]);
     }
 
-
     public function actionCreate()
     {
+        $this->layout = 'main';
+        $model = new Project();
+        $list =SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+        foreach ($list as $k => $v) {
+            $key = $v['name'];
+            $uploadname_list[$key] = $v['name'] ;
+        }
+//        print_r($uploadname_list);exit;
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+                'pro_projectname' => $this->pro_projectname,
+                'pro_school' => $this->pro_school,
+                'pro_teacher' => $this->pro_teacher,
+                'pro_over' => $this->pro_over,
+                'uploadname_list' => $uploadname_list,
+            ]);
+        }
     }
 
     public function actionEdit()
     {
+        $id = Yii::$app->request->get('id');
+        $model = Project::findOne($id);
+        $list =SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+        foreach ($list as $k => $v) {
+            $key = $v['name'];
+            $uploadname_list[$key] = $v['name'] ;
+        }
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('edit', [
+                'model' => $model,
+                'uploadname_list' => $uploadname_list,
+            ]);
+        }
     }
 
     public function actionDelete()
     {
+        $query = Yii::$app->request->queryParams;
+        $id = $query['id'];
+        $data = Project::findOne($id);
+        $data->delete();
 
+        Yii::$app->cache->delete('index');
+        return $this->redirect(['index']);
     }
 }

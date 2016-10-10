@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
+//    'id' => "waitforcheck",
     'columns' => [
         ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
 //        'id',
@@ -113,24 +114,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'edit' => function ($url, $model, $key) {
                     $options = [
                         'title' => '修改',
-                        'aria-label' => Yii::t('yii', 'Update'),
-                        'data-pjax' => '0',
                         'class' =>'btn btn-xs btn-info',
                     ];
+                    $url = Url::to(['project/edit','id'=>$model['id']]);
                     return Html::a('<i class="icon-edit bigger-120"></i>', $url, $options);
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
                     ];
-                    $url = Url::to(['menu/dodelete','id'=>$model['id']]);
-                    return Html::a('<lable class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></lable>', '#', ['onclick'=>'javascript:sweetConfirmChange(\'你确定要删除吗?\',\''.$url.'\')']);
+                    $url = Url::to(['project/delete','id'=>$model['id']]);
+                    return Html::a('<lable class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></lable>', $url, ['onclick'=>'javascript:sweetConfirmChange(\'你确定要删除吗?\',\''.$url.'\')']);
 
                 },
             ],
         ],
-
     ],
-
 ]);
 
 ?>
