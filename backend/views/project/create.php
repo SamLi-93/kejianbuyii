@@ -55,10 +55,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="form-group-btn">
-        <?= Html::submitButton('添加', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
         <?= Html::a("返回", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    $(function(){
+        $('#submit-btn').click(function(){
+            if($.trim($('#project-projectname').val()) == ''){
+                alert('请输入项目名称！');
+                $('#projectname').focus();
+                return false;
+            }
+            if($.trim($('#project-school').val()) == ''){
+                alert('请输入学校！');
+                $('#school').focus();
+                return false;
+            }
+//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
+//                alert('开始时间不能大于结束时间');
+//                $('#school').focus();
+//                return false;
+//            }
+            if(confirm('您确定要提交吗？')){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    });
+</script>

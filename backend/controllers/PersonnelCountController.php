@@ -11,7 +11,7 @@ namespace backend\controllers;
 
 use yii\web\Controller;
 
-class PersonnelCountController extends Controller
+class PersonnelcountController extends Controller
 {
 
 }

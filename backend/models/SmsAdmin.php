@@ -161,6 +161,17 @@ class SmsAdmin extends \yii\db\ActiveRecord implements IdentityInterface
         return $name;
     }
 
+    public function getPersonList()
+    {
+        $list = self::findBySql('select DISTINCT name from sms_admin')->all();
+        $person_list = [];
+        foreach ($list as $k => $v) {
+            $key = $v['name'];
+            $person_list[$key] = $v['name'] ;
+        }
+        return $person_list;
+    }
+
 
 
 }

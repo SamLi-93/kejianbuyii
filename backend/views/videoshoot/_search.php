@@ -6,7 +6,6 @@
  * Time: 14:34
  */
 
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -27,10 +26,12 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'teacher')->dropDownList($pro_teacher ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'over')->dropDownList(['0' => '否', '1' => '是'] ,['prompt'=>'请选择']) ?>
+            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
+            <?= $form->field($model, 'courcename')->dropDownList($course_list ,['prompt'=>'选择课程名称']) ?>
+            <?= $form->field($model, 'recordname')->dropDownList($person_list ,['prompt'=>'选择录制人']) ?>
+            <?= $form->field($model, 'uploadname')->dropDownList($person_list ,['prompt'=>'选择上传人']) ?>
+            <?= $form->field($model, 'time')->input('text',['class'=>'input-small']) ?>
+            <?= $form->field($model, 'time1')->dropDownList(Yii::$app->params ) ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -48,19 +49,24 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 <script type="text/javascript">
-    $("#projectsearch-projectname").chosen({
+    $("#videoshoot-projectname").chosen({
         width : "150px",
     });
 
-    $("#projectsearch-school").chosen({
+    $("#videoshoot-courcename").chosen({
         width : "150px",
     });
 
-    $("#projectsearch-teacher").chosen({
+    $("#videoshoot-recordname").chosen({
         width : "150px",
     });
 
-    $("#projectsearch-over").chosen({
+    $("#videoshoot-uploadname").chosen({
         width : "150px",
     });
+
+    $("#videoshoot-time1").chosen({
+        width : "150px",
+    });
+
 </script>

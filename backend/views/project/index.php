@@ -56,8 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'over',
             'format' => 'raw',
             'value' => function ($model) {
-                    return Html::dropDownList('over', $model['over'], ['0'=>'否', '1'=>'是']);
-                }
+                    return Html::dropDownList('over', $model['over'], ['0'=>'否', '1'=>'是'],
+                        ['onchange' => "changeover(this.options[this.options.selectedIndex].value,". $model['id'] . ")"  ,]);
+            }
         ],
 
         [
@@ -65,7 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'free',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::dropDownList('free', $model['free'], ['0'=>'否', '1'=>'是']);
+                return Html::dropDownList('free', $model['free'], ['0'=>'否', '1'=>'是'],
+                    ['onchange' => "changefree(this.options[this.options.selectedIndex].value,". $model['id'] . ")"  ,]);
             }
         ],
 
@@ -114,16 +116,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'edit' => function ($url, $model, $key) {
                     $options = [
                         'title' => '修改',
-                        'class' =>'btn btn-xs btn-info',
+                        'class' =>'btn btn-success btn-sm',
+                        'id' => 'edit-btn',
                     ];
                     $url = Url::to(['project/edit','id'=>$model['id']]);
-                    return Html::a('<i class="icon-edit bigger-120"></i>', $url, $options);
+                    return Html::a('修改', $url, $options);
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
+                        'class' => 'btn btn-success',
                     ];
                     $url = Url::to(['project/delete','id'=>$model['id']]);
-                    return Html::a('<lable class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></lable>', $url, ['onclick'=>'javascript:sweetConfirmChange(\'你确定要删除吗?\',\''.$url.'\')']);
+                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
             ],
@@ -132,7 +136,62 @@ $this->params['breadcrumbs'][] = $this->title;
 ]);
 
 ?>
+<script>
+    function check() {
+        if(confirm('您确定要删除吗？')){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
+    function changeover(value, id){
+        if(confirm("是否修改")){
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"id": id,"value": value,},
+                url: "<?= Url::to(['project/changeover']);?>",
+                success: function(data){
+                    if (data.flag ==1) {
+                        alert('修改成功');
+                        window.location.reload()
+                    }
+                    if (data.flag == 0) {
+                        alert('只要管理员或本人才可以修改！');
+                        window.location.reload()
+                    }
+                }
+            });
+        }
+    }
+
+    function changefree(value, id){
+        if(confirm("是否修改")){
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"id": id,"value": value,},
+                url: "<?= Url::to(['project/changefree']);?>",
+                success: function(data){
+                    if (data.flag ==1) {
+                        alert('修改成功');
+                        window.location.reload()
+                    }
+                    if (data.flag == 0) {
+                        alert('只要管理员或本人才可以修改！');
+                        window.location.reload()
+                    }
+                }
+            });
+        }
+    }
+
+
+
+</script>
 
 
 

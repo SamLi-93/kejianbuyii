@@ -55,4 +55,16 @@ class Teacher extends \yii\db\ActiveRecord
             'uploadname' => 'Uploadname',
         ];
     }
+
+    public function getTeacherList()
+    {
+        $list = self::findBySql('select DISTINCT teacher from teacher')->all();
+        $teacher_list = [];
+        foreach ($list as $k => $v) {
+            $key = $v['teacher'];
+            $teacher_list[$key] = $v['teacher'] ;
+        }
+        return $teacher_list;
+    }
+
 }

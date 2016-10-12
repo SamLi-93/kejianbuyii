@@ -39,8 +39,8 @@ class VideoShoot extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'time1', 'cid'], 'required'],
-            [['id', 'seat', 'cid'], 'integer'],
+//            [['id'], 'required'],
+            [['id', 'seat' ], 'integer'],
             [['capture_time'], 'number'],
             [['recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher', 'status', 'auditor1', 'auditor2'], 'string', 'max' => 100],
         ];
@@ -53,20 +53,66 @@ class VideoShoot extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'recordname' => 'Recordname',
-            'time' => 'Time',
-            'time1' => 'Time1',
-            'capture_time' => 'Capture Time',
-            'uploadname' => 'Uploadname',
-            'seat' => 'Seat',
-            'projectname' => 'Projectname',
-            'school' => 'School',
-            'courcename' => 'Courcename',
-            'teacher' => 'Teacher',
-            'status' => 'Status',
+            'recordname' => '录制人',
+            'time' => '拍摄时间',
+            'time1' => '拍摄时间1',
+            'capture_time' => '时长',
+            'uploadname' => '上传人',
+            'seat' => '机位',
+            'projectname' => '项目名称',
+            'school' => '学校',
+            'courcename' => '课程名称',
+            'teacher' => '主讲人',
+            'status' => '审核',
             'auditor1' => 'Auditor1',
             'auditor2' => 'Auditor2',
             'cid' => 'Cid',
         ];
     }
+
+    public function getProjectName()
+    {
+        $list = self::findBySql('select DISTINCT projectname from video_shoot')->all();
+        $pro_list = [];
+        foreach ($list as $k => $v) {
+//            array_push($pro_list, $v['projectname']);
+            $key = $v['projectname'];
+            $pro_list[$key] = $v['projectname'] ;
+        }
+        return $pro_list;
+    }
+
+//    public function getPersonList()
+//    {
+//        $list = SmsAdmin::findBySql('select DISTINCT name from sms_admin')->all();
+//        $person_list = [];
+//        foreach ($list as $k => $v) {
+//            $key = $v['name'];
+//            $person_list[$key] = $v['name'] ;
+//        }
+//        return $person_list;
+//    }
+
+    public function getCourseList()
+    {
+        $list = self::findBySql('select DISTINCT courcename from video_shoot')->all();
+        $course_list = [];
+        foreach ($list as $k => $v) {
+            $key = $v['courcename'];
+            $course_list[$key] = $v['courcename'] ;
+        }
+        return $course_list;
+    }
+
+//    public function getTeacherList()
+//    {
+//        $list = Teacher::findBySql('select DISTINCT teacher from teacher')->all();
+//        $teacher_list = [];
+//        foreach ($list as $k => $v) {
+//            $key = $v['teacher'];
+//            $teacher_list[$key] = $v['teacher'] ;
+//        }
+//        return $teacher_list;
+//    }
+
 }

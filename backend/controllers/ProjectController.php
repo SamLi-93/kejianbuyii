@@ -29,30 +29,19 @@ class ProjectController extends Controller
     public function init()
     {
         parent::init();
-
         $pro_info = new Project();
-
         $this->pro_projectname = $pro_info->getProjectName();
         $this->pro_school = $pro_info->getSchoolName();
         $this->pro_teacher = $pro_info->getTeacherName();
         $this->pro_over = $pro_info->getOverList();
-
     }
 
     public function actionTest()
     {
-        $searchModel = new ProjectSearch();
-        $dataProvider = new ActiveDataProvider([
-            'query' => Project::find(),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-        return $this->render('test', [
-            'model' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'pro_over' => $this->pro_over,
-        ]);
+        $model['id'] = '123';
+        $tst = "changeover(this.options[this.options.selectedIndex].value," . $model['id'] . " , few)";
+        print_r($tst);
+        exit;
     }
 
     public function actionIndex()
@@ -66,25 +55,25 @@ class ProjectController extends Controller
             $sql_parms = 'where true';
         }
 
-        if(isset($query_parms['projectname'])) {
+        if (isset($query_parms['projectname'])) {
             $sql_parms .= " and projectname = '" . $query_parms['projectname'] . "'";
         }
 
-        if(isset($query_parms['school'])) {
+        if (isset($query_parms['school'])) {
             $sql_parms .= " and school = '" . $query_parms['school'] . "'";
         }
 
-        if(isset($query_parms['teacher'])) {
+        if (isset($query_parms['teacher'])) {
             $sql_parms .= " and teacher = '" . $query_parms['teacher'] . "'";
         }
 
-        if(isset($query_parms['over'])) {
+        if (isset($query_parms['over'])) {
             $sql_parms .= " and over = '" . $query_parms['over'] . "'";
         }
 
         $sql = "select * from project " . $sql_parms;
 
-        $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project '.$sql_parms );
+        $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project ' . $sql_parms);
         $command->bindParam(':projectname', $projectname);
         $command->bindParam(':school', $school);
         $command->bindParam(':teacher', $teacher);
@@ -92,7 +81,7 @@ class ProjectController extends Controller
         $count = $command->queryScalar();
 
         $dataProvider = new SqlDataProvider([
-            'sql' => $sql ,
+            'sql' => $sql,
 //            'params' => [':status' => 1],
             'totalCount' => $count,
             'pagination' => [
@@ -123,10 +112,10 @@ class ProjectController extends Controller
     {
         $this->layout = 'main';
         $model = new Project();
-        $list =SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
         foreach ($list as $k => $v) {
             $key = $v['name'];
-            $uploadname_list[$key] = $v['name'] ;
+            $uploadname_list[$key] = $v['name'];
         }
 //        print_r($uploadname_list);exit;
 
@@ -149,10 +138,10 @@ class ProjectController extends Controller
     {
         $id = Yii::$app->request->get('id');
         $model = Project::findOne($id);
-        $list =SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
         foreach ($list as $k => $v) {
             $key = $v['name'];
-            $uploadname_list[$key] = $v['name'] ;
+            $uploadname_list[$key] = $v['name'];
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -176,4 +165,36 @@ class ProjectController extends Controller
         Yii::$app->cache->delete('index');
         return $this->redirect(['index']);
     }
+
+    public function actionChangeover()
+    {
+        $query = Yii::$app->request->post();
+        $id = $query['id'];
+        $value = $query['value'];
+        $model= Project::findOne($id);
+        $model->over = $value;
+        if ($model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return \Yii::$app->getSession()->setFlash('error', '修改失败');
+        }
+    }
+
+    public function actionChangefree()
+    {
+        $query = Yii::$app->request->post();
+        $id = $query['id'];
+        $value = $query['value'];
+        $model= Project::findOne($id);
+        $model->free = $value;
+        if ($model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return \Yii::$app->getSession()->setFlash('error', '修改失败');
+        }
+    }
+
+
 }

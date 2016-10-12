@@ -92,11 +92,18 @@ a:visited {
 .back-btn{
     margin-left: 40px;
 }
-
-
-
-
-
+/*td{*/
+    /*text-align: center;*/
+/*}*/
+.fleft{
+    float: left;
+}
+.mr-l-10{
+    margin-left: 10px;
+}
+.width-200{
+    width: 300px;
+}
 
 
 

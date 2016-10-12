@@ -11,7 +11,7 @@ namespace backend\controllers;
 
 use yii\web\Controller;
 
-class ProjectCountController extends Controller
+class ProjectcountController extends Controller
 {
 
 }

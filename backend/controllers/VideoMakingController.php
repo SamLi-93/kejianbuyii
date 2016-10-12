@@ -11,7 +11,7 @@ namespace backend\controllers;
 
 use yii\web\Controller;
 
-class VideoMakingController extends Controller
+class VideomakingController extends Controller
 {
     public function actionIndex()
     {

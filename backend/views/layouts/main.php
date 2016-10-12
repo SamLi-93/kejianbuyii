@@ -22,7 +22,9 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/chosen/1.6.2/chosen.jquery.js"></script>
     <script src="//cdn.bootcss.com/chosen/1.6.2/chosen.jquery.min.js"></script>
+    <link href="//cdn.bootcss.com/chosen/1.6.2/chosen.css" rel="stylesheet">
 </head>
 
 <script>
@@ -56,16 +58,16 @@ AppAsset::register($this);
         <div class="sims_left sidebar" id="sidebar">
             <dt class="sims_list_on">后台管理</dt>
             <dd class="left_cons">
-                <a href="#" class="left_con" target="main">项目管理</a>
-                <a href="#" class="left_con" target="main">视频拍摄</a>
-                <a href="#" class="left_con" target="main">课程管理</a>
-                <a href="#" class="left_con" target="main">课件管理-未审核</a>
-                <a href="#" class="left_con" target="main">课件管理-一级通过</a>
-                <a href="#" class="left_con" target="main">课件管理-二级通过</a>
-                <a href="#" class="left_con" target="main">讲师管理</a>
-                <a href="#" class="left_con" target="main">项目统计</a>
-                <a href="#" class="left_con" target="main">人员统计</a>
-                <a href="#" class="left_con" target="main">人员管理</a>
+                <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="left_con" target="main">项目管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="left_con" target="main">视频拍摄</a>
+                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="left_con" target="main">课程管理</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareunverify/index']) ?>" class="left_con" target="main">课件管理-未审核</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareverifyone/index']) ?>" class="left_con" target="main">课件管理-一级通过</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareverifytwo/index']) ?>" class="left_con" target="main">课件管理-二级通过</a>
+                <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="left_con" target="main">讲师管理</a>
+                <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="left_con" target="main">项目统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="left_con" target="main">人员统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="left_con" target="main">人员管理</a>
             </dd>
         </div>
         <div class="main-content">
