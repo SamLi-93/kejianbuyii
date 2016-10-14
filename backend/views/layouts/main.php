@@ -26,32 +26,17 @@ AppAsset::register($this);
     <script src="//cdn.bootcss.com/chosen/1.6.2/chosen.jquery.min.js"></script>
     <link href="//cdn.bootcss.com/chosen/1.6.2/chosen.css" rel="stylesheet">
 </head>
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        $('.left_con').click(-->
+<!--            function(){-->
+<!--                $(this).addClass("left_con_on");-->
+<!--                $(this).removeClass("left_con");-->
+<!--            }-->
+<!--        );-->
+<!--    });-->
+<!--</script>-->
 
-<script>
-    $('.sims_list').click(
-        alert('ttt');
-        function(){
-            index = $(".sims_left dt").index(this);
-            if($(".left_cons").eq(index).css("display") == "none"){
-                $(".left_cons").slideUp("slow").eq(index).slideDown("slow");
-                $(".sims_list_on").removeClass("sims_list_on").addClass("sims_list");
-                $(this).removeClass("sims_list").addClass("sims_list_on");
-            }
-        }
-    );
-    $('.left_con').click(
-        alert('test');
-        function(){
-            $('.left_con_on').removeClass("left_con_on").addClass("left_con");;
-            $(this).removeClass("left_con").addClass("left_con_on");
-            height = document.getElementById("sims_left").offsetHeight;
-            var setheight = height > 800 ? height:800;
-            //console.log(height);
-            $('#main').height(setheight);
-            $('#sims_right').height(setheight);
-        }
-    );
-</script>
 <body>
 <?php $this->beginBody() ?>
 
@@ -68,16 +53,17 @@ AppAsset::register($this);
         <div class="sims_left sidebar" id="sidebar">
             <dt class="sims_list_on">后台管理</dt>
             <dd class="left_cons">
-                <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="left_con" target="main">项目管理</a>
-                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="left_con" target="main">视频拍摄</a>
-                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="left_con" target="main">课程管理</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareunverify/index']) ?>" class="left_con" target="main">课件管理-未审核</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareverifyone/index']) ?>" class="left_con" target="main">课件管理-一级通过</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareverifytwo/index']) ?>" class="left_con" target="main">课件管理-二级通过</a>
-                <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="left_con" target="main">讲师管理</a>
-                <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="left_con" target="main">项目统计</a>
-                <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="left_con" target="main">人员统计</a>
-                <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="left_con" target="main">人员管理</a>
+<!--                --><?// var_dump(Yii::$app->controller->id=='project' ? '1' : '2' );exit; ?>
+                <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="<?= Yii::$app->controller->id == 'project'? 'left_con_on' : 'left_con'; ?>" target="main">项目管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="<?= Yii::$app->controller->id == 'videoshoot'? 'left_con_on' : 'left_con'; ?>" target="main">视频拍摄</a>
+                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" target="main">课程管理</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareunverify/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareunverify'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-未审核</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareverifyone/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareverifyone'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-一级通过</a>
+                <a href="<?= \yii\helpers\Url::to(['coursewareverifytwo/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareverifytwo'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-二级通过</a>
+                <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="<?= Yii::$app->controller->id == 'teacher'? 'left_con_on' : 'left_con'; ?>" target="main">讲师管理</a>
+                <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="<?= Yii::$app->controller->id == 'projectcount'? 'left_con_on' : 'left_con'; ?>" target="main">项目统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="<?= Yii::$app->controller->id == 'personnelcount'? 'left_con_on' : 'left_con'; ?>" target="main">人员统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="<?= Yii::$app->controller->id == 'personnel'? 'left_con_on' : 'left_con'; ?>" target="main">人员管理</a>
             </dd>
         </div>
         <div class="main-content">
@@ -93,5 +79,15 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+<script>
+    $(document).ready(function(){
+        $('.left_con').click(
+            function(){
+                $(this).addClass("left_con_on");
+                $(this).removeClass("left_con");
+            }
+        );
+    });
+</script>
 </html>
 <?php $this->endPage() ?>

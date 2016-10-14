@@ -85,7 +85,7 @@ class VideomakingController extends Controller
             $sql_parms .= " and video_making.subtitle = '" . $query_parms['subtitle'] . "'";
         }
 
-        $sql = "select  video_making.*, courseware.state from video_making 
+        $sql = "select video_making.*, courseware.state from video_making 
 inner join courseware on video_making.courcename = courseware.coursename " . $sql_parms;
 
 //        var_dump($query_parms['subtitle']);
