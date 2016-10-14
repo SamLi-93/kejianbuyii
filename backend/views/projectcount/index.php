@@ -1,119 +1,140 @@
-<? $this->_extends("_layouts/main_layout"); ?>
-<? $this->_block("contents"); ?>
+<?php
 
-<script type="text/javascript">
-function changecheck2(v){
-  $.ajax({
-      type: "post",
-      method: "post",
-      dataType: "json",
-      data: {"v": v},
-      url: "<?php echo url('/changecheck');?>",
-      success: function(data){
-        console.log(data);
-        var educational = data.educational;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
-        var condition_info1 = "<select id=\"school\" class=\"dept_select\" name=\"school\" style=\"width:150px\"><option value=\"\">选择学校</option>";
-        for(var i = 0; i < educational.length; i++){
-          condition_info1 +="<option value=\""+educational[i]+"\">"+educational[i]+"</option>";
-          }
-          condition_info1 +="</select>";
-        $('#school1').html(condition_info1);
-        $('.dept_select').chosen();
-      }
-  });  
-}
-    
-$(function(){
-    $('.dept_select').chosen();
-});
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\ProjectSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->title = '项目管理';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
+<div class="center subject_name">
+    <span>项目管理</span>
+</div>
+
+<?php echo $this->render('_search', [
+    'model' => $searchModel,
+    'teacher_list' => $teacher_list,
+    'pro_school' => $pro_school,
+    ]); ?>
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'summary' => '',
+//    'id' => "waitforcheck",
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
+//        'id',
+//        'school',
+
+        [
+            'header' => '院校',
+            'attribute' => 'college',
+            'value' => function ($model) {
+                if ($model['college'] == null ){
+                    return '';
+                }
+                return $model['college'];
+            }
+        ],
+
+        [
+            'header' => '讲师姓名',
+            'attribute' => 'teacher',
+            'value' => function ($model) {
+                if ($model['teacher'] == null ){
+                    return '';
+                }
+                return $model['teacher'];
+            }
+        ],
+
+        [
+            'header' => '性别',
+            'attribute' => 'sex',
+            'value' => function ($model) {
+                if ($model['sex'] == null ){
+                    return '';
+                }
+                return $model['sex'];
+            }
+        ],
+
+        [
+            'header' => '联系电话',
+            'attribute' => 'phone',
+            'value' => function ($model) {
+                if ($model['phone'] == null ){
+                    return '';
+                }
+                return $model['phone'];
+            }
+        ],
+
+        [
+            'header' => 'qq或邮箱',
+            'attribute' => 'qq',
+            'value' => function ($model) {
+                if ($model['qq'] == null ){
+                    return '';
+                }
+                return $model['qq'];
+            }
+        ],
+
+        [
+            'header' => '备注',
+            'attribute' => 'remarks',
+            'value' => function ($model) {
+                if ($model['remarks'] == null ){
+                    return '';
+                }
+                return $model['remarks'];
+            }
+        ],
+
+
+        ['class' => 'yii\grid\ActionColumn',
+            'header' => '操作',
+            'template' => '{edit} {delete}',
+            'buttons' => [
+                'edit' => function ($url, $model, $key) {
+                    $options = [
+                        'title' => '修改',
+                        'class' =>'btn btn-success btn-sm',
+                        'id' => 'edit-btn',
+                    ];
+                    $url = Url::to(['teacher/edit','id'=>$model['id']]);
+                    return Html::a('修改', $url, $options);
+                },
+                'delete' => function ($url, $model, $key) {
+                    $options = [
+                        'class' => 'btn btn-success',
+                    ];
+                    $url = Url::to(['teacher/delete','id'=>$model['id']]);
+                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+
+                },
+            ],
+        ],
+    ],
+]);
+
+?>
+<script>
+    function check() {
+        if(confirm('您确定要删除吗？')){
+            return true;
+        }else{
+            return false;
+        }
+    }
 </script>
-<div class="row-fluid sortable" style="width:95%">		
-    <div class="box span12">
-        <div class="box-content">
-            <div class="row-fluid">
-                <form class="fsimple" id="form_news_search" name="form_news_search" action="" method="get" enctype="application/x-www-form-urlencoded" qform_group_id="" >	
-                    <div class="span10" style="margin-bottom:7px;margin-left:40px;">
-                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <select name="projectname" style="width:150px;" id="projectname" class="dept_select" onchange="changecheck2(this.options[this.options.selectedIndex].value)"> 
-                                            <?
-                                            echo '<option value="">选择项目</option>';
-                                            foreach ($item as $k => $v) {
-                                                if (strlen($projectname) && $projectname == $v) {
-                                                    $sel = 'selected';
-                                                    } else {
-                                                    $sel = '';
-                                                    }
-                                                echo '<option value="' . $v . '" ' . $sel . '>' . $v . '</option>';
-                                                    }?>
-                                        </select>
-                                    </td>
-                                    <td id="school1">
-                                        <select name="school" style="width:150px;" id="school" class="dept_select"> 
-                                            <?
-                                            echo '<option value="">选择学校</option>';
-                                            foreach ($education as $k => $v) {
-                                                if (strlen($school) && $school == $v) {
-                                                    $sel = 'selected';
-                                                    } else {
-                                                    $sel = '';
-                                                    }
-                                                echo '<option value="' . $v . '" ' . $sel . '>' . $v . '</option>';
-                                                    }?>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div>
-                                <div class="btn2 ml20" onclick="$('.fsimple').submit();"><span class="shadow white">查询</span></div>
-                                <div class="btn2 ml20" onclick="window.location.href='<?php echo url('');?>';"><span class="shadow white">重置</span></div>
 
-                            </div>
-                        </div>
-                    </div>
-                </form>		
-            </div>
 
-                <table class="list_table" width="100%" cellpadding="0" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th style="width:5%">序号</th>
-                        <th style="width:15%">项目名称</th>
-                        <th style="width:15%">学校</th>
-                        <th style="width:10%">拍摄时长</th>
-                        <th style="width:15%">制作时长</th>
-                        <th style="width:15%">日期</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    //print_r($list);
-                    foreach ($list3 as $i => $row) {?>
-                        <tr>
-                            <td><?php echo $i + $start + 1 ?></td>
-                            <td><?php echo $row['projectname']; ?></td>
-                            <td><?php echo $row['school']; ?></td>
-                            <td><?php echo $row['capture_time']; ?></td>  
-                            <td><?php echo  $row['totalday1']; ?></td>                         
-                            <td><?php echo date('Y-m-d',$row['time']); ?></td>                                                         
-                        </tr> 
-
-                 <? } ?>
-                        
-                    </tbody>
-                </table>
-                <div style=" float:right">
-                    <span>拍摄总时间：<?php echo $capture_time;?></span>&nbsp;&nbsp;&nbsp;    
-                    <span>制作总时间：<?php echo $totalday;?></span>
-                </div>
-            <br/>
-    <? $this->_control("pagination", "", array('pagination' => $pager)); ?>
-                
-        </div>
-    </div>
-<? $this->_endblock(); ?>

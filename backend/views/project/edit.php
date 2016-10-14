@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['view', 'id' => $model->id]];
 ?>
 <div class="center subject_name">
-    <span>项目管理1</span>
+    <span>项目管理</span>
 </div>
 <div class="col-xs-12">
 
@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 
     <?= $form->field($model, 'projectname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'school')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'over')->dropDownList(['0' => '否', '1' => '是']) ?>
-    <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是']) ?>
+    <?= $form->field($model, 'over')->dropDownList(['0' => '否', '1' => '是'], ['prompt'=>'选择是否结束']) ?>
+    <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'], ['prompt'=>'选择是否结算']) ?>
     <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => ''],
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 
     <?= $form->field($model, 'original_path')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'making_path')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'uploadname')->dropDownList($uploadname_list) ?>
+    <?= $form->field($model, 'uploadname')->dropDownList($uploadname_list, ['prompt'=>'选择上传人']) ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('修改', ['class' => 'btn btn-primary', 'id'=> 'submit-btn']) ?>
@@ -85,5 +85,17 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
                 return false;
             }
         });
+    });
+
+    $("#project-over").chosen({
+        width : "120px",
+    });
+
+    $("#project-free").chosen({
+        width : "120px",
+    });
+
+    $("#project-uploadname").chosen({
+        width : "120px",
     });
 </script>

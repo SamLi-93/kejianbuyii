@@ -12,6 +12,8 @@ $this->title = '视频拍摄';
 $this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?// var_dump($model['recordname']);exit;?>
 <div class="center subject_name">
     <span>视频拍摄</span>
 </div>
@@ -31,10 +33,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <span id="school"><?= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?></span>
     <span id="coursename"><?= $form->field($model, 'courcename')->dropDownList($course_list,['prompt'=>'选择课程']) ?></span>
     <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择主讲人']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname2']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname3']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname4']) ?>
+
+<!--    --><?//= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
+
+    <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",]
+            )->checkboxList($person_list, [
+        'item' => function($index, $label, $name, $checked, $value) {
+//            var_dump($label);exit;   label的值和value的值一样都是整个person_list 要做成db里的录制人如果和value里的有对应上 and 加上checked
+//            var_dump($value);
+            $checked = $checked ? 'checked' : '';
+            return "<input type='checkbox' {$checked} name='VideoShoot[recordname][]' value='{$value}' >{$label}";
+        }
+    ]) ;?>
+
     <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => '',],
         'pluginOptions' => [

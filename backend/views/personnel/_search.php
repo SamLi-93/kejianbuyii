@@ -27,10 +27,8 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'请选择项目']) ?>
-            <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-            <?= $form->field($model, 'teacher')->dropDownList($pro_teacher ,['prompt'=>'请选择讲师']) ?>
-            <?= $form->field($model, 'over')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
+            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'请选择']) ?>
+            <?= $form->field($model, 'college')->dropDownList($pro_school ,['prompt'=>'请选择']) ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -48,19 +46,11 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 <script type="text/javascript">
-    $("#projectsearch-projectname").chosen({
+    $("#teacher-teacher").chosen({
         width : "150px",
     });
 
-    $("#projectsearch-school").chosen({
-        width : "150px",
-    });
-
-    $("#projectsearch-teacher").chosen({
-        width : "150px",
-    });
-
-    $("#projectsearch-over").chosen({
+    $("#teacher-college").chosen({
         width : "150px",
     });
 </script>

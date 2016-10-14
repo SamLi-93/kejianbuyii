@@ -32,9 +32,9 @@ class VideoMaking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'teacher'], 'required'],
+//            [['id'], 'required'],
             [['id', 'subtitle', 'free'], 'integer'],
-            [['makingname', 'projectname', 'school', 'courcename'], 'string', 'max' => 100],
+            [['makingname', 'projectname', 'teacher', 'school', 'courcename'], 'string', 'max' => 100],
             [['teacher'], 'string', 'max' => 50],
         ];
     }
@@ -46,13 +46,13 @@ class VideoMaking extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'makingname' => 'Makingname',
-            'subtitle' => 'Subtitle',
-            'projectname' => 'Projectname',
-            'school' => 'School',
-            'courcename' => 'Courcename',
-            'free' => 'Free',
-            'teacher' => 'Teacher',
+            'makingname' => '上传人',
+            'subtitle' => '字幕',
+            'projectname' => '项目名',
+            'school' => '学校',
+            'courcename' => '课程名',
+            'free' => '结算',
+            'teacher' => '讲师',
         ];
     }
 }

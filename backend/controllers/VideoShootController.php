@@ -45,23 +45,31 @@ class VideoshootController extends Controller
 
     public function actionTest()
     {
-//        var_dump($this->person_list); exit;
+        $params['VideoShoot'] =
+            ['projectname' => '人才师资培训', 'school' => '电子商务厅', 'courcename' => '电子商务专业人才师资培训',
+                'teacher' => '崔相一','recordname' => [ '0' => '李温乐', '1' => '童剑凯', '2' => '葛海其' ],
+        'time' => '2016-10-20 02:50', 'seat' => 444, 'uploadname' => '陈麒杰' ];
+
 
         $model = new VideoShoot();
-//        $model->id = 1646;
-        $model->projectname = "test";
-        $model->school = "test";
-        $model->courcename = "test";
-        $model->teacher = "test";
-        $model->status = '一级审核中';
-        $model->seat = 33;
-        $model->uploadname = "test";
-//        $model->capture_time = 00;
-        $model->time1 = null;
-        $model->time = null;
-        $model->recordname = "test";
-        var_dump($model->save());
+        $recordname = implode('、', $params['VideoShoot']['recordname']);
+//            var_dump($recordname);exit;
+        $model->setAttributes([
+            'projectname' => $params['VideoShoot']['projectname'],
+            'school' => $params['VideoShoot']['school'],
+            'courcename' => $params['VideoShoot']['courcename'],
+            'teacher' => $params['VideoShoot']['teacher'],
+            'recordname' => '一级审核中111',
+            'seat' => intval($params['VideoShoot']['seat']),
+            'uploadname' => $params['VideoShoot']['uploadname'],
+            'status' => $recordname,
+            'capture_time' => 00,
+            'time1' => null,
+            'time' => $params['VideoShoot']['time'],
 
+        ]);
+
+        var_dump($model->save());exit;
 
     }
 
@@ -150,16 +158,14 @@ class VideoshootController extends Controller
 
     public function actionCreate()
     {
+        var_dump(Yii::$app->request->post());
         $model = new VideoShoot();
-//        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
-//        foreach ($list as $k => $v) {
-//            $key = $v['name'];
-//            $uploadname_list[$key] = $v['name'];
-//        }
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-//            var_dump($params['VideoShoot']);
+//            print_r($params['VideoShoot']);exit;
+            $recordname = implode('、', $params['VideoShoot']['recordname']);
+//            var_dump($recordname);exit;
             $model->setAttributes([
                 'projectname' => $params['VideoShoot']['projectname'],
                 'school' => $params['VideoShoot']['school'],
@@ -171,8 +177,9 @@ class VideoshootController extends Controller
                 'capture_time' => 00,
                 'time1' => null,
                 'time' => $params['VideoShoot']['time'],
-                'recordname' => $params['VideoShoot']['recordname'],
+                'recordname' => $recordname,
             ]);
+
 //            $model->projectname = $params['VideoShoot']['projectname'];
 //            $model->school = $params['VideoShoot']['school'];
 //            $model->courcename = $params['VideoShoot']['courcename'];
@@ -186,11 +193,10 @@ class VideoshootController extends Controller
 //            $model->recordname = $params['VideoShoot']['recordname'];
         }
 
-        if ($model->load(Yii::$app->request->post())&&$model->save()) {
+        if (!empty(Yii::$app->request->post())&&$model->save()) {
             Yii::$app->cache->delete('index');
             return $this->redirect(['index']);
         } else {
-            echo 'fail';
             return $this->render('create', [
                 'model' => $model,
                 'recordname1' => $model,
@@ -252,13 +258,28 @@ class VideoshootController extends Controller
         $id = Yii::$app->request->get('id');
         $model = VideoShoot::findOne($id);
 
+        if (!empty(Yii::$app->request->post())) {
+            $params = Yii::$app->request->post();
+            $recordname = implode('、', $params['VideoShoot']['recordname']);
+            $model->setAttributes([
+                'projectname' => $params['VideoShoot']['projectname'],
+                'school' => $params['VideoShoot']['school'],
+                'courcename' => $params['VideoShoot']['courcename'],
+                'teacher' => $params['VideoShoot']['teacher'],
+                'status' => '一级审核中',
+                'seat' => intval($params['VideoShoot']['seat']),
+                'uploadname' => $params['VideoShoot']['uploadname'],
+                'capture_time' => 00,
+                'time1' => null,
+                'time' => $params['VideoShoot']['time'],
+                'recordname' => $recordname,
+            ]);
+        }
 
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (!empty(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->cache->delete('index');
             return $this->redirect(['index']);
         } else {
-            echo 'fali';
             return $this->render('edit', [
                 'model' => $model,
                 'pro_projectname' => $this->pro_projectname,

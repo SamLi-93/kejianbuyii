@@ -34,25 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!--    --><?//= $form->field($model, 'recordname',['template' => "{label}\n<div class=\"col-lg-6\"><div class='fleft'>{input}</div></div>",]
 //    )->dropDownList($person_list, ['prompt'=>'选择录制人员']) ?>
-<!--    --><?//= $form->field($model, 'recordname',['template' => "{label}\n<div class=\"col-lg-6\"><div class='fleft'>{input}</div></div>",]
-//    )->dropDownList($person_list, ['prompt'=>'选择录制人员']) ?>
-<!--    --><?//= $form->field($model, 'recordname',['template' => "{label}\n<div class=\"col-lg-6\"><div class='fleft'>{input}</div></div>",]
-//    )->dropDownList($person_list, ['prompt'=>'选择录制人员']) ?>
-<!--    --><?//= $form->field($model, 'recordname',['template' => "{label}\n<div class=\"col-lg-6\"><div class='fleft'>{input}</div></div>",]
-//    )->dropDownList($person_list, ['prompt'=>'选择录制人员']) ?>
 
-<!--    <select  id="name" name="name" class="dept_select" style="width:150px;">-->
-<!--        --><?//= '<option value="">选择人员名字</option>';
-//        foreach ($person_list as $k => $v) {?>
-<!--            <option value="--><?php //echo $v;?><!--" >--><?php //echo $v;?><!--</option>-->
-<!--        --><?//}?>
-<!--    </select>-->
+<!--    --><?//= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
 
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname2']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname3']) ?>
-    <?= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname4']) ?>
-
+    <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list); ?>
 
     <?= $form->field($model, 'time' /*['template' => "{label}\n<div class=\"col-lg-6\">
 <div class='fleft width-200'>{input}</div><div class='fleft mr-l-10 width-200'>{input}</div></div>",]*/)->widget(DateTimePicker::classname(), [
@@ -76,6 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     $(function(){
+//        var a = $(":checkbox");
+//        if(a.length > 4)
+//            alert("录制人员最多选4个");
 //        alert($('#name').val())
         $('#submit-btn').click(function(){
             if($.trim($('#videoshoot-projectname').val()) == ''){
@@ -109,7 +97,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 alert('请选择上传人！');
                 return false;
             }
-
 //            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
 //                alert('开始时间不能大于结束时间');
 //                $('#school').focus();
@@ -152,17 +139,8 @@ $this->params['breadcrumbs'][] = $this->title;
     $("#videoshoot-recordname1").chosen({
         width : "200px",
     });
-    $("#videoshoot-recordname2").chosen({
-        width : "200px",
-    });
-    $("#videoshoot-recordname3").chosen({
-        width : "200px",
-    });
-    $("#videoshoot-recordname4").chosen({
-        width : "200px",
-    });
-    $('.dept_select').chosen();
 
+    $('.dept_select').chosen();
 </script>
 
 <script>

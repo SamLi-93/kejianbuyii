@@ -68,6 +68,9 @@ class ProjectController extends Controller
         }
 
         if (isset($query_parms['over'])) {
+            if ($query_parms['over'] == 2) {
+                $query_parms['over'] = 0;
+            }
             $sql_parms .= " and over = '" . $query_parms['over'] . "'";
         }
 

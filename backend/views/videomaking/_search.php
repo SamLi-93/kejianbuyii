@@ -27,10 +27,12 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'请选择项目']) ?>
+            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
             <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-            <?= $form->field($model, 'teacher')->dropDownList($pro_teacher ,['prompt'=>'请选择讲师']) ?>
-            <?= $form->field($model, 'over')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
+            <?= $form->field($model, 'courcename')->dropDownList($course_list ,['prompt'=>'请选择课程名']) ?>
+            <?= $form->field($model, 'makingname')->dropDownList($person_list ,['prompt'=>'请选择上传人']) ?>
+            <?= $form->field($model, 'free')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
+            <?= $form->field($model, 'subtitle')->dropDownList(['2' => '无', '1' => '有'] ,['prompt'=>'请选择有无字幕']) ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -48,19 +50,22 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 <script type="text/javascript">
-    $("#projectsearch-projectname").chosen({
+    $("#videomaking-projectname").chosen({
         width : "150px",
     });
-
-    $("#projectsearch-school").chosen({
+    $("#videomaking-school").chosen({
         width : "150px",
     });
-
-    $("#projectsearch-teacher").chosen({
+    $("#videomaking-courcename").chosen({
         width : "150px",
     });
-
-    $("#projectsearch-over").chosen({
+    $("#videomaking-makingname").chosen({
+        width : "150px",
+    });
+    $("#videomaking-subtitle").chosen({
+        width : "150px",
+    });
+    $("#videomaking-free").chosen({
         width : "150px",
     });
 </script>

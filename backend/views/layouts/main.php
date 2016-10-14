@@ -32,13 +32,23 @@ AppAsset::register($this);
         alert('ttt');
         function(){
             index = $(".sims_left dt").index(this);
-
             if($(".left_cons").eq(index).css("display") == "none"){
                 $(".left_cons").slideUp("slow").eq(index).slideDown("slow");
                 $(".sims_list_on").removeClass("sims_list_on").addClass("sims_list");
                 $(this).removeClass("sims_list").addClass("sims_list_on");
-
             }
+        }
+    );
+    $('.left_con').click(
+        alert('test');
+        function(){
+            $('.left_con_on').removeClass("left_con_on").addClass("left_con");;
+            $(this).removeClass("left_con").addClass("left_con_on");
+            height = document.getElementById("sims_left").offsetHeight;
+            var setheight = height > 800 ? height:800;
+            //console.log(height);
+            $('#main').height(setheight);
+            $('#sims_right').height(setheight);
         }
     );
 </script>

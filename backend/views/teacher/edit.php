@@ -1,135 +1,97 @@
-<?php $this->_extends('_layouts/main_layout'); ?>
-<?php $this->_block('contents'); ?>
-<link type="text/css" href="<?=$_BASE_DIR?>js/calendar/skins/default/theme.css" rel="stylesheet"/>
-<script type="text/javascript" src="<?=$_BASE_DIR?>js/calendar/calendar.js"></script>
-<script type="text/javascript" src="<?=$_BASE_DIR?>js/calendar/calendar-setup.js"></script>
-<script type="text/javascript" src="<?=$_BASE_DIR?>js/calendar/lang/calendar-zh-utf8.js"></script>
-<script type="text/javascript" src="<?= $_BASE_DIR ?>ckeditor/ckeditor.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('#form_news').submit(function(){
-        if($.trim($('#teacher').val()) == ''){
-          alert('请输入讲师姓名！');
-          $('#teacher').focus();
-          return false; 
-        }
-        if($.trim($('#phone').val()) == ''){
-          alert('请输入联系电话！');
-          $('#phone').focus();
-          return false; 
-        }
-        var numValue = document.getElementById("phone").value;
-        numValue = numValue.replace(/\s/g, "");
-        var regBox = {
-            regEmail : /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,//邮箱
-            regMobile : /^0?1[3|4|5|8][0-9]\d{8}$/,//手机
-            regTel : /^0[\d]{2,3}-[\d]{7,8}$/
-        }
-     
-        var mflag = regBox.regMobile.test(numValue);
-        var tflag = regBox.regTel.test(numValue);
-        if (!(mflag||tflag)) {
-            alert("请输入正确的联系电话！");
-            $('#phone').focus();
-            return false;
-        }
-        if($.trim($('#qq').val()) == "无"){
-          if(confirm('未输入QQ或邮箱，您确定要提交吗？')){
-            return true;  
-          }else{
-            return false;
-          }
-        }
-    }); 
-    $('.dept_select').chosen();
-});
-function format_phone(){
-    $phone = document.getElementById("phone");
-    $phone.value = $phone.value.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3')
-    // alert($phone);
-}
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Teacher*/
+/* @var $form yii\widgets\ActiveForm */
+$this->title = '添加讲师';
+$this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="center subject_name">
+    <span>讲师管理</span>
+</div>
+<div class="col-xs-12">
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['teacher/edit/'.$model['id']],
+        'method' => 'post',
+        'id' => 'my_form',
+        'options' => ['class' => 'form-horizontal'],
+        'fieldConfig' => [
+            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sex')->dropDownList(['1' => '男', '2' => '女'], ['prompt'=>'选择性别']) ?>
+    <?= $form->field($model, 'college')->dropDownList($pro_school,['prompt'=>'选择院校']) ?>
+    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'remarks')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group-btn">
+        <?= Html::submitButton('修改', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
+        <?= Html::a("返回", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
+
+<script>
+    $(function(){
+        $('#submit-btn').click(function(){
+            if($.trim($('#teacher-teacher').val()) == ''){
+                alert('请输入讲师姓名！');
+                $('#teacher-teacher').focus();
+                return false;
+            }
+            if($.trim($('#teacher-sex').val()) == ''){
+                alert('请选择性别！');
+                return false;
+            }
+            if($.trim($('#teacher-college').val()) == ''){
+                alert('请选择学校1！');
+                return false;
+            }
+            if($.trim($('#teacher-phone').val()) == ''){
+                alert('请输入讲师电话！');
+                $('#teacher-phone').focus();
+                return false;
+            }
+            if($.trim($('#teacher-qq').val()) == ''){
+                alert('请输入qq或邮箱！');
+                $('#teacher-qq').focus();
+                return false;
+            }
+            if($.trim($('#teacher-remarks').val()) == ''){
+                alert('请输入备注！');
+                $('#teacher-remarks').focus();
+                return false;
+            }
+
+//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
+//                alert('开始时间不能大于结束时间');
+//                $('#school').focus();
+//                return false;
+//            }
+            if(confirm('您确定要提交吗？')){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    });
+
+    $("#teacher-sex").chosen({
+        width : "100px",
+    });
+
+    $("#teacher-college").chosen({
+        width : "200px",
+    });
 </script>
-<?php echo $alert; ?>
-<style>
-    /*打印表格*/
-    .print_table {
-        border-collapse:collapse;/*border:1px solid #000000;*/
-    }
-    .print_table th {
-        border:1px solid #CCCCCC;
-    }
-    .print_table td {
-        border:1px solid #CCCCCC;
-    }
-</style>
-<div class="row-fluid sortable" style="width:95%;">		
-    <div class="box span12">
-        <div class="box-content">
-            <div class="row-fluid">
-                <div class="sims_sbumit">
-                <form class="fsimple" id="form_news" name="form_news" action="" method="post" enctype="multipart/form-data" >
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                            <tr height="30">
-                                <td width="146" >讲师姓名：</td>
-                                <td width="842" ><input name="teacher" type="text"  id="teacher" value="<?php echo stripslashes($myData['teacher']); ?>" size="50" /></td>
-                            </tr>
-                            <tr height="30">
-                                <td width="146" >性别：</td>
-                                <td width="842" >
-                                    <select  id="sex" name="sex" class="dept_select" style="width:200px;">
-                                    <?php
-                                        foreach($sex as $k => $v){
-                                            if ($myData['sex'] == $k) {
-                                                $sel = 'selected';
-                                            } else {
-                                                $sel = '';
-                                            }
-                                        echo '<option value="' . $k . '" ' . $sel . '>' . $v . '</option>';
-                                    }?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr height="30">
-                                <td >院校：</td>
-                                <td >
-                                    <select  id="school" name="school" class="dept_select" style="width:200px;">
-                                    <?php
-                                        foreach($education as $k => $v){
-                                            if ($myData['college'] == $v) {
-                                                $sel = 'selected';
-                                            } else {
-                                                $sel = '';
-                                            }
-                                        echo '<option value="' . $v . '" ' . $sel . '>' . $v . '</option>';
-                                    }?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr height="30">
-                                <td >电话：</td>
-                                <td ><input name="phone" type="text"  id="phone" value="<?php echo stripslashes($myData['phone']); ?>" size="50"  onkeydown="format_phone()" onblur="format_phone()"/></td>
-                            </tr>
-                            
-                            <tr height="30">
-                                <td >qq或邮箱:</td>
-                                <td ><input name="qq" type="text"  id="qq" value="<?php echo stripslashes($myData['qq']); ?>" size="50" /></td>
-                            </tr>
-                            <tr height="30">
-                                <td >备注：</td>
-                                <td ><textarea name="content" id="content" cols="45" rows="5" height="300" value="<?php echo stripslashes($myData['remarks']); ?>"></textarea></td>
-                            </tr>
-                            <tr height="80">
-                              <td ></td>
-                                <td>
-                                  <div class="btn4 mr20" onclick="javascript:$('.fsimple').submit();">保存</div>
-                                  <div class="btn4 mr20" onclick="javascript:location='<?php echo url('teacher')?>';">返回</div></td>
-                              </tr>
-                        </table>
-                    <input type="hidden" name="id" value="<?php echo $myData['id']; ?>" />
-                </form>
-                </div>
-            </div></div>
-<script language="javascript">
-  CKEDITOR.replace( 'content', { skin: "office2003", width:670, height:250,filebrowserBrowseUrl : '<?=$_BASE_DIR?>ckeditor/ckfinder/ckfinder.html', filebrowserImageBrowseUrl : '<?=$_BASE_DIR?>ckeditor/ckfinder/ckfinder.html?Type=Images', filebrowserFlashBrowseUrl : '<?=$_BASE_DIR?>ckeditor/ckfinder/ckfinder.html?Type=Flash', filebrowserUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files', filebrowserImageUploadUrl : '<?=$_BASE_DIR?>ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images', filebrowserFlashUploadUrl : '<?=$_BASE_DIR?>ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash' });
-</script>
-<?php $this->_endblock(); ?>

@@ -45,13 +45,13 @@ class Teacher extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'college' => 'College',
-            'teacher' => 'Teacher',
-            'sex' => 'Sex',
-            'phone' => 'Phone',
-            'qq' => 'Qq',
+            'college' => '学校',
+            'teacher' => '讲师',
+            'sex' => '性别',
+            'phone' => '电话号码',
+            'qq' => 'qq或邮箱',
             'mail' => 'Mail',
-            'remarks' => 'Remarks',
+            'remarks' => '备注',
             'uploadname' => 'Uploadname',
         ];
     }
