@@ -23,7 +23,7 @@ use Yii;
  * @property string $auditor2
  * @property integer $cid
  */
-class VideoShoot extends \yii\db\ActiveRecord
+class VideoShootOld extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -39,9 +39,9 @@ class VideoShoot extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['time1'], 'required'],
+//            [['id'], 'required'],
+            [['id', 'seat','cid' ], 'integer'],
             [['capture_time'], 'number'],
-            [['seat', 'cid'], 'integer'],
             [['recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher', 'status', 'auditor1', 'auditor2'], 'string', 'max' => 100],
         ];
     }
@@ -69,4 +69,50 @@ class VideoShoot extends \yii\db\ActiveRecord
             'cid' => 'Cid',
         ];
     }
+
+//    public function getProjectName()
+//    {
+//        $list = Project::findBySql('select pid, projectname from project GROUP BY projectname')->all();
+//        $pro_list = [];
+//        foreach ($list as $k => $v) {
+////            array_push($pro_list, $v['projectname']);
+//            $key = $v['projectname'];
+//            $pro_list[$v['pid']] = $v['projectname'] ;
+//        }
+//        return $pro_list;
+//    }
+
+//    public function getPersonList()
+//    {
+//        $list = SmsAdmin::findBySql('select DISTINCT name from sms_admin')->all();
+//        $person_list = [];
+//        foreach ($list as $k => $v) {
+//            $key = $v['name'];
+//            $person_list[$key] = $v['name'] ;
+//        }
+//        return $person_list;
+//    }
+
+//    public function getCourseList()
+//    {
+//        $list = self::findBySql('select DISTINCT courcename from video_shoot')->all();
+//        $course_list = [];
+//        foreach ($list as $k => $v) {
+//            $key = $v['courcename'];
+//            $course_list[$key] = $v['courcename'] ;
+//        }
+//        return $course_list;
+//    }
+
+//    public function getTeacherList()
+//    {
+//        $list = Teacher::findBySql('select DISTINCT teacher from teacher')->all();
+//        $teacher_list = [];
+//        foreach ($list as $k => $v) {
+//            $key = $v['teacher'];
+//            $teacher_list[$key] = $v['teacher'] ;
+//        }
+//        return $teacher_list;
+//    }
+
 }

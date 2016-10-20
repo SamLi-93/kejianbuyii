@@ -178,6 +178,18 @@
             return keys;
         },
 
+        getSelectedId: function () {
+            var $grid = $(this);
+            var data = gridData[$grid.attr('id')];
+            var keys = [];
+            if (data.selectionColumn) {
+                $grid.find("input[name='" + data.selectionColumn + "']:checked").each(function () {
+                    keys.push($(this)[0]['id']);
+                });
+            }
+            return keys;
+        },
+
         destroy: function () {
             return this.each(function () {
                 $(window).unbind('.yiiGridView');

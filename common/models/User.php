@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use app\models\SmsAdmin;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -61,7 +62,9 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+//        return SmsAdmin::findOne($id);
+        return SmsAdmin::findBySql("select name, orgid from sms_admin where id = :id ", [':id' => $id])->one();
+//        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

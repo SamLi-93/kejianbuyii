@@ -43,7 +43,7 @@ AppAsset::register($this);
 <div class="sims_top navbar navbar-default">
     <span class="sims_top1"></span>
     <span class="sims_top3" style="width:30px;">欢迎 </span>
-    <span class="sims_top2"><?php print_r('test');?></span>
+    <span class="sims_top2"><?= Yii::$app->user->identity->name;?></span>
     <span class="sims_top3"> 访问课件部！ </span>
     <span class="sims_top4"></span>
     <span class="sims_top5" id="stimer"></span>
@@ -55,12 +55,10 @@ AppAsset::register($this);
             <dd class="left_cons">
 <!--                --><?// var_dump(Yii::$app->controller->id=='project' ? '1' : '2' );exit; ?>
                 <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="<?= Yii::$app->controller->id == 'project'? 'left_con_on' : 'left_con'; ?>" target="main">项目管理</a>
-                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="<?= Yii::$app->controller->id == 'videoshoot'? 'left_con_on' : 'left_con'; ?>" target="main">视频拍摄</a>
-                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" target="main">课程管理</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareunverify/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareunverify'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-未审核</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareverifyone/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareverifyone'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-一级通过</a>
-                <a href="<?= \yii\helpers\Url::to(['coursewareverifytwo/index']) ?>" class="<?= Yii::$app->controller->id == 'coursewareverifytwo'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理-二级通过</a>
                 <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="<?= Yii::$app->controller->id == 'teacher'? 'left_con_on' : 'left_con'; ?>" target="main">讲师管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" target="main">课程管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="<?= Yii::$app->controller->id == 'videoshoot'? 'left_con_on' : 'left_con'; ?>" target="main">视频拍摄</a>
+                <a href="<?= \yii\helpers\Url::to(['courseware/index']) ?>" class="<?= Yii::$app->controller->id == 'courseware'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理</a>
                 <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="<?= Yii::$app->controller->id == 'projectcount'? 'left_con_on' : 'left_con'; ?>" target="main">项目统计</a>
                 <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="<?= Yii::$app->controller->id == 'personnelcount'? 'left_con_on' : 'left_con'; ?>" target="main">人员统计</a>
                 <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="<?= Yii::$app->controller->id == 'personnel'? 'left_con_on' : 'left_con'; ?>" target="main">人员管理</a>

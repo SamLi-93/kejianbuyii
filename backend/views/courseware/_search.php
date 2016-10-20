@@ -6,7 +6,6 @@
  * Time: 14:34
  */
 
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -28,13 +27,11 @@ use yii\widgets\ActiveForm;
             ]);
             ?>
             <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
-            <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-            <?= $form->field($model, 'courcename')->dropDownList($course_list ,['prompt'=>'请选择课程名']) ?>
-            <?= $form->field($model, 'makingname')->dropDownList($person_list ,['prompt'=>'请选择上传人']) ?>
-            <?= $form->field($model, 'free')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
-            <?= $form->field($model, 'subtitle')->dropDownList(['2' => '无', '1' => '有'] ,['prompt'=>'请选择有无字幕']) ?>
-            <?= $form->field($model, 'status')->dropDownList( ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
-                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态']) ?>
+            <?= $form->field($model, 'coursename')->dropDownList($course_list ,['prompt'=>'选择课程名称']) ?>
+<!--            --><?//= $form->field($model, 'recordname')->dropDownList($person_list ,['prompt'=>'选择录制人']) ?>
+            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'选择讲师']) ?>
+            <?= $form->field($model, 'date')->input('text',['class'=>'input-small']) ?>
+            <?= $form->field($model, 'enddate')->dropDownList(Yii::$app->params ) ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -43,7 +40,6 @@ use yii\widgets\ActiveForm;
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
-                            <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewdelete']) ?>
                         </div>
                     </td>
                 </tr>
@@ -53,25 +49,23 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 <script type="text/javascript">
-    $("#videomaking-projectname").chosen({
+    $("#courseware-projectname").chosen({
         width : "150px",
     });
-    $("#videomaking-school").chosen({
+    $("#courseware-coursename").chosen({
         width : "150px",
     });
-    $("#videomaking-courcename").chosen({
+    $("#courseware-teacher").chosen({
         width : "150px",
     });
-    $("#videomaking-makingname").chosen({
+    $("#courseware-recordname").chosen({
         width : "150px",
     });
-    $("#videomaking-status").chosen({
+    $("#courseware-uploadname").chosen({
         width : "150px",
     });
-    $("#videomaking-subtitle").chosen({
+    $("#courseware-enddate").chosen({
         width : "150px",
     });
-    $("#videomaking-free").chosen({
-        width : "150px",
-    });
+
 </script>

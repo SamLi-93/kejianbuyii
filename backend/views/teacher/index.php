@@ -9,12 +9,12 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\ProjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '项目管理';
+$this->title = '讲师管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="center subject_name">
-    <span>项目管理</span>
+    <span>讲师管理</span>
 </div>
 
 <?php echo $this->render('_search', [
@@ -60,6 +60,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function ($model) {
                 if ($model['sex'] == null ){
                     return '';
+                }elseif ($model['sex'] == 1 ){
+                    return '男';
+                }elseif ($model['sex'] == 2 ){
+                    return '女';
                 }
                 return $model['sex'];
             }

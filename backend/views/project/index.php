@@ -86,6 +86,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '开始日期	',
             'attribute' => 'time',
             'value' => function ($model) {
+                if ( strpos($model['time'], '-') ){
+                    return $model['time'];
+                }
                 return date('Y-m-d', $model['time']);
             }
         ],
@@ -94,6 +97,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '结束时间',
             'attribute' => 'endtime',
             'value' => function ($model) {
+                if ( strpos($model['endtime'], '-') ){
+                    return $model['endtime'];
+                }
                 return date('Y-m-d', $model['endtime']);
             }
         ],

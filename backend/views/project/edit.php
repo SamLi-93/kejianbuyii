@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 
     <?= $form->field($model, 'original_path')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'making_path')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'uploadname')->dropDownList($uploadname_list, ['prompt'=>'选择上传人']) ?>
+    <?= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('修改', ['class' => 'btn btn-primary', 'id'=> 'submit-btn']) ?>

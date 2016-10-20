@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'yyyy-mm-dd HH:ii ' ,
         ]
     ]); ?>
+    <?= $form->field($model, 'capture_time')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'seat')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
 

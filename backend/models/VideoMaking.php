@@ -15,6 +15,7 @@ use Yii;
  * @property string $courcename
  * @property integer $free
  * @property string $teacher
+ * @property integer $pid
  */
 class VideoMaking extends \yii\db\ActiveRecord
 {
@@ -33,7 +34,7 @@ class VideoMaking extends \yii\db\ActiveRecord
     {
         return [
 //            [['id'], 'required'],
-            [['id', 'subtitle', 'free'], 'integer'],
+            [['id', 'subtitle', 'free','status', 'pid'], 'integer'],
             [['makingname', 'projectname', 'teacher', 'school', 'courcename'], 'string', 'max' => 100],
             [['teacher'], 'string', 'max' => 50],
         ];
@@ -53,6 +54,20 @@ class VideoMaking extends \yii\db\ActiveRecord
             'courcename' => '课程名',
             'free' => '结算',
             'teacher' => '讲师',
+            'status' => '审核',
+            'pid' => 'Pid',
         ];
     }
+
+    public function getCourseList()
+    {
+        $list = self::findBySql('select DISTINCT courcename,id from video_making')->all();
+        $course_list = [];
+        foreach ($list as $k => $v) {
+            $key = $v['courcename'];
+            $course_list[$key] = $v['courcename'] ;
+        }
+        return $course_list;
+    }
+
 }

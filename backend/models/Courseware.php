@@ -28,6 +28,9 @@ use Yii;
  */
 class Courseware extends \yii\db\ActiveRecord
 {
+    public $time0;
+    public $time1;
+    public $time2;
     /**
      * @inheritdoc
      */
@@ -42,8 +45,8 @@ class Courseware extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['time', 'state', 'date', 'enddate', 'totalday', 'cid'], 'integer'],
-            [['remark', 'cid'], 'required'],
+            [['time0','time1','time2','time', 'state', 'totalday', 'cid'], 'integer'],
+            [['cid','date','enddate',], 'required'],
             [['title', 'teacher', 'makingname', 'uploadname', 'projectname', 'school', 'coursename', 'status', 'auditor1', 'auditor2', 'remark'], 'string', 'max' => 100],
         ];
     }
@@ -55,23 +58,27 @@ class Courseware extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'teacher' => 'Teacher',
-            'time' => 'Time',
-            'makingname' => 'Makingname',
-            'uploadname' => 'Uploadname',
-            'state' => 'State',
-            'projectname' => 'Projectname',
-            'school' => 'School',
-            'coursename' => 'Coursename',
-            'date' => 'Date',
-            'enddate' => 'Enddate',
-            'totalday' => 'Totalday',
-            'status' => 'Status',
+            'title' => '	视频标题',
+            'teacher' => '讲师',
+            'time' => '制作时长',
+            'makingname' => '制作人',
+            'uploadname' => '上传人',
+            'state' => '状态',
+            'projectname' => '项目名称',
+            'school' => '学校',
+            'coursename' => '课程名称',
+            'date' => '开始日期',
+            'enddate' => '结束日期',
+            'totalday' => '制作天数',
+            'status' => '审核',
             'auditor1' => 'Auditor1',
             'auditor2' => 'Auditor2',
-            'remark' => 'Remark',
+            'remark' => '备注',
             'cid' => 'Cid',
+            'time1' => '分',
+            'time2' => '秒',
+            'time0' => '时',
+
         ];
     }
 }

@@ -18,10 +18,10 @@ use Yii;
  * @property string $original_path
  * @property string $making_path
  * @property string $uploadname
- * @property integer $pid
  */
-class Project extends \yii\db\ActiveRecord
+class Project_old extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -36,8 +36,8 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['over', 'free'], 'integer'],
-            [['projectname', 'school','time', 'endtime'], 'string', 'max' => 100],
+            [['over', 'free', ], 'integer'],
+            [['projectname', 'school'], 'string', 'max' => 100],
             [['teacher', 'uploadname'], 'string', 'max' => 50],
             [['original_path', 'making_path'], 'string', 'max' => 255],
         ];
@@ -63,28 +63,16 @@ class Project extends \yii\db\ActiveRecord
         ];
     }
 
-//    public function getProjectName()
-//    {
-//        $list = self::findBySql('select DISTINCT projectname from project')->all();
-//        $pro_list = [];
-//        foreach ($list as $k => $v) {
-////            array_push($pro_list, $v['projectname']);
-//            $key = $v['projectname'];
-//            $pro_list[$key] = $v['projectname'] ;
-//        }
-////        print_r($pro_list);exit;
-//        return $pro_list;
-//    }
-
     public function getProjectName()
     {
-        $list = self::findBySql('select id, projectname from project GROUP BY projectname')->all();
+        $list = self::findBySql('select DISTINCT projectname from project')->all();
         $pro_list = [];
         foreach ($list as $k => $v) {
 //            array_push($pro_list, $v['projectname']);
             $key = $v['projectname'];
-            $pro_list[$v['id']] = $v['projectname'] ;
+            $pro_list[$key] = $v['projectname'] ;
         }
+//        print_r($pro_list);exit;
         return $pro_list;
     }
 
@@ -112,16 +100,18 @@ class Project extends \yii\db\ActiveRecord
         return $teacher_list;
     }
 
-//    public function getOverList()
-//    {
-//        $list = self::findBySql('select DISTINCT over from project')->all();
-////        $over_list = [0 => '请选择'];
-//        $over_list = [];
-//        foreach ($list as $k => $v) {
-////            array_push($over_list, $v['over']);
-//            $key = $v['over'];
-//            $over_list[$key] = $v['over'] ;
-//        }
-//        return $over_list;
-//    }
+    public function getOverList()
+    {
+        $list = self::findBySql('select DISTINCT over from project')->all();
+//        $over_list = [0 => '请选择'];
+        $over_list = [];
+        foreach ($list as $k => $v) {
+//            array_push($over_list, $v['over']);
+            $key = $v['over'];
+            $over_list[$key] = $v['over'] ;
+        }
+        return $over_list;
+    }
+
+
 }

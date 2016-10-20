@@ -28,12 +28,21 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
 
     'summary' => '',
-//    'id' => "waitforcheck",
+    'id' => "grid",
+//    'options' => ['id'=>'grid'],
     'columns' => [
         ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
 //        'id',
 //        'projectname',
 //        'school',
+
+        [
+            'class' => 'yii\grid\CheckboxColumn',
+//            'name'=>'id',
+            'checkboxOptions' => function ($model, $key, $index, $column) {
+                return ['value' => $model['id'],'id' => $model['id']];
+            },
+        ],
 
         [
             'header' => '项目名称',
@@ -90,29 +99,63 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
+//        [
+//            'header' => '进度',
+//            'attribute' => 'state',
+//            'value' => function ($model) {
+//                if ($model['state'] == 0 ){
+//                    return '制作中';
+//                } elseif ($model['state'] == 1) {
+//                    return '修改中';
+//                } elseif ($model['state'] == '2') {
+//                    return '已完成';
+//                }
+//                return $model['subtitle'];
+//            }
+//        ],
+
         [
-            'header' => '进度',
-            'attribute' => 'state',
+            'header' => '主讲人',
+            'attribute' => 'teacher',
             'value' => function ($model) {
-                if ($model['state'] == 0 ){
-                    return '制作中';
-                } elseif ($model['state'] == 1) {
-                    return '修改中';
-                } elseif ($model['state'] == '2') {
-                    return '已完成';
+                if ($model['teacher'] == '' ){
+                    return '';
                 }
-                return $model['subtitle'];
+                return $model['teacher'];
             }
         ],
 
         [
             'header' => '上传人',
-            'attribute' => 'state',
+            'attribute' => 'makingname',
             'value' => function ($model) {
                 if ($model['makingname'] == '' ){
                     return '';
                 }
                 return $model['makingname'];
+            }
+        ],
+
+        [
+            'header' => '审核',
+            'attribute' => 'status',
+            'value' => function ($model) {
+                if ($model['status'] == 0 ){
+                    return '未审核';
+                } elseif($model['status'] == 1 ){
+                    return '一级审核中';
+                }elseif ($model['status'] == 2 ){
+                    return '一级通过';
+                }elseif ($model['status'] == 3 ){
+                    return '一级驳回';
+                }elseif ($model['status'] == 4 ){
+                    return '二级通过';
+                }elseif ($model['status'] == 5 ){
+                    return '二级驳回';
+                }elseif ($model['status'] == 6 ){
+                    return '二级审核中';
+                }
+                return '';
             }
         ],
 
@@ -153,6 +196,22 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 </script>
+<script>
+    $(".gridviewdelete").on("click", function () {
+        if(confirm('您确定要批量审核吗？')){
+            var ids = $("#grid").yiiGridView("getSelectedId");
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"ids": ids},
+                url: "<?= Url::to(['videomaking/verified']);?>",
+                success: function(data){
 
+                }
+            });
+        }
+    });
+</script>
 
 

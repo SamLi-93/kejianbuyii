@@ -104,9 +104,19 @@ a:visited {
 .width-200{
     width: 300px;
 }
-
-
-
+.field-courseware-time0{
+    float: left;
+    padding-left:5%;
+}
+.field-courseware-time1{
+    float: left;
+}
+.time-input{
+    width:50px;
+}
+.field-courseware-time2 .control-label{
+    width: 0;
+}
 
 
 

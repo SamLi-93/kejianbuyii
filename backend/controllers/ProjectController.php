@@ -10,7 +10,10 @@ namespace backend\controllers;
 
 use app\models\SmsAdmin;
 use Yii;
+use app\models\Teacher;
+use app\models\VideoMaking;
 use app\models\Project;
+use app\models\VideoShoot;
 use app\models\ProjectSearch;
 use yii\data\SqlDataProvider;
 use yii\web\Controller;
@@ -24,24 +27,69 @@ class ProjectController extends Controller
     private $pro_school = [];
     private $pro_teacher = [];
     private $pro_over = [];
+    private $course_list = [];
+    private $person_list = [];
+    private $teacher_list = [];
 
 
     public function init()
     {
         parent::init();
+//        $pro_info = new Project();
+//        $this->pro_projectname = $pro_info->getProjectName();
+//        $this->pro_school = $pro_info->getSchoolName();
+//        $this->pro_teacher = $pro_info->getTeacherName();
+//        $this->pro_over = $pro_info->getOverList();
+
+        $search_info = new VideoShoot();
+        $course_info = new VideoMaking();
         $pro_info = new Project();
+        $person = new SmsAdmin();
+        $teacher = new Teacher();
         $this->pro_projectname = $pro_info->getProjectName();
         $this->pro_school = $pro_info->getSchoolName();
-        $this->pro_teacher = $pro_info->getTeacherName();
-        $this->pro_over = $pro_info->getOverList();
+        $this->course_list = $course_info->getCourseList();
+        $this->teacher_list = $teacher->getTeacherList();
+        $this->person_list = $person->getPersonList();
     }
 
     public function actionTest()
     {
-        $model['id'] = '123';
-        $tst = "changeover(this.options[this.options.selectedIndex].value," . $model['id'] . " , few)";
-        print_r($tst);
-        exit;
+//        $id_arr = [];
+//        $idst = Project::findBySql('select id from video_making')->all();
+//        foreach ($idst as $k => $v) {
+//            array_push($id_arr, $v['id']);
+//        }
+//        print_r($id_arr);exit;
+//        print_r($idst);exit;
+//        $project_list = Project::findBySql('select id, projectname,school,pid from project')->all();
+        $video = VideoMaking::findBySql('SELECT projectname,school ,courcename,pid,cid FROM `video_making`')->all();
+//        foreach ($video as $k => $v) {
+//            print_r($video[$k]['courcename']);
+//            print_r($v['courcename']);exit;
+//            if ($video[$k]['courcename'] == $v['courcename']) {
+//                echo '1';
+//            }
+//        }
+
+//        for ($i=0; $i<563;$i++) {
+//            for ($j=1;$j<563;$j++) {
+//                if($video[$i]['courcename'] == $video[$j]['courcename']) {
+//                    print_r($video[$i]['courcename']);
+//                    print_r("\n");
+//
+//                }
+//            }
+//        }
+
+//        for ($i= 0; $i<564; $i++ ) {
+//            for ($j=0; $j<73; $j++) {
+//                $video = VideoMaking::find()->where(['id'=>$id_arr[$i]])->one();
+//                if ($video['projectname'] == $project_list[$j]['projectname'] && $video['school'] == $project_list[$j]['school'])
+//                    $video->pid = $project_list[$j]['pid'];
+//                    $video->save();
+//            }
+//        }
     }
 
     public function actionIndex()
@@ -56,7 +104,7 @@ class ProjectController extends Controller
         }
 
         if (isset($query_parms['projectname'])) {
-            $sql_parms .= " and projectname = '" . $query_parms['projectname'] . "'";
+            $sql_parms .= " and id = '" . $query_parms['projectname'] . "'";
         }
 
         if (isset($query_parms['school'])) {
@@ -106,7 +154,7 @@ class ProjectController extends Controller
             'dataProvider' => $dataProvider,
             'pro_projectname' => $this->pro_projectname,
             'pro_school' => $this->pro_school,
-            'pro_teacher' => $this->pro_teacher,
+            'pro_teacher' => $this->teacher_list,
             'pro_over' => $this->pro_over,
         ]);
     }
@@ -115,11 +163,11 @@ class ProjectController extends Controller
     {
         $this->layout = 'main';
         $model = new Project();
-        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
-        foreach ($list as $k => $v) {
-            $key = $v['name'];
-            $uploadname_list[$key] = $v['name'];
-        }
+//        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+//        foreach ($list as $k => $v) {
+//            $key = $v['name'];
+//            $uploadname_list[$key] = $v['name'];
+//        }
 //        print_r($uploadname_list);exit;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -130,22 +178,23 @@ class ProjectController extends Controller
                 'model' => $model,
                 'pro_projectname' => $this->pro_projectname,
                 'pro_school' => $this->pro_school,
-                'pro_teacher' => $this->pro_teacher,
+                'pro_teacher' => $this->teacher_list,
                 'pro_over' => $this->pro_over,
-                'uploadname_list' => $uploadname_list,
+                'uploadname_list' => $this->person_list,
             ]);
         }
     }
 
     public function actionEdit()
     {
+
         $id = Yii::$app->request->get('id');
         $model = Project::findOne($id);
-        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
-        foreach ($list as $k => $v) {
-            $key = $v['name'];
-            $uploadname_list[$key] = $v['name'];
-        }
+//        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+//        foreach ($list as $k => $v) {
+//            $key = $v['name'];
+//            $uploadname_list[$key] = $v['name'];
+//        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->cache->delete('index');
@@ -153,7 +202,7 @@ class ProjectController extends Controller
         } else {
             return $this->render('edit', [
                 'model' => $model,
-                'uploadname_list' => $uploadname_list,
+                'person_list' => $this->person_list,
             ]);
         }
     }

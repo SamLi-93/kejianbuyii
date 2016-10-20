@@ -19,16 +19,17 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        var_dump('tests');exit;
+        $user = Yii::$app->user->identity;
+        var_dump($user); exit;
     }
 
     public function actionLogin()
     {
-        $this -> layout = "default";
+        $this->layout = "default";
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['project/index']);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -40,7 +41,7 @@ class DefaultController extends Controller
     public function actionLogout()
     {
         Yii::$app->cache->flush();
-        echo json_encode(array('ok'=>1));
+        echo json_encode(array('ok' => 1));
         return $this->redirect(['login']);
 
     }

@@ -33,11 +33,12 @@ class VideoshootController extends Controller
         parent::init();
         $search_info = new VideoShoot();
         $pro_info = new Project();
+        $course_info = new VideoMaking();
         $person = new SmsAdmin();
         $teacher = new Teacher();
-        $this->pro_projectname = $search_info->getProjectName();
+        $this->pro_projectname = $pro_info->getProjectName();
         $this->pro_school = $pro_info->getSchoolName();
-        $this->course_list = $search_info->getCourseList();
+        $this->course_list = $course_info->getCourseList();
         $this->teacher_list = $teacher->getTeacherList();
         $this->person_list = $person->getPersonList();
 
@@ -45,6 +46,7 @@ class VideoshootController extends Controller
 
     public function actionTest()
     {
+//        var_dump('test');exit;
         $params['VideoShoot'] =
             ['projectname' => '人才师资培训', 'school' => '电子商务厅', 'courcename' => '电子商务专业人才师资培训',
                 'teacher' => '崔相一','recordname' => [ '0' => '李温乐', '1' => '童剑凯', '2' => '葛海其' ],
@@ -59,17 +61,19 @@ class VideoshootController extends Controller
             'school' => $params['VideoShoot']['school'],
             'courcename' => $params['VideoShoot']['courcename'],
             'teacher' => $params['VideoShoot']['teacher'],
-            'recordname' => '一级审核中111',
+            'status' => '一级审核中111',
             'seat' => intval($params['VideoShoot']['seat']),
             'uploadname' => $params['VideoShoot']['uploadname'],
-            'status' => $recordname,
+            'recordname' => $recordname,
             'capture_time' => 00,
-            'time1' => null,
+            'time1' => (string)strtotime(date('Y-m-d H:0:0')),
             'time' => $params['VideoShoot']['time'],
-
+            'cid' => intval($params['VideoShoot']['seat']),
         ]);
 
-        var_dump($model->save());exit;
+//        var_dump($model);exit;
+
+        var_dump($model->save());
 
     }
 
@@ -77,28 +81,29 @@ class VideoshootController extends Controller
     {
         $searchModel = new VideoShoot();
         $query = Yii::$app->request->queryParams;
-        $sql_parms = '';
+        $sql_parms = 'where a.cid = b.id';
         if (!empty($query['VideoShoot'])) {
             $query_parms = array_filter($query['VideoShoot']);
-            $sql_parms = 'where true';
+            $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
         }
 
 //        var_dump($query_parms);exit;
 
         if (isset($query_parms['projectname'])) {
-            $sql_parms .= " and projectname = '" . $query_parms['projectname'] . "'";
+            $sql_parms .= " and b.pid = '" . $query_parms['projectname'] . "'";
         }
 
         if (isset($query_parms['courcename'])) {
-            $sql_parms .= " and courcename = '" . $query_parms['courcename'] . "'";
+            $sql_parms .= " and a.courcename = '" . $query_parms['courcename'] . "'";
         }
 
         if (isset($query_parms['recordname'])) {
-            $sql_parms .= " and recordname like  '" . '%' . $query_parms['recordname'] . '%' . "'";
+            $sql_parms .= " and a.recordname like  '" . '%' . $query_parms['recordname'] . '%' . "'";
         }
 
         if (isset($query_parms['uploadname'])) {
-            $sql_parms .= " and uploadname like '" . '%' . $query_parms['uploadname'] . '%' . "'";
+            $sql_parms .= " and a.uploadname like '" . '%' . $query_parms['uploadname'] . '%' . "'";
+//            $sql_parms .= " and a.uploadname = '" . $query_parms['uploadname'] . "'";
         }
 
         if (isset($query_parms['time'])) {
@@ -112,22 +117,20 @@ class VideoshootController extends Controller
                     $time2 = $year . '-0' . $month;
                 }
 
-                $sql_parms .= " and time like '" . $time1 . '%' . "'" . " or time like '" . $time2 . '%' . "'";
+                $sql_parms .= " and a.time like '" . $time1 . '%' . "'" . " or a.time like '" . $time2 . '%' . "'";
             } else {
-                $sql_parms .= " and time like '" . $query_parms['time'] . '%' . "'";
+                $sql_parms .= " and a.time like '" . $query_parms['time'] . '%' . "'";
             }
         }
 
 //        var_dump($sql_parms);exit;
 
-        $sql = "select * from video_shoot " . $sql_parms;
+        $sql = "SELECT a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
+c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c " . $sql_parms;
 
-        $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM video_shoot ' . $sql_parms);
-//        $command->bindParam(':projectname', $projectname);
-//        $command->bindParam(':courcename', $coursename);
-//        $command->bindParam(':recordname', $recordname);
-//        $command->bindParam(':uploadname', $uploadname);
-//        $command->bindParam(':time', $time);
+        $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
+c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c  ' . $sql_parms);
+
         $count = $command->queryScalar();
 
         $dataProvider = new SqlDataProvider([
@@ -158,14 +161,21 @@ class VideoshootController extends Controller
 
     public function actionCreate()
     {
-        var_dump(Yii::$app->request->post());
+//        var_dump(Yii::$app->request->post());exit;
         $model = new VideoShoot();
-
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-//            print_r($params['VideoShoot']);exit;
+//            var_dump($params['VideoShoot']);
             $recordname = implode('、', $params['VideoShoot']['recordname']);
 //            var_dump($recordname);exit;
+            $sql = "select id from video_making where pid =:pid and school =:school and courcename=:courcename ";
+            $command = Yii::$app->db->createCommand($sql);
+            $command->bindParam(':pid', $params['VideoShoot']['projectname']);
+            $command->bindParam(':school', $params['VideoShoot']['school']);
+            $command->bindParam(':courcename', $params['VideoShoot']['courcename']);
+            $cid = $command->queryAll();
+//            var_dump($cid[0]['id']);exit;
+
             $model->setAttributes([
                 'projectname' => $params['VideoShoot']['projectname'],
                 'school' => $params['VideoShoot']['school'],
@@ -174,23 +184,12 @@ class VideoshootController extends Controller
                 'status' => '一级审核中',
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
-                'capture_time' => 00,
-                'time1' => null,
+                'capture_time' => intval($params['VideoShoot']['capture_time']),
+                'time1' => (string)strtotime(date('Y-m-d H:0:0')),
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
+                'cid' => $cid[0]['id'],
             ]);
-
-//            $model->projectname = $params['VideoShoot']['projectname'];
-//            $model->school = $params['VideoShoot']['school'];
-//            $model->courcename = $params['VideoShoot']['courcename'];
-//            $model->teacher = $params['VideoShoot']['teacher'];
-//            $model->status = '一级审核中';
-//            $model->seat = intval($params['VideoShoot']['seat']);
-//            $model->uploadname = $params['VideoShoot']['uploadname'];
-//            $model->capture_time = 00;
-//            $model->time1 = null;
-//            $model->time = $params['VideoShoot']['time'];
-//            $model->recordname = $params['VideoShoot']['recordname'];
         }
 
         if (!empty(Yii::$app->request->post())&&$model->save()) {
@@ -216,13 +215,14 @@ class VideoshootController extends Controller
     {
         $school_list = '';
         $params =  Yii::$app->request->post();
-        $pro_name = $params['value'];
+        $pro_id = $params['value'];
+//        var_dump($pro_name);exit;
 
-        if (!empty($pro_name)) {
-            $school_sql = "select school from project where projectname = :projectname" ;
-            $list1 = Project::findBySql($school_sql, array(":projectname"=>$pro_name))->all();
-            $course_sql = "select courcename from video_making where projectname = :projectname" ;
-            $list2 = VideoMaking::findBySql($course_sql, array(":projectname"=>$pro_name))->all();
+        if (!empty($pro_id)) {
+            $school_sql = "select school from project where id = :id" ;
+            $list1 = Project::findBySql($school_sql, array(":id"=>$pro_id))->all();
+            $course_sql = "select courcename from video_making where pid = :pid" ;
+            $list2 = VideoMaking::findBySql($course_sql, array(":pid"=>$pro_id))->all();
 //            print_r($course_list[0]['courcename']);exit;
         } else {
             $school_sql = "select school from project" ;
@@ -257,9 +257,26 @@ class VideoshootController extends Controller
     {
         $id = Yii::$app->request->get('id');
         $model = VideoShoot::findOne($id);
+        $cid = $model['cid'];  //拿到cid
+        //获取视频拍摄表中的pid
+        $video_pid = VideoMaking::findBySql("select pid from video_making where id = " .$cid)->all();
+        $pid = $video_pid[0]['pid'];
+        //得到project表中的学校
+        $project = Project::findBySql("select school from project where id = " . $pid)->all();
+        $model['school'] = $project[0]['school'];
+        //得到视频表中的coucename
+        $video_courcename = VideoMaking::findBySql("select courcename from video_making where id =" .$cid )->all();
+        $model['courcename'] = $video_courcename[0]['courcename'];
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
+            $sql = "select id from video_making where pid =:pid and school =:school and courcename=:courcename ";
+            $command = Yii::$app->db->createCommand($sql);
+            $command->bindParam(':pid', $params['VideoShoot']['projectname']);
+            $command->bindParam(':school', $params['VideoShoot']['school']);
+            $command->bindParam(':courcename', $params['VideoShoot']['courcename']);
+            $cid = $command->queryAll();
+//            $params = Yii::$app->request->post();
             $recordname = implode('、', $params['VideoShoot']['recordname']);
             $model->setAttributes([
                 'projectname' => $params['VideoShoot']['projectname'],
@@ -269,10 +286,11 @@ class VideoshootController extends Controller
                 'status' => '一级审核中',
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
-                'capture_time' => 00,
-                'time1' => null,
+                'capture_time' => intval($params['VideoShoot']['capture_time']),
+                'time1' => (string)strtotime(date('Y-m-d H:0:0')),
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
+                'cid' => $cid[0]['id'],
             ]);
         }
 
