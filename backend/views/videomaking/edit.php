@@ -36,8 +36,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
     <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择讲师']) ?>
     <?= $form->field($model, 'subtitle')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择有无字幕']) ?>
     <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结算']) ?>
-<!--    --><?//= $form->field($model, 'makingname')->dropDownList($person_list,['prompt'=>'选择上传人']) ?>
-    <?= $form->field($model, 'makingname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list); ?>
+    <?= $form->field($model, 'makingname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list,[
+        'itemOptions' => ['checked' => '1']
+    ]); ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('修改', ['class' => 'btn btn-primary', 'id'=> 'submit-btn']) ?>

@@ -38,12 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",]
             )->checkboxList($person_list, [
-        'item' => function($index, $label, $name, $checked, $value) {
-//            var_dump($label);exit;   label的值和value的值一样都是整个person_list 要做成db里的录制人如果和value里的有对应上 and 加上checked
-//            var_dump($value);
-            $checked = $checked ? 'checked' : '';
-            return "<input type='checkbox' {$checked} name='VideoShoot[recordname][]' value='{$value}' >{$label}";
-        }
+//        'item' => function($index, $label, $name, $checked, $value) {
+//            $checked = $checked ? 'checked' : '';
+//            return "<input type='checkbox' {$checked} name='VideoShoot[recordname][]' value='{$value}' >{$label}";
+//        }
+        'itemOptions' => ['checked' => '1']
     ]) ;?>
 
     <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [

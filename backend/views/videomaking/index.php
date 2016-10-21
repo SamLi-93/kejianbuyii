@@ -99,21 +99,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
-//        [
-//            'header' => '进度',
-//            'attribute' => 'state',
-//            'value' => function ($model) {
-//                if ($model['state'] == 0 ){
-//                    return '制作中';
-//                } elseif ($model['state'] == 1) {
-//                    return '修改中';
-//                } elseif ($model['state'] == '2') {
-//                    return '已完成';
-//                }
-//                return $model['subtitle'];
-//            }
-//        ],
-
         [
             'header' => '主讲人',
             'attribute' => 'teacher',
@@ -159,10 +144,9 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
-
         ['class' => 'yii\grid\ActionColumn',
             'header' => '操作',
-            'template' => '{edit} {delete}',
+            'template' => '{edit} {delete} {back}',
             'buttons' => [
                 'edit' => function ($url, $model, $key) {
                     $options = [
@@ -181,7 +165,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
+                'back' => function ($url, $model, $key) {
+                    $options = [
+                        'class' => 'btn btn-success',
+                    ];
+                    $url = Url::to(['videomaking/test','id'=>$model['id']]);
+                    return Html::a('驳回', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+
+                },
             ],
+        ],
+
+        [
+            'label'=>'图片',
+            'format'=>'raw',
+            'value' => function($model){
+                $url = Url::to(['pic/index','id'=>$model['id']]);
+                return Html::a('图片', $url, ['title' => '图片']);
+            }
         ],
     ],
 ]);

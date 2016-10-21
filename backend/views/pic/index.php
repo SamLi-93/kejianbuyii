@@ -1,7 +1,8 @@
 <body>
     <div class="sims_sbumit">
-      <?foreach ($list as $key => $value) {?>
-        <img src="<? echo $_BASE_DIR.$value['path']?>">
+      <?foreach ($model as $key => $value) {?>
+          <? var_dump($value['path']); ?>
+        <img src="<?= '../../' .$value['path']?>">
       <?}?>
     </div>
 </body>

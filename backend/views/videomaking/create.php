@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'action' => ['create'],
         'method' => 'post',
         'id' => 'my_form',
-        'options' => ['class' => 'form-horizontal'],
+        'options' => ['class' => 'form-horizontal','enctype' => 'multipart/form-data'],
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
@@ -33,10 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'subtitle')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择有无字幕']) ?>
     <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结算']) ?>
 <!--    --><?//= $form->field($model, 'makingname')->dropDownList($person_list,['prompt'=>'选择上传人']) ?>
+<!--    --><?//= $form->field($model, 'pic')->fileInput() ?>
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
     <?= $form->field($model, 'makingname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list); ?>
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
         <?= Html::a("返回", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
+        <?= Html::a("提交审核", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

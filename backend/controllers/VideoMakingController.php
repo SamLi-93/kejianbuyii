@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use app\models\Pic;
 use app\models\SmsAdmin;
 use app\models\Teacher;
 use app\models\VideoMaking;
@@ -17,6 +18,7 @@ use app\models\Project;
 use yii\data\SqlDataProvider;
 use yii\web\Controller;
 use yii\grid\GridView;
+use yii\web\UploadedFile;
 
 class VideomakingController extends Controller
 {
@@ -49,7 +51,7 @@ class VideomakingController extends Controller
         $sql_parms = 'where a.pid = b.id';
         if (!empty($query['VideoMaking'])) {
             $query_parms = array_filter($query['VideoMaking']);
-            $sql_parms = 'where a.pid = b.id';
+            $sql_parms = 'where a.pid = b.id ';
         }
 
 //        var_dump($query_parms);exit;
@@ -92,10 +94,9 @@ class VideomakingController extends Controller
 //inner join courseware on video_making.courcename = courseware.coursename " . $sql_parms;
 //        $sql = "select * from video_making " . $sql_parms;
         $sql = "select a.id,a.makingname,a.subtitle,a.free,a.teacher,a.status, b.projectname,b.school,a.courcename,a.pid 
-from video_making as a,project as b  " . $sql_parms;
+from video_making as a,project as b " . $sql_parms;
 
-//        var_dump($sql);exit;
-        $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.makingname,a.subtitle,a.free,a.teacher,a.status, b.projectname,b.school,a.courcename,a.pid
+        $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.makingname,a.subtitle,a.free,a.teacher,a.status, b.projectname,b.school,a.courcename,a.pid 
  FROM video_making as a, project as b ' . $sql_parms);
         $count = $command->queryScalar();
 
@@ -134,7 +135,21 @@ from video_making as a,project as b  " . $sql_parms;
         $model = new VideoMaking();
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-//            print_r($params['VideoMaking']);exit;
+//            var_dump($params['VideoMaking']);exit;
+
+ // 保存图片   ---------------------------------------------
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->imageFiles) {
+                $model->upload();
+            }
+                // 文件上传成功
+//            if ($pic) {
+//                $pic_name = $pic->name;
+//                $type = strpos($pic_name, '.jpg') === false ? '.png' : '.jpg';
+//                $pic->saveAs(dirname(__DIR__). '\\web\upload_files\pic\\' . date("Y-m-d-") . time() .$type);
+//            }
+
+ // ------------------------------------------------------------------------------
             $makingname = implode('、', $params['VideoMaking']['makingname']);
             $model->setAttributes([
                 'projectname' => $params['VideoMaking']['projectname'],
@@ -148,10 +163,21 @@ from video_making as a,project as b  " . $sql_parms;
             ]);
         }
 
-//        var_dump(Yii::$app->request->post());exit;
-//        var_dump($model->load(Yii::$app->request->post()));exit;
-
         if (!empty(Yii::$app->request->post()) && $model->save()) {
+//            if (!empty($pic)){
+//                $cid = $model->id;
+//                $pic_model = new Pic();
+//                $pic_model->setAttributes([
+//                    'type' => 0,
+//                    'name' => $pic_name,
+//                    'path' => 'upload_files\pic\\' . date("Y-m-d-") . time() .$type,
+//                    'cid' => $cid,
+//                ]);
+//                if ($pic_model->save()) {
+//                    Yii::$app->cache->delete('index');
+//                    return $this->redirect(['index']);
+//                }
+//            }
             Yii::$app->cache->delete('index');
             return $this->redirect(['index']);
         } else {
@@ -174,8 +200,9 @@ from video_making as a,project as b  " . $sql_parms;
         $project = Project::findBySql("select school from project where id = " . $pid)->all();
 //        var_dump($project[0]['school']);exit;
         $model['school'] = $project[0]['school'];
-//        print_r($model);exit;
-//        var_dump(Yii::$app->request->post());exit;
+        $makingname_arr = explode('、', $model['makingname']);
+//        var_dump($model['makingname']);exit;
+        $model['makingname'] = $makingname_arr;
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();

@@ -30,7 +30,7 @@ class Pic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'pid', 'check1'], 'integer'],
+            [['type', 'pid', 'check1','cid'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['path'], 'string', 'max' => 255],
         ];

@@ -257,6 +257,10 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
     {
         $id = Yii::$app->request->get('id');
         $model = VideoShoot::findOne($id);
+
+        $recordname_arr = explode('、', $model['recordname']);
+        $model['recordname'] = $recordname_arr;
+
         $cid = $model['cid'];  //拿到cid
         //获取视频拍摄表中的pid
         $video_pid = VideoMaking::findBySql("select pid from video_making where id = " .$cid)->all();

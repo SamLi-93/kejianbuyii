@@ -41,6 +41,8 @@ class DefaultController extends Controller
     public function actionLogout()
     {
         Yii::$app->cache->flush();
+        Yii::$app->user->logout();
+
         echo json_encode(array('ok' => 1));
         return $this->redirect(['login']);
 

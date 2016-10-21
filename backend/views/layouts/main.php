@@ -43,7 +43,7 @@ AppAsset::register($this);
 <div class="sims_top navbar navbar-default">
     <span class="sims_top1"></span>
     <span class="sims_top3" style="width:30px;">欢迎 </span>
-    <span class="sims_top2"><?= Yii::$app->user->identity->name;?></span>
+    <span class="sims_top2"><?= empty(Yii::$app->user->identity->name) ? '' : Yii::$app->user->identity->name;?></span>
     <span class="sims_top3"> 访问课件部！ </span>
     <span class="sims_top4"></span>
     <span class="sims_top5" id="stimer"></span>
