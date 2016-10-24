@@ -146,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ['class' => 'yii\grid\ActionColumn',
             'header' => '操作',
-            'template' => '{edit} {delete} {back}',
+            'template' => '{edit} {delete} {reject}',
             'buttons' => [
                 'edit' => function ($url, $model, $key) {
                     $options = [
@@ -162,16 +162,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'btn btn-success',
                     ];
                     $url = Url::to(['videomaking/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    return Html::a('删除', $url, ['onclick'=>' return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
-                'back' => function ($url, $model, $key) {
+                'reject' => function ($url, $model, $key) {
                     $options = [
                         'class' => 'btn btn-success',
                     ];
-                    $url = Url::to(['videomaking/test','id'=>$model['id']]);
-                    return Html::a('驳回', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
-
+                    if ($model['status'] == 1 || $model['status'] == 6 ){
+                        $url = Url::to(['videomaking/reject','id'=>$model['id']]);
+//                        return Html::a('驳回', '', ['class' => 'btn btn-success btn-sm gridviewreject']);
+                        return Html::a('驳回', $url, ['onclick'=> 'return reject()', 'class' => 'btn btn-success btn-sm', 'id' => 'reject-btn' ]);
+                    }
                 },
             ],
         ],
@@ -191,7 +193,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     function check() {
         if(confirm('您确定要删除吗？')){
-            return true;
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"id": id},
+                url: "<?= Url::to(['videomaking/test']);?>",
+                success: function(data){
+
+                }
+            });
         }else{
             return false;
         }
@@ -213,6 +224,14 @@ $this->params['breadcrumbs'][] = $this->title;
             });
         }
     });
+
+    function reject() {
+        if(confirm('您确定要驳回吗？')){
+            return true;
+        }else{
+            return false;
+        }
+    }
 </script>
 
 

@@ -133,7 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'btn btn-success',
                     ];
                     $url = Url::to(['project/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
             ],

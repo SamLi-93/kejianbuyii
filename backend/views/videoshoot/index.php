@@ -35,6 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //        'school',
 
         [
+            'class' => 'yii\grid\CheckboxColumn',
+//            'name'=>'id',
+            'checkboxOptions' => function ($model, $key, $index, $column) {
+                return ['value' => $model['id'],'id' => $model['id']];
+            },
+        ],
+
+        [
             'header' => '项目名称',
             'attribute' => 'projectname',
             'value' => function ($model) {
@@ -153,7 +161,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ['class' => 'yii\grid\ActionColumn',
             'header' => '操作',
-            'template' => '{edit} {delete}',
+            'template' => '{edit} {delete} {reject}',
             'buttons' => [
                 'edit' => function ($url, $model, $key) {
                     $options = [
@@ -169,10 +177,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'btn btn-success',
                     ];
                     $url = Url::to(['videoshoot/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
+                'reject' => function ($url, $model, $key) {
+                    $options = [
+                        'class' => 'btn btn-success',
+                    ];
+                    if ($model['status'] == 1 || $model['status'] == 6 ){
+                        $url = Url::to(['videomaking/reject','id'=>$model['id']]);
+                        return Html::a('驳回', $url, ['onclick'=> 'return reject()', 'class' => 'btn btn-success btn-sm', 'id' => 'reject-btn' ]);
+                    }
+                },
             ],
+        ],
+
+        [
+            'label'=>'图片',
+            'format'=>'raw',
+            'value' => function($model){
+                $url = Url::to(['pic/index','id'=>$model['id']]);
+                return Html::a('图片', $url, ['title' => '图片']);
+            }
         ],
     ],
 ]);
@@ -187,6 +213,30 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 </script>
+<script>
+    $(".gridviewdelete").on("click", function () {
+        if(confirm('您确定要批量审核吗？')){
+            var ids = $("#grid").yiiGridView("getSelectedId");
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"ids": ids},
+                url: "<?= Url::to(['videomaking/verified']);?>",
+                success: function(data){
 
+                }
+            });
+        }
+    });
+
+    function reject() {
+        if(confirm('您确定要驳回吗？')){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 
 

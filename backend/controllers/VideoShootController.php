@@ -19,6 +19,7 @@ use app\models\ProjectSearch;
 use yii\data\SqlDataProvider;
 use yii\web\Controller;
 use yii\grid\GridView;
+use yii\web\UploadedFile;
 
 class VideoshootController extends Controller
 {
@@ -97,6 +98,10 @@ class VideoshootController extends Controller
             $sql_parms .= " and a.courcename = '" . $query_parms['courcename'] . "'";
         }
 
+        if (isset($query_parms['status'])) {
+            $sql_parms .= " and a.status = '" . $query_parms['status'] . "'";
+        }
+
         if (isset($query_parms['recordname'])) {
             $sql_parms .= " and a.recordname like  '" . '%' . $query_parms['recordname'] . '%' . "'";
         }
@@ -161,22 +166,27 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
 
     public function actionCreate()
     {
-//        var_dump(Yii::$app->request->post());exit;
         $model = new VideoShoot();
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-//            var_dump($params['VideoShoot']);
+            $status = 0;
+            // 保存图片   ---------------------------------------------
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->imageFiles) {
+                $status = 1;
+//                $model->upload();
+            }
+            // ------------------------------------------------------------------------------
             $recordname = implode('、', $params['VideoShoot']['recordname']);
-//            var_dump($recordname);exit;
             $sql = "select id from video_making where pid =:pid and school =:school and courcename=:courcename ";
             $command = Yii::$app->db->createCommand($sql);
             $command->bindParam(':pid', $params['VideoShoot']['projectname']);
             $command->bindParam(':school', $params['VideoShoot']['school']);
             $command->bindParam(':courcename', $params['VideoShoot']['courcename']);
             $cid = $command->queryAll();
-//            var_dump($cid[0]['id']);exit;
 
             $model->setAttributes([
+                'status' => $status,
                 'projectname' => $params['VideoShoot']['projectname'],
                 'school' => $params['VideoShoot']['school'],
                 'courcename' => $params['VideoShoot']['courcename'],

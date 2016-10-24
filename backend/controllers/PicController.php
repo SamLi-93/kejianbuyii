@@ -21,7 +21,13 @@ class PicController extends Controller
         $sql = "select path from pic where cid = :cid ";
         $model = Pic::findBySql($sql, [':cid' => $id])->all();
         return $this->render('index', ['model' =>$model ]);
+    }
 
+    public function actionSingle()
+    {
+        $this->layout = false;
+        $path = \Yii::$app->request->get('path');
+        return $this->render('single', ['path' =>$path ]);
     }
 
 }

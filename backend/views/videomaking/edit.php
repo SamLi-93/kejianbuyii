@@ -36,6 +36,23 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
     <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择讲师']) ?>
     <?= $form->field($model, 'subtitle')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择有无字幕']) ?>
     <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结算']) ?>
+    <?
+        if (count($model['imageFiles'])>1) {
+            foreach ($model['imageFiles'] as $k => $v) { ?>
+            <div class="image_div" >
+<!--                <div class="fleft">--><?//= Html::a($v['path'], \yii\helpers\Url::to(['pic/index','id'=>$model['id']]), ['title' => '图片']);?><!--</div>-->
+                <div class="fleft"><?= Html::a($v['path'], \yii\helpers\Url::to(['pic/single','path'=>$v['path']]), ['title' => '图片']);?></div>
+                <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$v['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
+            </div>
+            <?}
+        } elseif (count($model['imageFiles'])==1) { ?>
+            <div class="image_div" >
+                <div class="fleft"><?= Html::a($model['imageFiles'][0]['path'], \yii\helpers\Url::to(['pic/index','id'=>$model['id']]), ['title' => '图片']);?></div>
+                <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$model['imageFiles'][0]['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
+            </div>
+        <?}
+    ?>
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
     <?= $form->field($model, 'makingname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list,[
         'itemOptions' => ['checked' => '1']
     ]); ?>
@@ -82,7 +99,6 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
             }
         });
     });
-
     $("#videomaking-projectname").chosen({
         width : "200px",
     });
@@ -98,8 +114,23 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
     $("#videomaking-free").chosen({
         width : "120px",
     });
-//    $("#videomaking-makingname").chosen({
-//        width : "120px",
-//    });
+</script>
+<script>
+    function check(id) {
+        if(confirm('您确定要删除吗？')){
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"id": id},
+                url: "<?= \yii\helpers\Url::to(['videomaking/picdelete']);?>",
+                success: function(data){
+
+                }
+            });
+        } else {
+            return false;
+        }
+    }
 
 </script>

@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'uploadname')->dropDownList($person_list ,['prompt'=>'选择上传人']) ?>
             <?= $form->field($model, 'time')->input('text',['class'=>'input-small']) ?>
             <?= $form->field($model, 'time1')->dropDownList(Yii::$app->params ) ?>
+            <?= $form->field($model, 'status')->dropDownList( ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态']) ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -40,6 +42,7 @@ use yii\widgets\ActiveForm;
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
+                            <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewdelete']) ?>
                         </div>
                     </td>
                 </tr>
@@ -52,21 +55,19 @@ use yii\widgets\ActiveForm;
     $("#videoshoot-projectname").chosen({
         width : "150px",
     });
-
     $("#videoshoot-courcename").chosen({
         width : "150px",
     });
-
     $("#videoshoot-recordname").chosen({
         width : "150px",
     });
-
     $("#videoshoot-uploadname").chosen({
         width : "150px",
     });
-
     $("#videoshoot-time1").chosen({
         width : "150px",
     });
-
+    $("#videoshoot-status").chosen({
+        width : "150px",
+    });
 </script>

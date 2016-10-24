@@ -117,9 +117,17 @@ a:visited {
 .field-courseware-time2 .control-label{
     width: 0;
 }
-
-
-
+.image_div{
+    margin-left: 8%;
+    margin-bottom: 1%;
+}
+.image_delete{
+    margin-bottom: 1%;
+}
+.sam-btn{
+    padding: 0;
+    margin-left: 2%;
+}
 
 
 
