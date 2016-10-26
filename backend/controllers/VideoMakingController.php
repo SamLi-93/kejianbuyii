@@ -94,13 +94,11 @@ class VideomakingController extends Controller
 //inner join courseware on video_making.courcename = courseware.coursename " . $sql_parms;
 //        $sql = "select * from video_making " . $sql_parms;
         $sql = "select a.id,a.makingname,a.subtitle,a.free,a.teacher,a.status, b.projectname,b.school,a.courcename,a.pid 
-from video_making as a,project as b " . $sql_parms;
+from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
 
         $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.makingname,a.subtitle,a.free,a.teacher,a.status, b.projectname,b.school,a.courcename,a.pid 
  FROM video_making as a, project as b ' . $sql_parms);
         $count = $command->queryScalar();
-
-//        var_dump($count);exit;
 
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
@@ -137,13 +135,12 @@ from video_making as a,project as b " . $sql_parms;
             $params = Yii::$app->request->post();
 //            var_dump($params['VideoMaking']);exit;
             $status = 0;
- // 保存图片   ---------------------------------------------
+            // 保存图片   ---------------------------------------------
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->imageFiles) {
                 $status = 1;
-//                $model->upload();
             }
- // ------------------------------------------------------------------------------
+            // ------------------------------------------------------------------------------
             $makingname = implode('、', $params['VideoMaking']['makingname']);
             $model->setAttributes([
                 'status' => $status,
@@ -159,20 +156,6 @@ from video_making as a,project as b " . $sql_parms;
         }
 
         if (!empty(Yii::$app->request->post()) && $model->save()) {
-//            if (!empty($pic)){
-//                $cid = $model->id;
-//                $pic_model = new Pic();
-//                $pic_model->setAttributes([
-//                    'type' => 0,
-//                    'name' => $pic_name,
-//                    'path' => 'upload_files\pic\\' . date("Y-m-d-") . time() .$type,
-//                    'cid' => $cid,
-//                ]);
-//                if ($pic_model->save()) {
-//                    Yii::$app->cache->delete('index');
-//                    return $this->redirect(['index']);
-//                }
-//            }
             Yii::$app->cache->delete('index');
             return $this->redirect(['index']);
         } else {
@@ -203,17 +186,28 @@ from video_making as a,project as b " . $sql_parms;
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-            $status = 0;
+
+            if ($model['status'] == 2) {
+                $status = 6;
+            } elseif ($model['status'] == 5) {
+                $status = 6;
+            } elseif ($model['status'] == 3) {
+                $status = 1;
+            } elseif ($model['status'] == 0) {
+                $status = 1;
+            }
             // 保存图片   ---------------------------------------------
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model->imageFiles) {
-                if ($model['status'] ==2 ) {
-                    $status = 6;
-                } elseif($model['status'] ==5 ) {
-                    $status = 6;
-                } else {
-                    $status = 1;
-                }
+//                if ($model['status'] == 2) {
+//                    $status = 6;
+//                } elseif ($model['status'] == 5) {
+//                    $status = 6;
+//                } elseif ($model['status'] == 3) {
+//                    $status = 1;
+//                } elseif ($model['status'] == 0) {
+//                    $status = 1;
+//                }
 //                $model->upload();
             }
             // ------------------------------------------------------------------------------
@@ -230,7 +224,6 @@ from video_making as a,project as b " . $sql_parms;
                 'pid' => $params['VideoMaking']['projectname']
             ]);
         }
-
 
         if (!empty(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->cache->delete('index');
@@ -254,6 +247,17 @@ from video_making as a,project as b " . $sql_parms;
         $data = VideoMaking::findOne($id);
         $data->delete();
 
+        //删除数据同时删除pic表中的数据 和文件
+        $pic_date = Pic::findBySql("select path from pic where cid=:cid", [':cid' => $id])->all();
+        foreach ($pic_date as $k => $v) {
+            $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $v['path']);
+        }
+
+        $conn = Yii::$app->db;
+        $sql = "delete from pic where cid=:cid";
+        $command = $conn->createCommand($sql, [':cid' => $id]);
+        $command->execute();
+
         Yii::$app->cache->delete('index');
         return $this->redirect(['index']);
     }
@@ -262,10 +266,9 @@ from video_making as a,project as b " . $sql_parms;
     {
         $id_list = Yii::$app->request->post('ids');
         $db = Yii::$app->db;
-
         foreach ($id_list as $k => $v) {
-            $res = $db->createCommand("update video_making set status = 
-                (case when id=:id and status = 1 then 2 when id= :id and status = 6 then 4 END ) ", array(":id" => $v))->execute();
+            $res = $db->createCommand("update video_making set status = 2 where id=:id and status=1 ", [':id' => $v])->execute();
+            $res1 = $db->createCommand("update video_making set status = 4 where id=:id and status=6 ", [':id' => $v])->execute();
         }
     }
 
@@ -274,7 +277,7 @@ from video_making as a,project as b " . $sql_parms;
         $id = Yii::$app->request->get('id');
         $model = VideoMaking::findOne($id);
         $status = $model['status'];
-        if ($status == 1 ) {
+        if ($status == 1) {
             $model->status = 3;
         }
         if ($status == 6) {
@@ -286,18 +289,20 @@ from video_making as a,project as b " . $sql_parms;
         }
     }
 
-    public function actionPicdelete() {
+    public function actionPicdelete()
+    {
         $id = Yii::$app->request->post('id');
         $data = Pic::findOne($id);
         $file_path = $data['path'];
         $data->delete();
 //        var_dump(dirname(__DIR__) . '\\web\\');exit;
-        $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $file_path );
+        $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $file_path);
         echo $is_delete;
     }
 
-    public function actionTest() {
-        echo  date('Y-m-d-H-i-s');
-
+    public function actionTest()
+    {
+        var_dump(Yii::$app->user->identity->name);
+        exit;
     }
 }

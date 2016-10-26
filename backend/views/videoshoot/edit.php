@@ -37,13 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    --><?//= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
 
     <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",]
-            )->checkboxList($person_list, [
-//        'item' => function($index, $label, $name, $checked, $value) {
-//            $checked = $checked ? 'checked' : '';
-//            return "<input type='checkbox' {$checked} name='VideoShoot[recordname][]' value='{$value}' >{$label}";
-//        }
-        'itemOptions' => ['checked' => '1']
-    ]) ;?>
+            )->checkboxList($person_list, [ 'itemOptions' => ['checked' => '1'] ]) ;?>
 
     <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => '',],
@@ -53,6 +47,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'yyyy-mm-dd HH:ii ' ,
         ]
     ]); ?>
+
+    <?
+    if (count($model['imageFiles'])>1) {
+        foreach ($model['imageFiles'] as $k => $v) { ?>
+            <div class="image_div" >
+                <!--                <div class="fleft">--><?//= Html::a($v['path'], \yii\helpers\Url::to(['pic/index','id'=>$model['id']]), ['title' => '图片']);?><!--</div>-->
+                <div class="fleft"><?= Html::a($v['path'], \yii\helpers\Url::to(['pic/shootsingle','path'=>$v['path']]), ['title' => '图片']);?></div>
+                <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$v['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
+            </div>
+        <?}
+    } elseif (count($model['imageFiles'])==1) { ?>
+        <div class="image_div" >
+            <div class="fleft"><?= Html::a($model['imageFiles'][0]['path'], \yii\helpers\Url::to(['pic/shootpic','id'=>$model['id']]), ['title' => '图片']);?></div>
+            <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$model['imageFiles'][0]['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
+        </div>
+    <?}
+    ?>
+
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
     <?= $form->field($model, 'capture_time')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'seat')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
@@ -183,5 +196,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('.dept_select').chosen();
             }
         });
+    }
+
+    function check(id) {
+        if(confirm('您确定要删除吗？')){
+            $.ajax({
+                type: "post",
+                method: "post",
+                dataType: "json",
+                data: {"id": id},
+                url: "<?= \yii\helpers\Url::to(['videoshoot/picdelete']);?>",
+                success: function(data){
+
+                }
+            });
+        } else {
+            return false;
+        }
     }
 </script>

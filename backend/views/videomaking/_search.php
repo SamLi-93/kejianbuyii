@@ -43,7 +43,7 @@ use yii\widgets\ActiveForm;
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
-                            <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewdelete']) ?>
+                            <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewverified']) ?>
                         </div>
                     </td>
                 </tr>

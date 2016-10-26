@@ -134,7 +134,7 @@ class ProjectController extends Controller
             $sql_parms .= " and over = '" . $query_parms['over'] . "'";
         }
 
-        $sql = "select * from project " . $sql_parms;
+        $sql = "select * from project " . $sql_parms . " order by id desc";
 
         $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project ' . $sql_parms);
         $command->bindParam(':projectname', $projectname);

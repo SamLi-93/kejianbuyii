@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\datetime\DateTimePicker;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project*/
@@ -31,23 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <span id="school"><?= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?></span>
     <span id="coursename"><?= $form->field($model, 'courcename')->dropDownList($course_list,['prompt'=>'选择课程']) ?></span>
     <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择主讲人']) ?>
-
-<!--    --><?//= $form->field($model, 'recordname',['template' => "{label}\n<div class=\"col-lg-6\"><div class='fleft'>{input}</div></div>",]
-//    )->dropDownList($person_list, ['prompt'=>'选择录制人员']) ?>
-
-<!--    --><?//= $form->field($model, 'recordname')->dropDownList($person_list, ['prompt'=>'选择录制人员','id'=> 'videoshoot-recordname1']) ?>
-
     <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list); ?>
 
-    <?= $form->field($model, 'time' /*['template' => "{label}\n<div class=\"col-lg-6\">
-<div class='fleft width-200'>{input}</div><div class='fleft mr-l-10 width-200'>{input}</div></div>",]*/)->widget(DateTimePicker::classname(), [
-        'options' => ['placeholder' => '',],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'todayHighlight' => true,
-            'format' => 'yyyy-mm-dd HH:ii ' ,
-        ]
-    ]); ?>
+
+    <div class="time_div">
+        <?= $form->field($model, 'time[]', ['template' => "{label}\n<div class=\"col-lg-6\">
+        <div class='fleft width-200'>{input}</div>
+        <!--<div class='fleft mr-l-10 '>到</div>--></div>"]
+        )->widget(DateTimePicker::classname(), [
+            'options' => ['placeholder' => '',],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'todayHighlight' => true,
+                'format' => 'yyyy-mm-dd HH:ii ' ,
+            ]
+        ]); ?>
+    </div>
 
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
     <?= $form->field($model, 'capture_time')->input('text',['class'=>'input-small']) ?>

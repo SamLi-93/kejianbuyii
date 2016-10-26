@@ -8,6 +8,8 @@
 
 namespace backend\controllers;
 
+use app\models\Pic;
+use app\models\ShootPic;
 use app\models\SmsAdmin;
 use app\models\Teacher;
 use app\models\VideoMaking;
@@ -17,6 +19,7 @@ use Yii;
 use app\models\Project;
 use app\models\ProjectSearch;
 use yii\data\SqlDataProvider;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\grid\GridView;
 use yii\web\UploadedFile;
@@ -82,7 +85,7 @@ class VideoshootController extends Controller
     {
         $searchModel = new VideoShoot();
         $query = Yii::$app->request->queryParams;
-        $sql_parms = 'where a.cid = b.id';
+        $sql_parms = 'where a.cid = b.id and b.pid = c.id';
         if (!empty($query['VideoShoot'])) {
             $query_parms = array_filter($query['VideoShoot']);
             $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
@@ -128,10 +131,8 @@ class VideoshootController extends Controller
             }
         }
 
-//        var_dump($sql_parms);exit;
-
         $sql = "SELECT a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
-c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c " . $sql_parms;
+c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c " . $sql_parms . " order by a.id desc ";
 
         $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
 c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c  ' . $sql_parms);
@@ -169,6 +170,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         $model = new VideoShoot();
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
+            var_dump($params);exit;
             $status = 0;
             // 保存图片   ---------------------------------------------
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
@@ -191,7 +193,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'school' => $params['VideoShoot']['school'],
                 'courcename' => $params['VideoShoot']['courcename'],
                 'teacher' => $params['VideoShoot']['teacher'],
-                'status' => '一级审核中',
+                'status' => $status,
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => intval($params['VideoShoot']['capture_time']),
@@ -265,8 +267,13 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
 
     public function actionEdit()
     {
+        //获得项目名称和图片路径和id
         $id = Yii::$app->request->get('id');
         $model = VideoShoot::findOne($id);
+
+        //get the image id and path from table
+        $pic_path = ShootPic::findBySql("select id, path from shoot_pic where shoot_id = :shoot_id", [':shoot_id' => $id])->all();
+        $model['imageFiles'] = $pic_path;
 
         $recordname_arr = explode('、', $model['recordname']);
         $model['recordname'] = $recordname_arr;
@@ -284,6 +291,19 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
+            $status = 0;
+            if ($model['status'] == 2) {
+                $status = 6;
+            } elseif ($model['status'] == 5) {
+                $status = 6;
+            } elseif ($model['status'] == 3) {
+                $status = 1;
+            } elseif ($model['status'] == 0) {
+                $status = 1;
+            }
+            // 保存图片   ---------------------------------------------
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+
             $sql = "select id from video_making where pid =:pid and school =:school and courcename=:courcename ";
             $command = Yii::$app->db->createCommand($sql);
             $command->bindParam(':pid', $params['VideoShoot']['projectname']);
@@ -292,12 +312,13 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $cid = $command->queryAll();
 //            $params = Yii::$app->request->post();
             $recordname = implode('、', $params['VideoShoot']['recordname']);
+
             $model->setAttributes([
+                'status' => $status,
                 'projectname' => $params['VideoShoot']['projectname'],
                 'school' => $params['VideoShoot']['school'],
                 'courcename' => $params['VideoShoot']['courcename'],
                 'teacher' => $params['VideoShoot']['teacher'],
-                'status' => '一级审核中',
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => intval($params['VideoShoot']['capture_time']),
@@ -306,6 +327,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'recordname' => $recordname,
                 'cid' => $cid[0]['id'],
             ]);
+
         }
 
         if (!empty(Yii::$app->request->post()) && $model->save()) {
@@ -329,8 +351,55 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         $id = $query['id'];
         $data = VideoShoot::findOne($id);
         $data->delete();
+        //删除数据同时删除pic表中的数据 和文件
+        $pic_date = Pic::findBySql("select path from pic where cid=:cid",[':cid'=>$id])->all();
+        foreach ($pic_date as $k =>$v) {
+            $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $v['path'] );
+        }
+
+        $conn = Yii::$app->db;
+        $sql = "delete from pic where cid=:cid";
+        $command = $conn->createCommand($sql,[':cid'=>$id]);
+        $command->execute();
 
         Yii::$app->cache->delete('index');
         return $this->redirect(['index']);
+    }
+
+    public function actionVerified()
+    {
+        $id_list = Yii::$app->request->post('ids');
+        $db = Yii::$app->db;
+
+        foreach ($id_list as $k => $v) {
+            $res = $db->createCommand("update video_shoot set status = 2 where id=:id and status=1 ", [':id'=>$v])->execute();
+            $res1 = $db->createCommand("update video_shoot set status = 4 where id=:id and status=6 ", [':id'=>$v])->execute();
+        }
+    }
+
+    public function actionReject()
+    {
+        $id = Yii::$app->request->get('id');
+        $model = VideoShoot::findOne($id);
+        $status = $model['status'];
+        if ($status == 1 ) {
+            $model->status = 3;
+        }
+        if ($status == 6) {
+            $model->status = 5;
+        }
+        if ($model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        }
+    }
+
+    public function actionPicdelete() {
+        $id = Yii::$app->request->post('id');
+        $data = ShootPic::findOne($id);
+        $file_path = $data['path'];
+        $data->delete();
+        $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $file_path );
+        echo $is_delete;
     }
 }

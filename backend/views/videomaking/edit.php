@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
             foreach ($model['imageFiles'] as $k => $v) { ?>
             <div class="image_div" >
 <!--                <div class="fleft">--><?//= Html::a($v['path'], \yii\helpers\Url::to(['pic/index','id'=>$model['id']]), ['title' => '图片']);?><!--</div>-->
-                <div class="fleft"><?= Html::a($v['path'], \yii\helpers\Url::to(['pic/single','path'=>$v['path']]), ['title' => '图片']);?></div>
+                <div class="fleft"><?= Html::a($v['path'], \yii\helpers\Url::to(['pic/makingsingle','path'=>$v['path']]), ['title' => '图片']);?></div>
                 <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$v['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
             </div>
             <?}

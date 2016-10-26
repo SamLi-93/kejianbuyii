@@ -25,7 +25,9 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         ),
         'k' => 
         array (
+            'kartik\\field\\' => 13,
             'kartik\\datetime\\' => 16,
+            'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
         ),
         'c' => 
@@ -71,9 +73,17 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'kartik\\field\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-field-range',
+        ),
         'kartik\\datetime\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datetimepicker',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
         ),
         'kartik\\base\\' => 
         array (

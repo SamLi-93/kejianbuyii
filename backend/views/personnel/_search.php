@@ -27,15 +27,11 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'college')->dropDownList($pro_school ,['prompt'=>'请选择']) ?>
 
             <table style="width: 100%;">
                 <tr>
                     <td>
                         <div class="form-group">
-                            <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
-                            <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
                         </div>
                     </td>

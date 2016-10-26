@@ -28,9 +28,11 @@ use yii\widgets\ActiveForm;
             ?>
             <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
             <?= $form->field($model, 'coursename')->dropDownList($course_list ,['prompt'=>'选择课程名称']) ?>
-<!--            --><?//= $form->field($model, 'recordname')->dropDownList($person_list ,['prompt'=>'选择录制人']) ?>
             <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'选择讲师']) ?>
-            <?= $form->field($model, 'date')->input('text',['class'=>'input-small']) ?>
+            <?= $form->field($model, 'makingname')->dropDownList(['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态'],['class'=>'input-small']) ?>
+            
+
             <?= $form->field($model, 'enddate')->dropDownList(Yii::$app->params ) ?>
 
             <table style="width: 100%;">
@@ -58,14 +60,7 @@ use yii\widgets\ActiveForm;
     $("#courseware-teacher").chosen({
         width : "150px",
     });
-    $("#courseware-recordname").chosen({
-        width : "150px",
-    });
-    $("#courseware-uploadname").chosen({
-        width : "150px",
-    });
     $("#courseware-enddate").chosen({
         width : "150px",
     });
-
 </script>

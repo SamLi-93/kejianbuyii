@@ -73,12 +73,12 @@ class SmsAdmin extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
+            'username' => '用户名',
+            'password' => '密码',
             'name' => 'Name',
             'gender' => 'Gender',
             'level' => 'Level',
-            'orgid' => 'Orgid',
+            'orgid' => '角色',
             'orgname' => 'Orgname',
             'power' => 'Power',
             'update_id' => 'Update ID',

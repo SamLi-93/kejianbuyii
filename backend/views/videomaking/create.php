@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
         <?= Html::a("返回", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
-        <?= Html::submitButton("提交审核", ["class" => "btn btn-primary back-btn"] ) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -70,6 +69,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 alert('请选择字幕名称！');
                 return false;
             }
+            if(!$("input[type='checkbox']").is(':checked')){
+                alert('请选择制作人！');
+                return false;
+            }
+
             if($.trim($('#videomaking-free').val()) == ''){
                 alert('请选择结算！');
                 return false;

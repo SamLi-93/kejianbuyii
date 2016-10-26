@@ -128,8 +128,25 @@ a:visited {
     padding: 0;
     margin-left: 2%;
 }
-
-
+.test{
+    width: 50%;
+    height:5%;
+    margin-left: 15%;
+}
+.time_manage{
+    height: 40px;
+}
+.add_time{
+    padding-left: 8%;
+    padding-top: 10px;
+}
+.delete_time{
+    padding-top: 10px;
+    padding-left: 4%;
+}
+.time_div{
+    /*width:80%;*/
+}
 
 
 

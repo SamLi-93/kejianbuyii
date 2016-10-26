@@ -48,6 +48,7 @@ class CoursewareController extends Controller
     {
         $searchModel = new Courseware();
         $query = Yii::$app->request->queryParams;
+//        var_dump($query);exit;
         $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
         if (!empty($query['Courseware'])) {
             $query_parms = array_filter($query['Courseware']);

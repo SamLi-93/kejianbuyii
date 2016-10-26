@@ -10,6 +10,7 @@ namespace backend\controllers;
 
 
 use app\models\Pic;
+use app\models\ShootPic;
 use yii\web\Controller;
 
 class PicController extends Controller
@@ -23,11 +24,36 @@ class PicController extends Controller
         return $this->render('index', ['model' =>$model ]);
     }
 
-    public function actionSingle()
+    public function actionMakingpic()
+    {
+        $this->layout = false;
+        $id = \Yii::$app->request->get('id');
+        $sql = "select path from pic where cid = :cid ";
+        $model = Pic::findBySql($sql, [':cid' => $id])->all();
+        return $this->render('makingpic', ['model' =>$model ]);
+    }
+
+    public function actionShootpic()
+    {
+        $this->layout = false;
+        $id = \Yii::$app->request->get('id');
+        $sql = "select path from shoot_pic where shoot_id = :shoot_id ";
+        $model = ShootPic::findBySql($sql, [':shoot_id' => $id])->all();
+        return $this->render('shootpic', ['model' =>$model ]);
+    }
+
+    public function actionMakingsingle()
     {
         $this->layout = false;
         $path = \Yii::$app->request->get('path');
-        return $this->render('single', ['path' =>$path ]);
+        return $this->render('makingsingle', ['path' =>$path ]);
+    }
+
+    public function actionShootsingle()
+    {
+        $this->layout = false;
+        $path = \Yii::$app->request->get('path');
+        return $this->render('shootsingle', ['path' =>$path ]);
     }
 
 }

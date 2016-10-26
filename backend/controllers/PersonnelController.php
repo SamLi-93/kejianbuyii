@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use app\models\SmsAdmin;
 use Yii;
 use yii\data\SqlDataProvider;
 use yii\grid\GridView;
@@ -43,8 +44,40 @@ class PersonnelController extends Controller
         ]);
     }
 
+    public function actionCreate()
+    {
+        $model = new SmsAdmin();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+
     public function actionEdit()
     {
+        $id = Yii::$app->request->get('id');
+        $model = Project::findOne($id);
+//        $list = SmsAdmin::findBySql("SELECT name FROM sms_admin")->all();
+//        foreach ($list as $k => $v) {
+//            $key = $v['name'];
+//            $uploadname_list[$key] = $v['name'];
+//        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('edit', [
+                'model' => $model,
+                'person_list' => $this->person_list,
+            ]);
+        }
 
     }
 

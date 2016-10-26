@@ -17,6 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <span>人员管理</span>
 </div>
 
+<div class="test">
+    <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
+</div>
+
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',

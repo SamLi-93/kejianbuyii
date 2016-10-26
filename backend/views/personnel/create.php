@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Teacher*/
+/* @var $model app\models\Teacher */
 /* @var $form yii\widgets\ActiveForm */
-$this->title = '添加讲师';
+$this->title = '添加人员';
 $this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="center subject_name">
-    <span>讲师管理</span>
+    <span>添加人员</span>
 </div>
 <div class="col-xs-12">
 
@@ -26,12 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'sex')->dropDownList(['1' => '男', '2' => '女'], ['prompt'=>'选择性别']) ?>
-        <?= $form->field($model, 'college')->dropDownList($pro_school,['prompt'=>'选择院校']) ?>
-        <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'remarks')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'orgid')->dropDownList(['0' => '用户', '1' => '审核人', '2' => '管理员'], ['prompt' => '选择角色']) ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -43,55 +40,28 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-    $(function(){
-        $('#submit-btn').click(function(){
-            if($.trim($('#teacher-teacher').val()) == ''){
-                alert('请输入讲师姓名！');
-                $('#teacher-teacher').focus();
+    $(function () {
+        $('#submit-btn').click(function () {
+            if ($.trim($('#smsadmin-username').val()) == '') {
+                alert('请输入用户名！');
+                $('#smsadmin-username').focus();
                 return false;
             }
-            if($.trim($('#teacher-sex').val()) == ''){
-                alert('请选择性别！');
-                return false;
-            }
-            if($.trim($('#teacher-college').val()) == ''){
-                alert('请选择学校1！');
-                return false;
-            }
-            if($.trim($('#teacher-phone').val()) == ''){
-                alert('请输入讲师电话！');
+            if ($.trim($('#smsadmin-password').val()) == '') {
+                alert('请输入密码！');
                 $('#teacher-phone').focus();
                 return false;
             }
-            if($.trim($('#teacher-qq').val()) == ''){
-                alert('请输入qq或邮箱！');
-                $('#teacher-qq').focus();
+            if ($.trim($('#smsadmin-orgid').val()) == '') {
+                alert('请输入用户角色！');
                 return false;
             }
-            if($.trim($('#teacher-remarks').val()) == ''){
-                alert('请输入备注！');
-                $('#teacher-remarks').focus();
-                return false;
-            }
-
-//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
-//                alert('开始时间不能大于结束时间');
-//                $('#school').focus();
-//                return false;
-//            }
-            if(confirm('您确定要提交吗？')){
+            if (confirm('您确定要提交吗？')) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         });
     });
 
-    $("#teacher-sex").chosen({
-        width : "100px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "200px",
-    });
 </script>
