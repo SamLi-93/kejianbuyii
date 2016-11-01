@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\datetime\DateTimePicker;
+use kartik\select2\Select2;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project*/
@@ -29,10 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'projectname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'school')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'over')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结束']) ?>
-    <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结算']) ?>
+    <?= $form->field($model, 'over')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
+    <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
+
     <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [
+    <?= $form->field($model, 'time')->widget(DatePicker::classname(), [
         'options' => ['placeholder' => ''],
         'pluginOptions' => [
             'autoclose' => true,
@@ -40,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'yyyy-mm-dd',
         ]
     ]); ?>
-    <?= $form->field($model, 'endtime')->widget(DateTimePicker::classname(), [
+    <?= $form->field($model, 'endtime')->widget(DatePicker::classname(), [
         'options' => ['placeholder' => ''],
         'pluginOptions' => [
             'autoclose' => true,
@@ -50,9 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?= $form->field($model, 'original_path')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'making_path')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'uploadname')->dropDownList($uploadname_list,['prompt'=>'选择上传人']) ?>
-
-
+    <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' => $uploadname_list, ]); ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -76,29 +76,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('#school').focus();
                 return false;
             }
-//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
-//                alert('开始时间不能大于结束时间');
-//                $('#school').focus();
-//                return false;
-//            }
+            var date = ($('#project-time').val());
+            var enddate = ($('#project-endtime').val());
+            if(enddate != ''){
+                if (enddate < date) {
+                    alert('结束时间不能小于开始日期!');
+                    return false
+                }
+            }
             if(confirm('您确定要提交吗？')){
                 return true;
             }else{
                 return false;
             }
         });
-    });
-
-    $("#project-over").chosen({
-        width : "120px",
-    });
-
-    $("#project-free").chosen({
-        width : "120px",
-    });
-
-    $("#project-uploadname").chosen({
-        width : "120px",
     });
 
 </script>

@@ -34,7 +34,8 @@ class Teacher extends \yii\db\ActiveRecord
     {
         return [
             [['sex'], 'integer'],
-            [['college', 'teacher', 'phone', 'qq', 'mail', 'remarks', 'uploadname'], 'string', 'max' => 100],
+            [['college', 'teacher', 'qq', 'mail', 'remarks', 'uploadname'], 'string', 'max' => 100],
+            ['phone', 'string', 'length'=> 11],
         ];
     }
 
@@ -45,9 +46,9 @@ class Teacher extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'college' => '学校',
-            'teacher' => '讲师',
-            'sex' => '性别',
+            'college' => '学校 *',
+            'teacher' => '讲师 *',
+            'sex' => '性别 *',
             'phone' => '电话号码',
             'qq' => 'qq或邮箱',
             'mail' => 'Mail',

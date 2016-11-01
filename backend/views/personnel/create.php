@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use kartik\select2\Select2;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -27,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'orgid')->dropDownList(['0' => '用户', '1' => '审核人', '2' => '管理员'], ['prompt' => '选择角色']) ?>
+    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'passwordRepeat')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'orgid')->widget(Select2::classname(), ['data' => ['0' => '用户', '1' => '审核人', '2' => '管理员'], ] ); ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -42,18 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(function () {
         $('#submit-btn').click(function () {
-            if ($.trim($('#smsadmin-username').val()) == '') {
+            if ($.trim($('#smsadminnoauth-username').val()) == '') {
                 alert('请输入用户名！');
-                $('#smsadmin-username').focus();
+                $('#smsadminnoauth-username').focus();
                 return false;
             }
-            if ($.trim($('#smsadmin-password').val()) == '') {
+            if ($.trim($('#smsadminnoauth-password').val()) == '') {
                 alert('请输入密码！');
-                $('#teacher-phone').focus();
+                $('#smsadminnoauth-password').focus();
                 return false;
             }
-            if ($.trim($('#smsadmin-orgid').val()) == '') {
-                alert('请输入用户角色！');
+            if ($.trim($('#smsadminnoauth-orgid').val()) == '') {
+                alert('请选择用户角色！');
                 return false;
             }
             if (confirm('您确定要提交吗？')) {

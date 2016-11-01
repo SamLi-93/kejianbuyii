@@ -23,7 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
     'course_list' => $course_list,
     'person_list' => $person_list,
     'teacher_list' => $teacher_list,
-    ]); ?>
+    'query' => $query,
+]); ?>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '视频标题',
             'attribute' => 'title',
             'value' => function ($model) {
-                if ($model['title'] == null ){
+                if ($model['title'] == null) {
                     return '';
                 }
                 return $model['title'];
@@ -71,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '讲师',
             'attribute' => 'teacher',
             'value' => function ($model) {
-                if ($model['teacher'] == null ){
+                if ($model['teacher'] == null) {
                     return '';
                 }
                 return $model['teacher'];
@@ -83,10 +84,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'time',
             'format' => 'raw',
             'value' => function ($model) {
-                if ($model['time'] == null ){
+                if ($model['time'] == null) {
                     return '';
                 }
-                return $model['time'];
+                $h = floor($model['time'] / 3600);
+                $m = floor(($model['time'] - $h * 3600) / 60);
+                $s = ($model['time'] - $h * 3600) % 60;
+                return $h."时".$m."分".$s."秒";
             }
         ],
 
@@ -94,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '制作人',
             'attribute' => 'makingname',
             'value' => function ($model) {
-                if ($model['makingname'] == null ){
+                if ($model['makingname'] == null) {
                     return '';
                 }
                 return $model['makingname'];
@@ -105,10 +109,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '开始日期',
             'attribute' => 'date',
             'value' => function ($model) {
-                if ($model['date'] == null ){
+                if ($model['date'] == null) {
                     return '';
                 }
-                return date('Y-m-d',$model['date']);
+                return date('Y-m-d', $model['date']);
             }
         ],
 
@@ -116,10 +120,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '结束日期',
             'attribute' => 'enddate',
             'value' => function ($model) {
-                if ($model['enddate'] == null ){
+                if ($model['enddate'] == null) {
                     return '';
                 }
-                return date('Y-m-d',$model['enddate']);
+                return date('Y-m-d', $model['enddate']);
             }
         ],
 
@@ -127,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '制作天数',
             'attribute' => 'totalday',
             'value' => function ($model) {
-                if ($model['totalday'] == null ){
+                if ($model['totalday'] == null) {
                     return '';
                 }
                 return $model['totalday'];
@@ -138,7 +142,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '备注',
             'attribute' => 'remark',
             'value' => function ($model) {
-                if ($model['remark'] == '' ){
+                if ($model['remark'] == '') {
                     return '';
                 }
                 return $model['remark'];
@@ -152,18 +156,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'edit' => function ($url, $model, $key) {
                     $options = [
                         'title' => '修改',
-                        'class' =>'btn btn-success btn-sm',
+                        'class' => 'btn btn-success btn-sm',
                         'id' => 'edit-btn',
                     ];
-                    $url = Url::to(['courseware/edit','id'=>$model['id']]);
+                    $url = Url::to(['courseware/edit', 'id' => $model['id']]);
                     return Html::a('修改', $url, $options);
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
                         'class' => 'btn btn-success',
                     ];
-                    $url = Url::to(['courseware/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    $url = Url::to(['courseware/delete', 'id' => $model['id']]);
+                    return Html::a('删除', $url, ['onclick' => 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn']);
 
                 },
             ],
@@ -174,9 +178,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <script>
     function check() {
-        if(confirm('您确定要删除吗？')){
+        if (confirm('您确定要删除吗？')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

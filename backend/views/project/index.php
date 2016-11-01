@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'pro_school' => $pro_school,
     'pro_teacher' => $pro_teacher,
     'pro_over' => $pro_over,
+    'query' => $query
     ]); ?>
 
 <?= GridView::widget([
@@ -86,10 +87,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '开始日期	',
             'attribute' => 'time',
             'value' => function ($model) {
-                if ( strpos($model['time'], '-') ){
-                    return $model['time'];
+                if ($model['time'] == null ){
+                    return '';
+                } elseif ($model['time'] == 0) {
+                    return '';
                 }
-                return date('Y-m-d', $model['time']);
+                return date('Y-m-d',$model['time']);
             }
         ],
 
@@ -97,10 +100,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '结束时间',
             'attribute' => 'endtime',
             'value' => function ($model) {
-                if ( strpos($model['endtime'], '-') ){
-                    return $model['endtime'];
+                if ($model['endtime'] == null ){
+                    return '';
+                } elseif ($model['endtime'] == 0) {
+                    return '';
                 }
-                return date('Y-m-d', $model['endtime']);
+                return date('Y-m-d',$model['endtime']);
             }
         ],
 
@@ -194,9 +199,6 @@ $this->params['breadcrumbs'][] = $this->title;
             });
         }
     }
-
-
-
 </script>
 
 

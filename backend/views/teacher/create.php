@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Teacher*/
@@ -27,8 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
         <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'sex')->dropDownList(['1' => '男', '2' => '女'], ['prompt'=>'选择性别']) ?>
-        <?= $form->field($model, 'college')->dropDownList($pro_school,['prompt'=>'选择院校']) ?>
+<!--        --><?//= $form->field($model, 'sex')->dropDownList(['1' => '男', '2' => '女'], ['prompt'=>'选择性别']) ?>
+<!--        --><?//= $form->field($model, 'college')->dropDownList($pro_school,['prompt'=>'选择院校']) ?>
+        <?= $form->field($model, 'sex')->widget(Select2::classname(), ['data' => ['1' => '男', '2' => '女'], 'options' => ['placeholder' => '请选择性别'], ]); ?>
+        <?= $form->field($model, 'college')->widget(Select2::classname(), ['data' => $pro_school, 'options' => ['placeholder' => '请选择学校'], ]); ?>
         <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'remarks')->textInput(['maxlength' => true]) ?>
@@ -58,25 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 alert('请选择学校1！');
                 return false;
             }
-            if($.trim($('#teacher-phone').val()) == ''){
-                alert('请输入讲师电话！');
-                $('#teacher-phone').focus();
-                return false;
-            }
-            if($.trim($('#teacher-qq').val()) == ''){
-                alert('请输入qq或邮箱！');
-                $('#teacher-qq').focus();
-                return false;
-            }
-            if($.trim($('#teacher-remarks').val()) == ''){
-                alert('请输入备注！');
-                $('#teacher-remarks').focus();
-                return false;
-            }
-
-//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
-//                alert('开始时间不能大于结束时间');
-//                $('#school').focus();
+//            if($.trim($('#teacher-phone').val()) == ''){
+//                alert('请输入讲师电话！');
+//                $('#teacher-phone').focus();
+//                return false;
+//            }
+//            if($.trim($('#teacher-qq').val()) == ''){
+//                alert('请输入qq或邮箱！');
+//                $('#teacher-qq').focus();
 //                return false;
 //            }
             if(confirm('您确定要提交吗？')){
@@ -87,11 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
         });
     });
 
-    $("#teacher-sex").chosen({
-        width : "100px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "200px",
-    });
+//    $("#teacher-sex").chosen({
+//        width : "100px",
+//    });
+//
+//    $("#teacher-college").chosen({
+//        width : "200px",
+//    });
 </script>

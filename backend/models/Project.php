@@ -36,8 +36,12 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['over', 'free'], 'integer'],
-            [['projectname', 'school','time', 'endtime'], 'string', 'max' => 100],
+            [['over', 'free',], 'integer'],
+            [['projectname', 'school',], 'string', 'max' => 100],
+            ['projectname', 'unique', ],
+            [['time','endtime'], 'filter','filter' => function($value) {
+                return ($value);
+            }  ],
             [['teacher', 'uploadname'], 'string', 'max' => 50],
             [['original_path', 'making_path'], 'string', 'max' => 255],
         ];
@@ -50,16 +54,16 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'projectname' => '项目名称',
-            'school' => '学校',
+            'projectname' => '项目名称 *',
+            'school' => '学校 *',
             'over' => '是否结束',
             'free' => '费用结算',
-            'teacher' => '项目联系人',
-            'time' => '开始时间',
+            'teacher' => '项目联系人 *',
+            'time' => '开始时间 *',
             'endtime' => '结束时间',
             'original_path' => '原始路径',
             'making_path' => '制作路径',
-            'uploadname' => '上传人',
+            'uploadname' => '上传人 *',
         ];
     }
 
@@ -78,7 +82,7 @@ class Project extends \yii\db\ActiveRecord
 
     public function getProjectName()
     {
-        $list = self::findBySql('select id, projectname from project GROUP BY projectname')->all();
+        $list = self::findBySql('select id, projectname from project ')->all();
         $pro_list = [];
         foreach ($list as $k => $v) {
 //            array_push($pro_list, $v['projectname']);

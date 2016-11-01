@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -26,14 +27,18 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
-            <?= $form->field($model, 'coursename')->dropDownList($course_list ,['prompt'=>'选择课程名称']) ?>
-            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'选择讲师']) ?>
-            <?= $form->field($model, 'makingname')->dropDownList(['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
-                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态'],['class'=>'input-small']) ?>
-            
-
-            <?= $form->field($model, 'enddate')->dropDownList(Yii::$app->params ) ?>
+            <? if (!empty($query['Courseware'])) {
+                $model->projectname = $query['Courseware']['projectname'];
+                $model->coursename = $query['Courseware']['coursename'];
+                $model->teacher = $query['Courseware']['teacher'];
+                $model->time = $query['Courseware']['time'];
+                $model->enddate = $query['Courseware']['enddate'];
+            }?>
+            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname , 'options' => ['placeholder' => '选择项目'], ]); ?>
+            <?= $form->field($model, 'coursename')->widget(Select2::classname(), ['data' => $course_list, 'options' => ['placeholder' => '选择课程名称'], ]); ?>
+            <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' =>$teacher_list , 'options' => ['placeholder' => '选择讲师'], ]); ?>
+            <?= $form->field($model, 'time')->input('text',['class'=>'input-small']) ?>
+            <?= $form->field($model, 'enddate')->dropDownList(Yii::$app->params ) ?>  <!--just in use of enddate, not actually enddate attribute-->
 
             <table style="width: 100%;">
                 <tr>
@@ -50,17 +55,28 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#courseware-projectname").chosen({
-        width : "150px",
-    });
-    $("#courseware-coursename").chosen({
-        width : "150px",
-    });
-    $("#courseware-teacher").chosen({
-        width : "150px",
-    });
-    $("#courseware-enddate").chosen({
-        width : "150px",
-    });
+
+<script>
+    function changecheck(value) {
+        $.ajax({
+            type: "post",
+            method: "post",
+            dataType: "json",
+            data: {"value": value},
+            url: "<?= \yii\helpers\Url::to(['courseware/changecheck']);?>",
+            success: function(data){
+                console.log(data);
+                var name = data.coursename;
+                var educational = data.educational;
+                var condition_info = "<select id=\"courseware-courcename\" class=\"dept_select\" name=\"Courseware[courcename]\" style=\"width:150px\"><option value=\"\">选择课程名称</option>";
+                for(var i = 0; i < name.length; i++){
+                    condition_info +="<option value=\""+name[i]+"\">"+name[i]+"</option>";
+                }
+                condition_info +="</select>";
+                $('#courseware_coursename_chosen').html(condition_info);
+                $('.dept_select').chosen();
+
+            }
+        });
+    }
 </script>

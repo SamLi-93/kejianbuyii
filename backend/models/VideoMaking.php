@@ -22,6 +22,7 @@ class VideoMaking extends \yii\db\ActiveRecord
     public $imageFiles;
     private $pic_name;
     private $path;
+    public $test;
 
     /**
      * @inheritdoc
@@ -41,6 +42,7 @@ class VideoMaking extends \yii\db\ActiveRecord
             [['id', 'subtitle', 'free', 'status', 'pid'], 'integer'],
             [['makingname', 'projectname', 'teacher', 'school', 'courcename'], 'string', 'max' => 100],
             [['teacher'], 'string', 'max' => 50],
+//            ['courcename', 'unique', ],
 //            [['pic'], 'file','maxFiles' => 14],
             [['imageFiles'], 'file', 'maxFiles' => 14],
         ];
@@ -53,13 +55,13 @@ class VideoMaking extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'makingname' => '上传人',
-            'subtitle' => '字幕',
-            'projectname' => '项目名',
-            'school' => '学校',
-            'courcename' => '课程名',
-            'free' => '结算',
-            'teacher' => '讲师',
+            'makingname' => '上传人 *',
+            'subtitle' => '字幕 *',
+            'projectname' => '项目名 *',
+            'school' => '学校 *',
+            'courcename' => '课程名 *',
+            'free' => '结算 *',
+            'teacher' => '讲师 *',
             'status' => '审核',
             'pid' => 'Pid',
             'imageFiles' => '图片',
@@ -117,7 +119,7 @@ class VideoMaking extends \yii\db\ActiveRecord
         $course_list = [];
         foreach ($list as $k => $v) {
             $key = $v['courcename'];
-            $course_list[$key] = $v['courcename'];
+            $course_list[$v['id']] = $v['courcename'];
         }
         return $course_list;
     }

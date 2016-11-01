@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
                 <tr>
                     <td>
                         <div class="form-group">
-                            <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
+                            <?= Html::a('添加1', ['create'], ['class' => 'btn btn-sm btn-success'])?>
                         </div>
                     </td>
                 </tr>
@@ -41,12 +41,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#teacher-teacher").chosen({
-        width : "150px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "150px",
-    });
-</script>

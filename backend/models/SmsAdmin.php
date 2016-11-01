@@ -54,14 +54,10 @@ class SmsAdmin extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['gender', 'level', 'orgid', 'update_id', 'update_date', 'isdelete', 'valid', 'groupid', 'fpower', 'is_audit', 'upload', 'audit', 'copen', 'empower', 'status'], 'integer'],
-            [['perms_bysj'], 'string'],
+            [['gender', 'orgid', 'isdelete',  'status'], 'integer'],
             [['status', 'password_hash', 'auth_key'], 'required'],
             [['username', 'name'], 'string', 'max' => 30],
             [['password'], 'string', 'max' => 32],
-            [['orgname'], 'string', 'max' => 255],
-            [['power'], 'string', 'max' => 11],
-            [['mclassids'], 'string', 'max' => 100],
             [['password_hash', 'auth_key'], 'string', 'max' => 20],
         ];
     }
@@ -79,21 +75,8 @@ class SmsAdmin extends \yii\db\ActiveRecord implements IdentityInterface
             'gender' => 'Gender',
             'level' => 'Level',
             'orgid' => '角色',
-            'orgname' => 'Orgname',
-            'power' => 'Power',
-            'update_id' => 'Update ID',
             'update_date' => 'Update Date',
             'isdelete' => 'Isdelete',
-            'valid' => 'Valid',
-            'perms_bysj' => 'Perms Bysj',
-            'groupid' => 'Groupid',
-            'mclassids' => 'Mclassids',
-            'fpower' => 'Fpower',
-            'is_audit' => 'Is Audit',
-            'upload' => 'Upload',
-            'audit' => 'Audit',
-            'copen' => 'Copen',
-            'empower' => 'Empower',
             'status' => 'Status',
             'password_hash' => 'Password Hash',
             'auth_key' => 'Auth Key',

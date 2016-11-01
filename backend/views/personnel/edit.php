@@ -1,22 +1,23 @@
 <?php
 
 use yii\helpers\Html;
+use kartik\select2\Select2;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Teacher*/
+/* @var $model app\models\Teacher */
 /* @var $form yii\widgets\ActiveForm */
-$this->title = '添加讲师';
+$this->title = '人员管理';
 $this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="center subject_name">
-    <span>讲师管理</span>
+    <span>人员管理</span>
 </div>
 <div class="col-xs-12">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['teacher/edit/'.$model['id']],
+        'action' => ['personnel/edit/'. $model['id']],
         'method' => 'post',
         'id' => 'my_form',
         'options' => ['class' => 'form-horizontal'],
@@ -26,12 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'sex')->dropDownList(['1' => '男', '2' => '女'], ['prompt'=>'选择性别']) ?>
-    <?= $form->field($model, 'college')->dropDownList($pro_school,['prompt'=>'选择院校']) ?>
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'remarks')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'passwordRepeat')->passwordInput(['maxlength' => true]) ?>
+    <? if (Yii::$app->user->identity->orgid==2) {
+        echo $form->field($model, 'orgid')->widget(Select2::classname(), ['data' => ['0' => '用户', '1' => '审核人', '2' => '管理员'], ] );
+    } ?>
+<!--    --><?//= $form->field($model, 'orgid')->widget(Select2::classname(), ['data' => ['0' => '用户', '1' => '审核人', '2' => '管理员'], ] ); ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('修改', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -43,55 +45,23 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-    $(function(){
-        $('#submit-btn').click(function(){
-            if($.trim($('#teacher-teacher').val()) == ''){
-                alert('请输入讲师姓名！');
-                $('#teacher-teacher').focus();
+    $(function () {
+        $('#submit-btn').click(function () {
+            if ($.trim($('#smsadminnoauth-username').val()) == '') {
+                alert('请输入用户名！');
+                $('#smsadminnoauth-username').focus();
                 return false;
             }
-            if($.trim($('#teacher-sex').val()) == ''){
-                alert('请选择性别！');
+            if ($.trim($('#smsadminnoauth-password').val()) == '') {
+                alert('请输入密码！');
+                $('#smsadminnoauth-password').focus();
                 return false;
             }
-            if($.trim($('#teacher-college').val()) == ''){
-                alert('请选择学校1！');
-                return false;
-            }
-            if($.trim($('#teacher-phone').val()) == ''){
-                alert('请输入讲师电话！');
-                $('#teacher-phone').focus();
-                return false;
-            }
-            if($.trim($('#teacher-qq').val()) == ''){
-                alert('请输入qq或邮箱！');
-                $('#teacher-qq').focus();
-                return false;
-            }
-            if($.trim($('#teacher-remarks').val()) == ''){
-                alert('请输入备注！');
-                $('#teacher-remarks').focus();
-                return false;
-            }
-
-//            if($.trim($('#time').val()) > $.trim($('#endtime').val())){
-//                alert('开始时间不能大于结束时间');
-//                $('#school').focus();
-//                return false;
-//            }
-            if(confirm('您确定要提交吗？')){
+            if (confirm('您确定要提交吗？')) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         });
-    });
-
-    $("#teacher-sex").chosen({
-        width : "100px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "200px",
     });
 </script>

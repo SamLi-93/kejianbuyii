@@ -25,6 +25,7 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         ),
         'k' => 
         array (
+            'kartik\\select2\\' => 15,
             'kartik\\field\\' => 13,
             'kartik\\datetime\\' => 16,
             'kartik\\date\\' => 12,
@@ -72,6 +73,10 @@ class ComposerStaticInit0d1d3c13f80202964b8b82ff7f2fb863
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
         ),
         'kartik\\field\\' => 
         array (

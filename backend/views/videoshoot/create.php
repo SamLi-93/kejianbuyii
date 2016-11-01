@@ -5,6 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\datetime\DateTimePicker;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project*/
@@ -28,23 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'projectname')->dropDownList($pro_projectname,['prompt'=>'选择项目', 'onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ] ) ?>
-    <span id="school"><?= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?></span>
-    <span id="coursename"><?= $form->field($model, 'courcename')->dropDownList($course_list,['prompt'=>'选择课程']) ?></span>
-    <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择主讲人']) ?>
+    <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname ,
+        'options' => ['placeholder' => '选择项目','onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ],
+    ]); ?>
+    <?= $form->field($model, 'school')->widget(Select2::classname(), [/*'data' =>$pro_school ,*/
+        'initValueText' => $pro_school,'options' => ['placeholder' => '选择学校'],   ]); ?>
+
+    <?= $form->field($model, 'courcename')->widget(Select2::classname(), ['data' =>$course_list , 'options' => ['placeholder' => '选择课程'], ]); ?>
+    <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' =>$teacher_list , 'options' => ['placeholder' => '选择主讲人'], ]); ?>
     <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",])->checkboxList($person_list); ?>
-
-
     <div class="time_div">
-        <?= $form->field($model, 'time[]', ['template' => "{label}\n<div class=\"col-lg-6\">
-        <div class='fleft width-200'>{input}</div>
-        <!--<div class='fleft mr-l-10 '>到</div>--></div>"]
-        )->widget(DateTimePicker::classname(), [
+        <?= $form->field($model, 'time')->widget(DateTimePicker::classname(), [
             'options' => ['placeholder' => '',],
             'pluginOptions' => [
                 'autoclose' => true,
                 'todayHighlight' => true,
-                'format' => 'yyyy-mm-dd HH:ii ' ,
+                'format' => 'yyyy-mm-dd hh:ii ' ,
             ]
         ]); ?>
     </div>
@@ -52,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
     <?= $form->field($model, 'capture_time')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'seat')->input('text',['class'=>'input-small']) ?>
-    <?= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
+    <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -63,14 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     $(function(){
-//        var a = $(":checkbox");
-//        if(a.length > 4)
-//            alert("录制人员最多选4个");
-//        alert($('#name').val())
         $('#submit-btn').click(function(){
             if($.trim($('#videoshoot-projectname').val()) == ''){
                 alert('请输入项目名称！');
-//                $('#videoshoot-projectname').focusx();
                 return false;
             }
             if($.trim($('#videoshoot-school').val()) == ''){
@@ -83,7 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
             }
             if($.trim($('#videoshoot-teacher').val()) == ''){
                 alert('请输入主讲人！');
-//                $('#videoshoot-teacher').focus();
+                return false;
+            }
+            if(!$("input[type='checkbox']").is(':checked')){
+                alert('请选择录制人！');
                 return false;
             }
             if($.trim($('#videoshoot-time').val()) == ''){
@@ -113,38 +112,6 @@ $this->params['breadcrumbs'][] = $this->title;
     });
 </script>
 
-<script type="text/javascript">
-    $("#videoshoot-projectname").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-courcename").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-uploadname").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-time1").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-school").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-teacher").chosen({
-        width : "200px",
-    });
-
-    $("#videoshoot-recordname1").chosen({
-        width : "200px",
-    });
-
-    $('.dept_select').chosen();
-</script>
-
 <script>
     function changecheck(value) {
         $.ajax({
@@ -157,20 +124,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 console.log(data);
                 var name = data.coursename;
                 var educational = data.educational;
-                var condition_info = "<select id=\"videoshoot-courcename\" class=\"dept_select\" name=\"VideoShoot[courcename]\" style=\"width:150px\"><option value=\"\">选择课程名称</option>";
-                for(var i = 0; i < name.length; i++){
-                    condition_info +="<option value=\""+name[i]+"\">"+name[i]+"</option>";
-                }
-                condition_info +="</select>";
-                $('#coursename .col-lg-3').html(condition_info);
 
-                var condition_info1 = "<select id=\"videoshoot-school\" class=\"dept_select\" name=\"VideoShoot[school]\" style=\"width:150px\"><option value=\"\">选择学校</option>";
-                for(var i = 0; i < educational.length; i++){
-                    condition_info1 +="<option value=\""+educational[i]+"\">"+educational[i]+"</option>";
+                var course_list = "<select id=\"videoshoot-courcename\" class=\"form-control select2-hidden-accessible\" name=\"VideoShoot[courcename]\" ><option value=\"\">选择学校</option><optgroup label'>";
+                for(var key in name){
+                    course_list +="<option value="+key+" > "+name[key]+" </option>";
                 }
-                condition_info1 +="</select>";
-                $('#school .col-lg-3').html(condition_info1);
-                $('.dept_select').chosen();
+                course_list +="</optgroup></select>";
+                $('#videoshoot-courcename').html(course_list);
+
+                var school_list = "<select id=\"videoshoot-school\" class=\"form-control select2-hidden-accessible\" name=\"VideoShoot[School]\" ><option value=\"\">选择课程名</option>";
+                for(var i = 0; i < educational.length; i++){
+                    school_list +="<option value="+educational[i]+"> "+educational[i]+" </option>";
+                }
+                school_list +="</select>";
+                $('#videoshoot-school').html(school_list);
             }
         });
     }

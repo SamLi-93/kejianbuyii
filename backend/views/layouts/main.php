@@ -54,14 +54,14 @@ AppAsset::register($this);
             <dt class="sims_list_on">后台管理</dt>
             <dd class="left_cons">
 <!--                --><?// var_dump(Yii::$app->controller->id=='project' ? '1' : '2' );exit; ?>
-                <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="<?= Yii::$app->controller->id == 'project'? 'left_con_on' : 'left_con'; ?>" target="main">项目管理</a>
-                <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="<?= Yii::$app->controller->id == 'teacher'? 'left_con_on' : 'left_con'; ?>" target="main">讲师管理</a>
-                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" target="main">课程管理</a>
-                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="<?= Yii::$app->controller->id == 'videoshoot'? 'left_con_on' : 'left_con'; ?>" target="main">视频拍摄</a>
-                <a href="<?= \yii\helpers\Url::to(['courseware/index']) ?>" class="<?= Yii::$app->controller->id == 'courseware'? 'left_con_on' : 'left_con'; ?>" target="main">课件管理</a>
-                <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="<?= Yii::$app->controller->id == 'projectcount'? 'left_con_on' : 'left_con'; ?>" target="main">项目统计</a>
-                <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="<?= Yii::$app->controller->id == 'personnelcount'? 'left_con_on' : 'left_con'; ?>" target="main">人员统计</a>
-                <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="<?= Yii::$app->controller->id == 'personnel'? 'left_con_on' : 'left_con'; ?>" target="main">人员管理</a>
+                <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="<?= Yii::$app->controller->id == 'project'? 'left_con_on' : 'left_con'; ?>">项目管理</a>
+                <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="<?= Yii::$app->controller->id == 'teacher'? 'left_con_on' : 'left_con'; ?>">讲师管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" >课程管理</a>
+                <a href="<?= \yii\helpers\Url::to(['videoshoot/index']) ?>" class="<?= Yii::$app->controller->id == 'videoshoot'? 'left_con_on' : 'left_con'; ?>">视频拍摄</a>
+                <a href="<?= \yii\helpers\Url::to(['courseware/index']) ?>" class="<?= Yii::$app->controller->id == 'courseware'? 'left_con_on' : 'left_con'; ?>" >课件管理</a>
+                <a href="<?= \yii\helpers\Url::to(['projectcount/index']) ?>" class="<?= Yii::$app->controller->id == 'projectcount'? 'left_con_on' : 'left_con'; ?>" >项目统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnelcount/index']) ?>" class="<?= Yii::$app->controller->id == 'personnelcount'? 'left_con_on' : 'left_con'; ?>" >人员统计</a>
+                <a href="<?= \yii\helpers\Url::to(['personnel/index']) ?>" class="<?= Yii::$app->controller->id == 'personnel'? 'left_con_on' : 'left_con'; ?>" >人员管理</a>
             </dd>
         </div>
         <div class="main-content">

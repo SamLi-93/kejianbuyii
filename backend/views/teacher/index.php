@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'model' => $searchModel,
     'teacher_list' => $teacher_list,
     'pro_school' => $pro_school,
+    'query' => $query,
     ]); ?>
 
 <?= GridView::widget([

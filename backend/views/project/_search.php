@@ -9,6 +9,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -27,10 +28,17 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'请选择项目']) ?>
-            <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-            <?= $form->field($model, 'teacher')->dropDownList($pro_teacher ,['prompt'=>'请选择讲师']) ?>
-            <?= $form->field($model, 'over')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
+            <? if (!empty($query['ProjectSearch'])) {
+                $model->projectname = $query['ProjectSearch']['projectname'];
+                $model->school = $query['ProjectSearch']['school'];
+                $model->teacher = $query['ProjectSearch']['teacher'];
+                $model->over = $query['ProjectSearch']['over'];
+            }?>
+
+            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' => $pro_projectname, 'options' => ['placeholder' => '请选择项目'], ]); ?>
+            <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school,'options' => ['placeholder' => '请选择学校'],  ]); ?>
+            <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' => $pro_teacher,'options' => ['placeholder' => '请选择讲师'],  ]); ?>
+            <?= $form->field($model, 'over')->widget(Select2::classname(), ['data' => ['2' => '否', '1' => '是'],'options' => ['placeholder' => '请选择费用结算'],  ]); ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -47,20 +55,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#projectsearch-projectname").chosen({
-        width : "150px",
-    });
-
-    $("#projectsearch-school").chosen({
-        width : "150px",
-    });
-
-    $("#projectsearch-teacher").chosen({
-        width : "150px",
-    });
-
-    $("#projectsearch-over").chosen({
-        width : "150px",
-    });
-</script>

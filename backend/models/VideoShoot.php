@@ -28,6 +28,8 @@ class VideoShoot extends \yii\db\ActiveRecord
     public $imageFiles;
     private $pic_name;
     public $time2;
+    public $time1;
+    public $test;
 
     /**
      * @inheritdoc
@@ -43,10 +45,9 @@ class VideoShoot extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['time1'], 'required'],
-            [['capture_time'], 'number'],
+            [['test','capture_time'], 'number'],
             [['seat', 'cid','status'], 'integer'],
-            [['time2','recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher', 'auditor1', 'auditor2'], 'string', 'max' => 100],
+            [['time2','recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher'], 'string', 'max' => 100],
             [['imageFiles'], 'file', 'maxFiles' => 14],
         ];
     }
@@ -58,21 +59,18 @@ class VideoShoot extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'recordname' => '录制人',
-            'time' => '拍摄时间',
-            'time1' => '拍摄时间1',
-            'capture_time' => '实际拍摄时长',
-            'uploadname' => '上传人',
-            'seat' => '机位个数',
-            'projectname' => '项目名称',
-            'school' => '学校',
-            'courcename' => '课程名称',
-            'teacher' => '主讲人',
+            'recordname' => '录制人 *',
+            'time' => '拍摄时间 *',
+            'capture_time' => '实际拍摄时长 *',
+            'uploadname' => '上传人 *',
+            'seat' => '机位个数 *',
+            'projectname' => '项目名称 *',
+            'school' => '学校 *',
+            'courcename' => '课程名称 *',
+            'teacher' => '主讲人 *',
             'status' => '审核',
-            'auditor1' => 'Auditor1',
-            'auditor2' => 'Auditor2',
             'cid' => 'Cid',
-            'imageFiles' => '图片',
+            'imageFiles' => '图片 *',
         ];
     }
 

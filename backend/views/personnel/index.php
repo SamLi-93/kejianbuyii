@@ -18,7 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="test">
-    <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
+    <? if (Yii::$app->user->identity->orgid==2) {
+        echo Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success']);
+    } ?>
 </div>
 
 <?= GridView::widget([
@@ -77,15 +79,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' =>'btn btn-success btn-sm',
                         'id' => 'edit-btn',
                     ];
-                    $url = Url::to(['teacher/edit','id'=>$model['id']]);
+                    $url = Url::to(['personnel/edit','id'=>$model['id']]);
                     return Html::a('修改', $url, $options);
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
                         'class' => 'btn btn-success',
                     ];
-                    $url = Url::to(['teacher/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    if (Yii::$app->user->identity->orgid == 2 ){
+                        $url = Url::to(['personnel/delete','id'=>$model['id']]);
+                        return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    }
+
 
                 },
             ],

@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'pro_school' => $pro_school,
     'course_list' => $course_list,
     'person_list' => $person_list,
+    'query' => $query,
 ]); ?>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -185,7 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
             'value' => function ($model) {
                 $url = Url::to(['pic/makingpic', 'id' => $model['id']]);
-                return Html::a('图片', $url, ['title' => '图片']);
+                return Html::a('图片', $url, ['title' => '图片', 'target'=>'_blank']);
             }
         ],
     ],
@@ -203,12 +204,12 @@ $this->params['breadcrumbs'][] = $this->title;
             is_oneself = 0;
         }
         if (status == 4 || status == 2) {
-            alert('二级通过不能删除!')
+            alert('一级、二级通过不能删除!')
             return false
         }
         if (status == 0 || status == 3) {
             if (orgid == 2 || is_oneself == 1) {
-                return true
+                return confirm('确定删除吗？');
             } else {
                 alert('只有管理员和本人可以修改!')
                 return false

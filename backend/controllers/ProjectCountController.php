@@ -17,17 +17,6 @@ use yii\grid\GridView;
 
 class ProjectcountController extends Controller
 {
-    private $pro_projectname = [];
-    private $pro_school = [];
 
-    public function init()
-    {
-        parent::init();
-        $search_info = new VideoShoot();
-        $pro_info = new Project();
-        $this->pro_projectname = $search_info->getProjectName();
-        $this->pro_school = $pro_info->getSchoolName();
-
-    }
 
 }

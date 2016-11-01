@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project*/
@@ -13,7 +15,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 ?>
 <div class="center subject_name">
     <span>课程管理</span>
-<!--    --><?// var_dump($model);exit;?>
+<!--    --><?// print_r($model);exit;?>
 </div>
 <div class="col-xs-12">
 
@@ -28,19 +30,22 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
         ],
     ]); ?>
 
+    <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname ,
+        'options' => ['placeholder' => '选择项目','onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ],
+    ]); ?>
+    <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school,
+        'options' => ['placeholder' => '请选择学校','onchange' => "getteacher(this.options[this.options.selectedIndex].value)" ],
+    ]); ?>
 
-    <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
-    <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-<!--    --><?//= $form->field($model, 'school')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'courcename')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择讲师']) ?>
-    <?= $form->field($model, 'subtitle')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择有无字幕']) ?>
-    <?= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'],['prompt'=>'选择是否结算']) ?>
+    <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' =>$teacher_list , 'options' => ['placeholder' => '选择讲师'], ]); ?>
+    <?= $form->field($model, 'subtitle')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], 'options' => ['placeholder' => '选择有无字幕'], ]); ?>
+    <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' =>['0' => '否', '1' => '是'] , 'options' => ['placeholder' => '选择是否结算'], ]); ?>
+
     <?
         if (count($model['imageFiles'])>1) {
             foreach ($model['imageFiles'] as $k => $v) { ?>
             <div class="image_div" >
-<!--                <div class="fleft">--><?//= Html::a($v['path'], \yii\helpers\Url::to(['pic/index','id'=>$model['id']]), ['title' => '图片']);?><!--</div>-->
                 <div class="fleft"><?= Html::a($v['path'], \yii\helpers\Url::to(['pic/makingsingle','path'=>$v['path']]), ['title' => '图片']);?></div>
                 <div class="image_delete"><?= Html::a('删除', '', ['onclick'=> 'return check('.$v['id'].')', 'class' => 'btn-sm', 'id' => 'delete-iamge' ]);?></div>
             </div>
@@ -99,21 +104,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
             }
         });
     });
-    $("#videomaking-projectname").chosen({
-        width : "200px",
-    });
-    $("#videomaking-school").chosen({
-        width : "200px",
-    });
-    $("#videomaking-teacher").chosen({
-        width : "120px",
-    });
-    $("#videomaking-subtitle").chosen({
-        width : "120px",
-    });
-    $("#videomaking-free").chosen({
-        width : "120px",
-    });
+
 </script>
 <script>
     function check(id) {
@@ -131,6 +122,47 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
         } else {
             return false;
         }
+    }
+    function changecheck(value) {
+        $.ajax({
+            type: "post",
+            method: "post",
+            dataType: "json",
+            data: {"value": value},
+            url: "<?= Url::to(['videomaking/changecheck']);?>",
+            success: function(data){
+                console.log(data);
+                var name = data.coursename;
+                var educational = data.educational;
+
+                var school_list = "<select id=\"videomaking-school\" class=\"form-control select2-hidden-accessible\" name=\"VideoMaking[school]\" ><option value=\"\">选择课程名</option>";
+                for(var i = 0; i < educational.length; i++){
+                    school_list +="<option value=\"educational[i]\"> "+educational[i]+" </option>";
+                }
+                school_list +="</select>";
+                $('#videomaking-school').html(school_list);
+            }
+        });
+    }
+    function getteacher(value) {
+        $.ajax({
+            type: "post",
+            method: "post",
+            dataType: "json",
+            data: {"value": value},
+            url: "<?= Url::to(['videomaking/getteacher']);?>",
+            success: function(data){
+                console.log(data);
+                var teacher = data.teacher;
+
+                var teacher_list = "<select id=\"videomaking-teacher\" class=\"form-control select2-hidden-accessible\" name=\"VideoMaking[teacher]\" ><option value=\"\">选择讲师</option>";
+                for(key in teacher){
+                    teacher_list +="<option value="+teacher[key]+"> "+teacher[key]+" </option>";
+                }
+                teacher_list +="</select>";
+                $('#videomaking-teacher').html(teacher_list);
+            }
+        });
     }
 
 </script>

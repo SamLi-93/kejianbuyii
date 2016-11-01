@@ -8,6 +8,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -26,14 +27,23 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
-            <?= $form->field($model, 'courcename')->dropDownList($course_list ,['prompt'=>'选择课程名称']) ?>
-            <?= $form->field($model, 'recordname')->dropDownList($person_list ,['prompt'=>'选择录制人']) ?>
-            <?= $form->field($model, 'uploadname')->dropDownList($person_list ,['prompt'=>'选择上传人']) ?>
+            <? if (!empty($query['VideoShoot'])) {
+                $model->projectname = $query['VideoShoot']['projectname'];
+                $model->courcename = $query['VideoShoot']['courcename'];
+                $model->recordname = $query['VideoShoot']['recordname'];
+                $model->uploadname = $query['VideoShoot']['uploadname'];
+                $model->time = $query['VideoShoot']['time'];
+                $model->test = $query['VideoShoot']['test'];
+                $model->status = $query['VideoShoot']['status'];
+            }?>
+            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname , 'options' => ['placeholder' => '选择项目'], ]); ?>
+            <?= $form->field($model, 'courcename')->widget(Select2::classname(), ['data' => $course_list, 'options' => ['placeholder' => '选择课程名称'], ]); ?>
+            <?= $form->field($model, 'recordname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择录制人'], ]); ?>
+            <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
             <?= $form->field($model, 'time')->input('text',['class'=>'input-small']) ?>
-            <?= $form->field($model, 'time1')->dropDownList(Yii::$app->params ) ?>
-            <?= $form->field($model, 'status')->dropDownList( ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
-                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态']) ?>
+            <?= $form->field($model, 'test')->widget(Select2::classname(), ['data' =>Yii::$app->params , 'options' => ['placeholder' => '月份'], ]); ?>
+            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' =>['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] , 'options' => ['placeholder' => '请选择审核状态'], ]); ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -51,23 +61,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#videoshoot-projectname").chosen({
-        width : "150px",
-    });
-    $("#videoshoot-courcename").chosen({
-        width : "150px",
-    });
-    $("#videoshoot-recordname").chosen({
-        width : "150px",
-    });
-    $("#videoshoot-uploadname").chosen({
-        width : "150px",
-    });
-    $("#videoshoot-time1").chosen({
-        width : "150px",
-    });
-    $("#videoshoot-status").chosen({
-        width : "150px",
-    });
-</script>

@@ -9,6 +9,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -27,14 +28,26 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'projectname')->dropDownList($pro_projectname ,['prompt'=>'选择项目']) ?>
-            <?= $form->field($model, 'school')->dropDownList($pro_school ,['prompt'=>'请选择学校']) ?>
-            <?= $form->field($model, 'courcename')->dropDownList($course_list ,['prompt'=>'请选择课程名']) ?>
-            <?= $form->field($model, 'makingname')->dropDownList($person_list ,['prompt'=>'请选择上传人']) ?>
-            <?= $form->field($model, 'free')->dropDownList(['2' => '否', '1' => '是'] ,['prompt'=>'请选择费用结算']) ?>
-            <?= $form->field($model, 'subtitle')->dropDownList(['2' => '无', '1' => '有'] ,['prompt'=>'请选择有无字幕']) ?>
-            <?= $form->field($model, 'status')->dropDownList( ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
-                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] ,['prompt'=>'请选择审核状态']) ?>
+
+            <? if (!empty($query['VideoMaking'])) {
+                $model->projectname = $query['VideoMaking']['projectname'];
+                $model->courcename = $query['VideoMaking']['courcename'];
+                $model->school = $query['VideoMaking']['school'];
+                $model->makingname = $query['VideoMaking']['makingname'];
+                $model->free = $query['VideoMaking']['free'];
+                $model->status = $query['VideoMaking']['status'];
+                $model->subtitle = $query['VideoMaking']['subtitle'];
+            }?>
+
+            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname , 'options' => ['placeholder' => '请选择项目'], ]); ?>
+            <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school, 'options' => ['placeholder' => '请选择学校'], ]); ?>
+            <?= $form->field($model, 'courcename')->widget(Select2::classname(), ['data' => $course_list, 'options' => ['placeholder' => '请选择课程'], ]); ?>
+            <?= $form->field($model, 'makingname')->widget(Select2::classname(), ['data' => $person_list, 'options' => ['placeholder' => '请选择上传人'], ]); ?>
+            <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' => ['2' => '否', '1' => '是'], 'options' => ['placeholder' => '请选择费用结算'], ]); ?>
+            <?= $form->field($model, 'subtitle')->widget(Select2::classname(), ['data' => ['2' => '无', '1' => '有'], 'options' => ['placeholder' => '请选择有无字幕'], ]); ?>
+            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' => ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+                '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'],
+                'options' => ['placeholder' => '请选择状态'], ]); ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -52,26 +65,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#videomaking-projectname").chosen({
-        width : "150px",
-    });
-    $("#videomaking-school").chosen({
-        width : "150px",
-    });
-    $("#videomaking-courcename").chosen({
-        width : "150px",
-    });
-    $("#videomaking-makingname").chosen({
-        width : "150px",
-    });
-    $("#videomaking-status").chosen({
-        width : "150px",
-    });
-    $("#videomaking-subtitle").chosen({
-        width : "150px",
-    });
-    $("#videomaking-free").chosen({
-        width : "150px",
-    });
-</script>

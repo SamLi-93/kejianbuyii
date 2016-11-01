@@ -3,7 +3,8 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\datetime\DateTimePicker;
+use kartik\date\DatePicker;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Courseware*/
@@ -27,11 +28,21 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'projectname')->dropDownList($pro_projectname,['prompt'=>'选择项目', 'onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ] ) ?>
-    <span id="school"><?= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?></span>
-    <span id="coursename"><?= $form->field($model, 'coursename')->dropDownList($course_list,['prompt'=>'选择课程']) ?></span>
+<!--    --><?//= $form->field($model, 'projectname')->dropDownList($pro_projectname,['prompt'=>'选择项目', 'onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ] ) ?>
+<!--    <span id="school">--><?//= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?><!--</span>-->
+<!--    <span id="coursename">--><?//= $form->field($model, 'coursename')->dropDownList($course_list,['prompt'=>'选择课程']) ?><!--</span>-->
+
+    <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname ,
+        'options' => ['placeholder' => '选择项目','onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ],
+    ]); ?>
+    <?= $form->field($model, 'school')->widget(Select2::classname(), [
+        'initValueText' => $pro_school, 'options' => ['placeholder' => '选择学校'] ]); ?>
+    <?= $form->field($model, 'coursename')->widget(Select2::classname(), ['data' =>$course_list , 'options' => ['placeholder' => '选择课程'], ]); ?>
+
+
     <?= $form->field($model, 'title')->input('text',['class'=>'input-small']) ?>
-    <?= $form->field($model, 'teacher')->dropDownList($teacher_list, ['prompt'=>'选择主讲人']) ?>
+    <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' =>$teacher_list , 'options' => ['placeholder' => '选择主讲人'], ]); ?>
+
 
     <?= $form->field($model, 'time0',['template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-4\">{error}</div>"]
         )->input('text',['class'=>'time-input']) ?>
@@ -40,8 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'time2',['template' => "{label}\n<div class=\"col-lg-1\">{input}</div>\n<div class=\"col-lg-2\">{error}</div>"]
     )->input('text',['class'=>'time-input']) ?>
 
-    <?= $form->field($model, 'makingname')->dropDownList($person_list, ['prompt'=>'选择主讲人']) ?>
-    <?= $form->field($model, 'date')->widget(DateTimePicker::classname(), [
+<!--    --><?//= $form->field($model, 'makingname')->dropDownList($person_list, ['prompt'=>'选择制作人']) ?>
+    <?= $form->field($model, 'makingname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择制作人'], ]); ?>
+
+    <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
         'options' => ['placeholder' => '选择日期',],
         'pluginOptions' => [
             'autoclose' => true,
@@ -50,15 +63,17 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'enddate')->widget(DateTimePicker::classname(), [
-        'options' => ['placeholder' => '选择日期',],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'todayHighlight' => true,
-            'format' => 'yyyy-mm-dd ' ,
-        ]
-    ]); ?>
-    <?= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
+<!--    --><?//= $form->field($model, 'enddate')->widget(DatePicker::classname(), [
+//        'options' => ['placeholder' => '选择日期',],
+//        'pluginOptions' => [
+//            'autoclose' => true,
+//            'todayHighlight' => true,
+//            'format' => 'yyyy-mm-dd ' ,
+//        ]
+//    ]); ?>
+    <?= $form->field($model, 'totalday')->input('text',['class'=>'input-small']) ?>
+<!--    --><?//= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人']) ?>
+    <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
     <?= $form->field($model, 'remark')->input('text',['class'=>'input-small']) ?>
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
@@ -69,10 +84,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     $(function(){
-//        var a = $(":checkbox");
-//        if(a.length > 4)
-//            alert("录制人员最多选4个");
-//        alert($('#name').val())
         $('#submit-btn').click(function(){
             if($.trim($('#courseware-projectname').val()) == ''){
                 alert('请输入项目名称！');
@@ -82,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 alert('请输入学校！');
                 return false;
             }
-            if($.trim($('#courseware-courcename').val()) == ''){
+            if($.trim($('#courseware-coursename').val()) == ''){
                 alert('请输入课程名称！');
                 return false;
             }
@@ -114,6 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 alert('请选择上传人！');
                 return false;
             }
+
             if(confirm('您确定要提交吗？')){
                 return true;
             }else{
@@ -121,28 +133,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         });
     });
-</script>
-
-<script type="text/javascript">
-    $("#courseware-projectname").chosen({
-        width : "200px",
-    });
-    $("#courseware-school").chosen({
-        width : "200px",
-    });
-    $("#courseware-coursename").chosen({
-        width : "200px",
-    });
-    $("#courseware-teacher").chosen({
-        width : "120px",
-    });
-    $("#courseware-makingname").chosen({
-        width : "120px",
-    });
-    $("#courseware-uploadname").chosen({
-        width : "120px",
-    });
-    $('.dept_select').chosen();
 </script>
 
 <script>
@@ -157,20 +147,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 console.log(data);
                 var name = data.coursename;
                 var educational = data.educational;
-                var condition_info = "<select id=\"courseware-courcename\" class=\"dept_select\" name=\"Courseware[courcename]\" style=\"width:150px\"><option value=\"\">选择课程名称</option>";
-                for(var i = 0; i < name.length; i++){
-                    condition_info +="<option value=\""+name[i]+"\">"+name[i]+"</option>";
-                }
-                condition_info +="</select>";
-                $('#coursename .col-lg-3').html(condition_info);
 
-                var condition_info1 = "<select id=\"courseware-school\" class=\"dept_select\" name=\"Courseware[school]\" style=\"width:150px\"><option value=\"\">选择学校</option>";
-                for(var i = 0; i < educational.length; i++){
-                    condition_info1 +="<option value=\""+educational[i]+"\">"+educational[i]+"</option>";
+                var course_list = "<select id=\"courseware-coursename\" class=\"form-control select2-hidden-accessible\" name=\"Courseware[coursename]\" ><option value=\"\">选择课程</option><optgroup label'>";
+                for(var key in name){
+                    course_list +="<option value="+key+" > "+name[key]+" </option>";
                 }
-                condition_info1 +="</select>";
-                $('#school .col-lg-3').html(condition_info1);
-                $('.dept_select').chosen();
+                course_list +="</optgroup></select>";
+                $('#courseware-coursename').html(course_list);
+
+                var school_list = "<select id=\"courseware-school\" class=\"form-control select2-hidden-accessible\" name=\"Courseware[School]\" ><option value=\"\">选择学校</option>";
+                for(var i = 0; i < educational.length; i++){
+                    school_list +="<option value="+educational[i]+"> "+educational[i]+" </option>";
+                }
+                school_list +="</select>";
+                $('#courseware-school').html(school_list);
             }
         });
     }

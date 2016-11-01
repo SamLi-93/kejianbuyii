@@ -9,6 +9,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -27,8 +28,13 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'college')->dropDownList($pro_school ,['prompt'=>'请选择']) ?>
+            <? if (!empty($query['Teacher'])) {
+                $model->teacher = $query['Teacher']['teacher'];
+                $model->college = $query['Teacher']['college'];
+            }?>
+
+            <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' => $teacher_list, 'options' => ['placeholder' => '请选择讲师'], ]); ?>
+            <?= $form->field($model, 'college')->widget(Select2::classname(), ['data' => $pro_school, 'options' => ['placeholder' => '请选择学校'], ]); ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -45,12 +51,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#teacher-teacher").chosen({
-        width : "150px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "150px",
-    });
-</script>
