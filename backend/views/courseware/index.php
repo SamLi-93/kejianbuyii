@@ -116,16 +116,16 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
-        [
-            'header' => '结束日期',
-            'attribute' => 'enddate',
-            'value' => function ($model) {
-                if ($model['enddate'] == null) {
-                    return '';
-                }
-                return date('Y-m-d', $model['enddate']);
-            }
-        ],
+//        [
+//            'header' => '结束日期',
+//            'attribute' => 'enddate',
+//            'value' => function ($model) {
+//                if ($model['enddate'] == null) {
+//                    return '';
+//                }
+//                return date('Y-m-d', $model['enddate']);
+//            }
+//        ],
 
         [
             'header' => '制作天数',

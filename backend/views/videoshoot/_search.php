@@ -53,6 +53,16 @@ use kartik\select2\Select2;
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
                             <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewverified']) ?>
+                            <?= Html::a('导出excel', ['export/videoshoot',
+                                'projectname' => $model->projectname,
+                                'courcename' => $model->courcename,
+                                'recordname' => $model->recordname,
+                                'uploadname' => $model->uploadname,
+                                'time' => $model->time,
+                                'test' => $model->test,
+                                'status' => $model->status],
+                                ['class' => 'btn btn-sm btn-success']) ?>
+
                         </div>
                     </td>
                 </tr>

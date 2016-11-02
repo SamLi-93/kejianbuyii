@@ -47,7 +47,7 @@ class VideoShoot extends \yii\db\ActiveRecord
         return [
             [['test','capture_time'], 'number'],
             [['seat', 'cid','status'], 'integer'],
-            [['time2','recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher'], 'string', 'max' => 100],
+            [['time2','recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher','remark'], 'string', 'max' => 100],
             [['imageFiles'], 'file', 'maxFiles' => 14],
         ];
     }
@@ -69,6 +69,7 @@ class VideoShoot extends \yii\db\ActiveRecord
             'courcename' => '课程名称 *',
             'teacher' => '主讲人 *',
             'status' => '审核',
+            'remark' => '备注',
             'cid' => 'Cid',
             'imageFiles' => '图片 *',
         ];

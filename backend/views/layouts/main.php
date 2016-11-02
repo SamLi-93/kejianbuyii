@@ -26,17 +26,6 @@ AppAsset::register($this);
     <script src="//cdn.bootcss.com/chosen/1.6.2/chosen.jquery.min.js"></script>
     <link href="//cdn.bootcss.com/chosen/1.6.2/chosen.css" rel="stylesheet">
 </head>
-<!--<script>-->
-<!--    $(document).ready(function(){-->
-<!--        $('.left_con').click(-->
-<!--            function(){-->
-<!--                $(this).addClass("left_con_on");-->
-<!--                $(this).removeClass("left_con");-->
-<!--            }-->
-<!--        );-->
-<!--    });-->
-<!--</script>-->
-
 <body>
 <?php $this->beginBody() ?>
 
@@ -53,7 +42,6 @@ AppAsset::register($this);
         <div class="sims_left sidebar" id="sidebar">
             <dt class="sims_list_on">后台管理</dt>
             <dd class="left_cons">
-<!--                --><?// var_dump(Yii::$app->controller->id=='project' ? '1' : '2' );exit; ?>
                 <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="<?= Yii::$app->controller->id == 'project'? 'left_con_on' : 'left_con'; ?>">项目管理</a>
                 <a href="<?= \yii\helpers\Url::to(['teacher/index']) ?>" class="<?= Yii::$app->controller->id == 'teacher'? 'left_con_on' : 'left_con'; ?>">讲师管理</a>
                 <a href="<?= \yii\helpers\Url::to(['videomaking/index']) ?>" class="<?= Yii::$app->controller->id == 'videomaking'? 'left_con_on' : 'left_con'; ?>" >课程管理</a>
@@ -66,7 +54,6 @@ AppAsset::register($this);
         </div>
         <div class="main-content">
             <div class="page-content">
-<!--                --><?//= $content ?>
             </div>
         </div>
     </div>

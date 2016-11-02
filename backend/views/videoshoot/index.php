@@ -138,16 +138,16 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
-//        [
-//            'header' => '上传路径',
-//            'attribute' => 'making_path',
-//            'value' => function ($model) {
-//                if ($model['making_path'] == null ){
-//                    return '';
-//                }
-//                return $model['making_path'];
-//            }
-//        ],
+        [
+            'header' => '备注',
+            'attribute' => 'remark',
+            'value' => function ($model) {
+                if ($model['remark'] == null ){
+                    return '';
+                }
+                return $model['remark'];
+            }
+        ],
 
         [
             'header' => '审核',

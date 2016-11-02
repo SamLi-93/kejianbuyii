@@ -44,7 +44,7 @@ class PersonnelController extends Controller
             'sql' => $sql,
             'totalCount' => $count,
             'pagination' => [
-                'pageSize' => 15,
+                'pageSize' => 35,
             ],
             'sort' => [
                 'attributes' => [

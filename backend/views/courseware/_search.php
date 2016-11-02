@@ -47,6 +47,14 @@ use kartik\select2\Select2;
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
+                            <?= Html::a('导出excel', ['export/couseware',
+                                'projectname' => $model->projectname,
+                                'coursename' => $model->coursename,
+                                'teacher' => $model->teacher,
+                                'uploadname' => $model->uploadname,
+                                'time' => $model->time,
+                                'enddate' => $model->enddate,],
+                                ['class' => 'btn btn-sm btn-success']) ?>
                         </div>
                     </td>
                 </tr>
@@ -74,8 +82,6 @@ use kartik\select2\Select2;
                 }
                 condition_info +="</select>";
                 $('#courseware_coursename_chosen').html(condition_info);
-                $('.dept_select').chosen();
-
             }
         });
     }

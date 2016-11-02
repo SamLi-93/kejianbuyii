@@ -24,12 +24,116 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/config/main.php">
+      <file leaf-file-name="ExportController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/controllers/ExportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
+            <state relative-caret-position="4942">
+              <caret line="336" column="66" selection-start-line="336" selection-start-column="66" selection-end-line="336" selection-end-column="66" />
+              <folding>
+                <element signature="e#118#147#0#PHP" expanded="true" />
+                <marker date="1478067403647" expanded="true" signature="1989:2251" ph="SELECT a.id,... video_shoot" />
+                <marker date="1478067403647" expanded="true" signature="2306:2541" ph="SELECT COUNT... video_shoot" />
+                <marker date="1478067403647" expanded="true" signature="10581:10838" ph="SELECT a.id,... courseware" />
+                <marker date="1478067403647" expanded="true" signature="10893:11133" ph="SELECT count... courseware" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VideoShootController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/controllers/VideoShootController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-147">
+              <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
+              <folding>
+                <element signature="e#1503#2804#0#PHP" expanded="false" />
+                <element signature="e#15891#16035#0#PHP" expanded="false" />
+                <marker date="1478051090160" expanded="true" signature="4758:4983" ph="select * fro... video_shoot" />
+                <marker date="1478051090160" expanded="true" signature="4758:4997" ph="SELECT a.id,... video_shoot" />
+                <marker date="1478051090160" expanded="true" signature="4758:5020" ph="SELECT a.id,... video_shoot" />
+                <marker date="1478051090160" expanded="true" signature="4758:5022" ph="SELECT a.id,... video_shoot" />
+                <marker date="1478051090160" expanded="true" signature="5074:5309" ph="SELECT COUNT... video_shoot" />
+                <marker date="1478051090160" expanded="true" signature="6867:6906" ph="select id fr... video_making" />
+                <marker date="1478051090160" expanded="true" signature="6867:6957" ph="select id fr... video_making" />
+                <marker date="1478051090160" expanded="true" signature="9283:9322" ph="select schoo... project" />
+                <marker date="1478051090160" expanded="true" signature="9283:9324" ph="select schoo... project" />
+                <marker date="1478051090160" expanded="true" signature="9439:9494" ph="select courc... video_making" />
+                <marker date="1478051090160" expanded="true" signature="9690:9716" ph="select schoo... project" />
+                <marker date="1478051090160" expanded="true" signature="9808:9843" ph="select courc... video_making" />
+                <marker date="1478051090160" expanded="true" signature="10873:10930" ph="select id, p... pic" />
+                <marker date="1478051090160" expanded="true" signature="11224:11263" ph="select pid f... video_making" />
+                <marker date="1478051090160" expanded="true" signature="11224:11264" ph="select pid f... video_making" />
+                <marker date="1478051090160" expanded="true" signature="11420:11458" ph="select schoo... project" />
+                <marker date="1478051090160" expanded="true" signature="11605:11654" ph="select courc... video_making" />
+                <marker date="1478051090160" expanded="true" signature="12341:12431" ph="select id fr... video_making" />
+                <marker date="1478051090160" expanded="true" signature="14535:14570" ph="select path pic" />
+                <marker date="1478051090160" expanded="true" signature="14771:14801" ph="delete from " />
+                <marker date="1478051090160" expanded="true" signature="15193:15252" ph="update video... " />
+                <marker date="1478051090160" expanded="true" signature="15321:15380" ph="update video... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_search.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/_search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding>
+                <marker date="1478066687304" expanded="true" signature="624:648" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="501">
+              <caret line="147" column="37" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoursewareController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/controllers/CoursewareController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+              <folding>
+                <element signature="e#121#147#0#PHP" expanded="true" />
+                <element signature="e#2568#2612#0#PHP" expanded="false" />
+                <element signature="e#5974#6025#0#PHP" expanded="false" />
+                <element signature="e#11016#11131#0#PHP" expanded="false" />
+                <marker date="1477985290683" expanded="true" signature="4273:4493" ph="SELECT a.id,... courseware" />
+                <marker date="1477985290683" expanded="true" signature="4273:4530" ph="SELECT a.id,... courseware" />
+                <marker date="1477985290683" expanded="true" signature="4273:4532" ph="SELECT a.id,... courseware" />
+                <marker date="1477985290683" expanded="true" signature="4584:4824" ph="SELECT count... courseware" />
+                <marker date="1477985290683" expanded="true" signature="6048:6138" ph="select id fr... video_making" />
+                <marker date="1477985290683" expanded="true" signature="8459:8500" ph="select schoo... project" />
+                <marker date="1477985290683" expanded="true" signature="8615:8670" ph="select courc... video_making" />
+                <marker date="1477985290683" expanded="true" signature="8866:8892" ph="select schoo... project" />
+                <marker date="1477985290683" expanded="true" signature="8984:9019" ph="select courc... video_making" />
+                <marker date="1477985290683" expanded="true" signature="10041:10081" ph="select pid f... video_making" />
+                <marker date="1477985290683" expanded="true" signature="10237:10275" ph="select schoo... project" />
+                <marker date="1477985290683" expanded="true" signature="10422:10471" ph="select courc... video_making" />
+                <marker date="1477985290683" expanded="true" signature="11038:11128" ph="select id fr... video_making" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_search.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/views/courseware/_search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="744">
+              <caret line="56" column="72" selection-start-line="56" selection-start-column="72" selection-end-line="56" selection-end-column="72" />
+              <folding>
+                <marker date="1478066744637" expanded="true" signature="624:648" ph="..." />
+                <marker date="1478066744637" expanded="true" signature="3595:3606" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,8 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/common/models/User.php" />
-        <option value="$PROJECT_DIR$/backend/controllers/DefaultController.php" />
         <option value="$PROJECT_DIR$/common/config/bootstrap.php" />
         <option value="$PROJECT_DIR$/backend/models/Pic.php" />
         <option value="$PROJECT_DIR$/backend/views/pic/index.php" />
@@ -77,16 +179,10 @@
         <option value="$PROJECT_DIR$/backend/models/SmsAdmin.php" />
         <option value="$PROJECT_DIR$/backend/views/personnel/index.php" />
         <option value="$PROJECT_DIR$/backend/views/personnel/edit.php" />
-        <option value="$PROJECT_DIR$/backend/controllers/PersonnelController.php" />
-        <option value="$PROJECT_DIR$/backend/views/layouts/main.php" />
         <option value="$PROJECT_DIR$/backend/controllers/ProjectCountController.php" />
-        <option value="$PROJECT_DIR$/backend/views/videoshoot/_search.php" />
-        <option value="$PROJECT_DIR$/backend/views/courseware/_search.php" />
         <option value="$PROJECT_DIR$/backend/views/project/_search.php" />
         <option value="$PROJECT_DIR$/backend/views/teacher/_search.php" />
         <option value="$PROJECT_DIR$/backend/views/videomaking/_search.php" />
-        <option value="$PROJECT_DIR$/backend/views/courseware/index.php" />
-        <option value="$PROJECT_DIR$/backend/views/videoshoot/index.php" />
         <option value="$PROJECT_DIR$/backend/views/project/create.php" />
         <option value="$PROJECT_DIR$/backend/views/videomaking/index.php" />
         <option value="$PROJECT_DIR$/backend/views/default/login.php" />
@@ -94,12 +190,20 @@
         <option value="$PROJECT_DIR$/backend/controllers/VideoMakingController.php" />
         <option value="$PROJECT_DIR$/backend/views/videomaking/create.php" />
         <option value="$PROJECT_DIR$/backend/views/videomaking/edit.php" />
-        <option value="$PROJECT_DIR$/backend/models/VideoShoot.php" />
         <option value="$PROJECT_DIR$/backend/models/Project.php" />
         <option value="$PROJECT_DIR$/backend/views/videoshoot/create.php" />
         <option value="$PROJECT_DIR$/backend/views/videoshoot/edit.php" />
-        <option value="$PROJECT_DIR$/backend/controllers/VideoShootController.php" />
         <option value="$PROJECT_DIR$/backend/controllers/CoursewareController.php" />
+        <option value="$PROJECT_DIR$/backend/views/layouts/main.php" />
+        <option value="$PROJECT_DIR$/backend/views/videoshoot/index.php" />
+        <option value="$PROJECT_DIR$/backend/models/VideoShoot.php" />
+        <option value="$PROJECT_DIR$/backend/controllers/VideoShootController.php" />
+        <option value="$PROJECT_DIR$/backend/views/courseware/index.php" />
+        <option value="$PROJECT_DIR$/backend/controllers/PersonnelController.php" />
+        <option value="$PROJECT_DIR$/backend/controllers/TestController.php" />
+        <option value="$PROJECT_DIR$/backend/views/videoshoot/_search.php" />
+        <option value="$PROJECT_DIR$/backend/views/courseware/_search.php" />
+        <option value="$PROJECT_DIR$/backend/controllers/ExportController.php" />
       </list>
     </option>
   </component>
@@ -146,6 +250,74 @@
     <panes>
       <pane id="Scratches">
         <subPane />
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="backend">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="backend">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="views">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="backend">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="views">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="videomaking">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="ProjectPane">
         <subPane>
@@ -218,28 +390,6 @@
               <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="videomaking" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kejianbuyii" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kejianbuyii" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -277,76 +427,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="backend">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="backend">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="kejianbuyii">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="backend">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="videomaking">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -360,7 +442,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value=".login-layout&#9;null&#9;null&#10;video&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShoot.php&#10;course&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Courseware.php&#10;videosho&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShoot.php&#10;videoshoo&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShootOld.php&#10;videomak&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoMaking.php&#10;teacher&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Teacher.php&#10;pro&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Project.php&#10;style&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/web/css/style.css&#10;sty&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/web/css/style.css&#10;Command&#9;null&#9;null&#10;user&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/yiisoft/yii2/web/User.php&#10;yii.gridView.js&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/yiisoft/yii2/assets/yii.gridView.js&#10;table.le&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/bower/bootstrap/less/tables.less" />
+    <property name="SearchEverywhereHistoryKey" value="video&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/controllers/VideoShootController.php&#10;vide&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShoot.php&#10;htaccess&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/web/.htaccess&#10;.login-layout&#9;null&#9;null&#10;course&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Courseware.php&#10;videosho&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShoot.php&#10;videoshoo&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoShootOld.php&#10;videomak&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/VideoMaking.php&#10;teacher&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Teacher.php&#10;pro&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/models/Project.php&#10;style&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/web/css/style.css&#10;sty&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/backend/web/css/style.css&#10;Command&#9;null&#9;null&#10;user&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/yiisoft/yii2/web/User.php&#10;yii.gridView.js&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/yiisoft/yii2/assets/yii.gridView.js&#10;table.le&#9;FILE&#9;file://D:/phpstudy/WWW/kejianbuyii/vendor/bower/bootstrap/less/tables.less" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
   <component name="RunManager">
@@ -445,12 +527,13 @@
       <workItem from="1477531452833" duration="23993000" />
       <workItem from="1477616113620" duration="18544000" />
       <workItem from="1477876002607" duration="24149000" />
-      <workItem from="1477962540951" duration="15852000" />
+      <workItem from="1477962540951" duration="16943000" />
+      <workItem from="1478048094807" duration="16552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="446609000" />
+    <option name="totallyTimeSpent" value="464252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1873" height="1096" extended-state="0" />
@@ -460,6 +543,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286004" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.107700594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -470,7 +554,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286004" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -488,48 +571,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/backend/controllers/VideoShootController.php</url>
-          <line>58</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/models/Teacher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-          <folding>
-            <marker date="1477639186154" expanded="true" signature="1265:1301" ph="select DISTI... teacher" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models/VideoMaking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
-          <folding>
-            <element signature="e#1653#1678#0#PHP" expanded="false" />
-            <marker date="1477639233301" expanded="true" signature="3269:3304" ph="select DISTI... video_shoot" />
-            <marker date="1477639233301" expanded="true" signature="3269:3316" ph="select DISTI... video_making" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models/ShootPic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/models/VideoShootOld.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -579,7 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1092">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -669,34 +714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/controllers/PersonnelController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="97" column="103" selection-start-line="97" selection-start-column="103" selection-end-line="97" selection-end-column="103" />
-          <folding>
-            <marker date="1477904185948" expanded="true" signature="800:823" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="880:910" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="998:1035" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="998:1047" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="998:1048" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="998:1102" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1050:1102" ph="select * fro... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1145" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1147" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1158" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1160" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1162" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1163" ph="SELECT COUNT... sms_admin" />
-            <marker date="1477904185948" expanded="true" signature="1103:1209" ph="SELECT COUNT... sms_admin" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views/default/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,35 +759,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/courseware/_search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-          <folding>
-            <element signature="e#86#107#0#PHP" expanded="true" />
-            <marker date="1477964075965" expanded="true" signature="624:648" ph="..." />
-            <marker date="1477964075965" expanded="true" signature="3061:3072" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views/personnel/_search.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-          <folding>
-            <marker date="1477901424581" expanded="true" signature="597:621" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/project/_search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="30" column="50" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="50" />
-          <folding>
-            <marker date="1477964173463" expanded="true" signature="625:649" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -790,37 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/_search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding>
-            <marker date="1477964023797" expanded="true" signature="624:648" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/courseware/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
-          <folding>
-            <marker date="1477965445053" expanded="true" signature="5011:5031" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/project/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="150" column="22" selection-start-line="150" selection-start-column="22" selection-end-line="150" selection-end-column="22" />
-          <folding>
-            <marker date="1477901200106" expanded="true" signature="4422:4432" ph="{...}" />
-            <marker date="1477901200106" expanded="true" signature="4422:4443" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views/project/create.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -828,14 +793,6 @@
           <folding>
             <element signature="e#7#28#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3000">
-          <caret line="236" column="41" selection-start-line="236" selection-start-column="41" selection-end-line="236" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,19 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="63" column="160" selection-start-line="63" selection-start-column="160" selection-end-line="63" selection-end-column="160" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/web/css/login.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -873,20 +821,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/layouts/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views/videomaking/edit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
-            <element signature="e#7#28#0#PHP" expanded="true" />
+            <element signature="e#7#28#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -899,56 +839,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models/VideoShoot.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views/videomaking/create.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="96" column="55" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="55" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/controllers/VideoMakingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-          <folding>
-            <element signature="e#7581#7627#0#PHP" expanded="false" />
-            <element signature="e#11284#11389#0#PHP" expanded="false" />
-            <marker date="1477970137323" expanded="false" signature="2971:3104" ph="select video... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3138:3164" ph="select * fro... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3138:3165" ph="select * fro... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3197:3338" ph="select a.id,... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3197:3339" ph="select a.id,... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3197:3376" ph="select a.id,... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3197:3378" ph="select a.id,... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3430:3443" ph="SELECT COUNT... " />
-            <marker date="1477970137323" expanded="true" signature="3430:3587" ph="SELECT COUNT... video_making" />
-            <marker date="1477970137323" expanded="true" signature="3430:3588" ph="SELECT COUNT... video_making" />
-            <marker date="1477970137323" expanded="true" signature="6477:6514" ph="select schoo... project" />
-            <marker date="1477970137323" expanded="true" signature="6477:6515" ph="select schoo... project" />
-            <marker date="1477970137323" expanded="true" signature="6569:6610" ph="select path pic" />
-            <marker date="1477970137323" expanded="true" signature="9586:9621" ph="select path pic" />
-            <marker date="1477970137323" expanded="true" signature="9825:9855" ph="delete from " />
-            <marker date="1477970137323" expanded="true" signature="10249:10281" ph="update video... " />
-            <marker date="1477970137323" expanded="true" signature="10249:10309" ph="update video... " />
-            <marker date="1477970137323" expanded="true" signature="10249:10338" ph="update video... " />
-            <marker date="1477970137323" expanded="true" signature="10255:10281" ph="select statu... video_making" />
-            <marker date="1477970137323" expanded="true" signature="10380:10440" ph="update video... " />
-            <marker date="1477970137323" expanded="true" signature="11605:11646" ph="select schoo... project" />
-            <marker date="1477970137323" expanded="true" signature="11762:11814" ph="select courc... video_making" />
-            <marker date="1477970137323" expanded="true" signature="11952:11978" ph="select schoo... project" />
-            <marker date="1477970137323" expanded="true" signature="12069:12104" ph="select courc... video_making" />
-            <marker date="1477970137323" expanded="true" signature="13114:13166" ph="select teach... teacher" />
-            <marker date="1477970137323" expanded="true" signature="13282:13309" ph="select teach... teacher" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -983,44 +878,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/controllers/VideoShootController.php">
+    <entry file="file://$PROJECT_DIR$/backend/views/courseware/edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="299" column="37" selection-start-line="299" selection-start-column="37" selection-end-line="299" selection-end-column="37" />
+        <state relative-caret-position="456">
+          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/config/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/web/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/config/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/project/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
           <folding>
-            <element signature="e#1503#2804#0#PHP" expanded="false" />
-            <element signature="e#15881#16025#0#PHP" expanded="false" />
-            <marker date="1477984875354" expanded="true" signature="4758:4973" ph="select * fro... video_shoot" />
-            <marker date="1477984875354" expanded="true" signature="4758:4987" ph="SELECT a.id,... video_shoot" />
-            <marker date="1477984875354" expanded="true" signature="4758:5010" ph="SELECT a.id,... video_shoot" />
-            <marker date="1477984875354" expanded="true" signature="4758:5012" ph="SELECT a.id,... video_shoot" />
-            <marker date="1477984875354" expanded="true" signature="5064:5299" ph="SELECT COUNT... video_shoot" />
-            <marker date="1477984875354" expanded="true" signature="6857:6896" ph="select id fr... video_making" />
-            <marker date="1477984875354" expanded="true" signature="6857:6947" ph="select id fr... video_making" />
-            <marker date="1477984875354" expanded="true" signature="9273:9312" ph="select schoo... project" />
-            <marker date="1477984875354" expanded="true" signature="9273:9314" ph="select schoo... project" />
-            <marker date="1477984875354" expanded="true" signature="9429:9484" ph="select courc... video_making" />
-            <marker date="1477984875354" expanded="true" signature="9680:9706" ph="select schoo... project" />
-            <marker date="1477984875354" expanded="true" signature="9798:9833" ph="select courc... video_making" />
-            <marker date="1477984875354" expanded="true" signature="10863:10920" ph="select id, p... pic" />
-            <marker date="1477984875354" expanded="true" signature="11214:11253" ph="select pid f... video_making" />
-            <marker date="1477984875354" expanded="true" signature="11214:11254" ph="select pid f... video_making" />
-            <marker date="1477984875354" expanded="true" signature="11410:11448" ph="select schoo... project" />
-            <marker date="1477984875354" expanded="true" signature="11595:11644" ph="select courc... video_making" />
-            <marker date="1477984875354" expanded="true" signature="12331:12421" ph="select id fr... video_making" />
-            <marker date="1477984875354" expanded="true" signature="14525:14560" ph="select path pic" />
-            <marker date="1477984875354" expanded="true" signature="14761:14791" ph="delete from " />
-            <marker date="1477984875354" expanded="true" signature="15183:15242" ph="update video... " />
-            <marker date="1477984875354" expanded="true" signature="15311:15370" ph="update video... " />
+            <marker date="1477901200106" expanded="true" signature="4422:4432" ph="{...}" />
+            <marker date="1477901200106" expanded="true" signature="4422:4443" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/project/_search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding>
+            <marker date="1477964173463" expanded="true" signature="625:649" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/layouts/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/layouts/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/models/VideoShoot.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/controllers/PersonnelController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <marker date="1478054466577" expanded="true" signature="800:823" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="880:910" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="998:1035" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="998:1047" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="998:1048" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="998:1102" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1050:1102" ph="select * fro... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1145" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1147" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1158" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1160" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1162" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1163" ph="SELECT COUNT... sms_admin" />
+            <marker date="1478054466577" expanded="true" signature="1103:1209" ph="SELECT COUNT... sms_admin" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/controllers/VideoMakingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="42" />
+          <folding>
+            <element signature="e#7581#7627#0#PHP" expanded="false" />
+            <element signature="e#11284#11389#0#PHP" expanded="false" />
+            <marker date="1477970137323" expanded="false" signature="2971:3104" ph="select video... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3138:3164" ph="select * fro... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3138:3165" ph="select * fro... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3197:3338" ph="select a.id,... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3197:3339" ph="select a.id,... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3197:3376" ph="select a.id,... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3197:3378" ph="select a.id,... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3430:3443" ph="SELECT COUNT... " />
+            <marker date="1477970137323" expanded="true" signature="3430:3587" ph="SELECT COUNT... video_making" />
+            <marker date="1477970137323" expanded="true" signature="3430:3588" ph="SELECT COUNT... video_making" />
+            <marker date="1477970137323" expanded="true" signature="6477:6514" ph="select schoo... project" />
+            <marker date="1477970137323" expanded="true" signature="6477:6515" ph="select schoo... project" />
+            <marker date="1477970137323" expanded="true" signature="6569:6610" ph="select path pic" />
+            <marker date="1477970137323" expanded="true" signature="9586:9621" ph="select path pic" />
+            <marker date="1477970137323" expanded="true" signature="9825:9855" ph="delete from " />
+            <marker date="1477970137323" expanded="true" signature="10249:10281" ph="update video... " />
+            <marker date="1477970137323" expanded="true" signature="10249:10309" ph="update video... " />
+            <marker date="1477970137323" expanded="true" signature="10249:10338" ph="update video... " />
+            <marker date="1477970137323" expanded="true" signature="10255:10281" ph="select statu... video_making" />
+            <marker date="1477970137323" expanded="true" signature="10380:10440" ph="update video... " />
+            <marker date="1477970137323" expanded="true" signature="11605:11646" ph="select schoo... project" />
+            <marker date="1477970137323" expanded="true" signature="11762:11814" ph="select courc... video_making" />
+            <marker date="1477970137323" expanded="true" signature="11952:11978" ph="select schoo... project" />
+            <marker date="1477970137323" expanded="true" signature="12069:12104" ph="select courc... video_making" />
+            <marker date="1477970137323" expanded="true" signature="13114:13166" ph="select teach... teacher" />
+            <marker date="1477970137323" expanded="true" signature="13282:13309" ph="select teach... teacher" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="136" column="5" selection-start-line="24" selection-start-column="4" selection-end-line="136" selection-end-column="5" />
+          <folding>
+            <element signature="e#118#140#0#PHP" expanded="true" />
+            <marker date="1478058327708" expanded="true" signature="425:687" ph="SELECT a.id,... video_shoot" />
+            <marker date="1478058327708" expanded="true" signature="742:977" ph="SELECT COUNT... video_shoot" />
+            <marker date="1478058327708" expanded="true" signature="976:977" ph="SELECT COUNT... video_making" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/courseware/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="114" column="53" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="53" />
+          <folding>
+            <marker date="1478054349606" expanded="true" signature="5031:5051" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/controllers/CoursewareController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="262" column="37" selection-start-line="262" selection-start-column="37" selection-end-line="262" selection-end-column="37" />
+        <state relative-caret-position="408">
+          <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
           <folding>
+            <element signature="e#121#147#0#PHP" expanded="true" />
             <element signature="e#2568#2612#0#PHP" expanded="false" />
             <element signature="e#5974#6025#0#PHP" expanded="false" />
             <element signature="e#11016#11131#0#PHP" expanded="false" />
@@ -1041,27 +1065,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/views/courseware/edit.php">
+    <entry file="file://$PROJECT_DIR$/backend/views/courseware/_search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        <state relative-caret-position="744">
+          <caret line="56" column="72" selection-start-line="56" selection-start-column="72" selection-end-line="56" selection-end-column="72" />
+          <folding>
+            <marker date="1478066744637" expanded="true" signature="624:648" ph="..." />
+            <marker date="1478066744637" expanded="true" signature="3595:3606" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/controllers/ExportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4942">
+          <caret line="336" column="66" selection-start-line="336" selection-start-column="66" selection-end-line="336" selection-end-column="66" />
+          <folding>
+            <element signature="e#118#147#0#PHP" expanded="true" />
+            <marker date="1478067403647" expanded="true" signature="1989:2251" ph="SELECT a.id,... video_shoot" />
+            <marker date="1478067403647" expanded="true" signature="2306:2541" ph="SELECT COUNT... video_shoot" />
+            <marker date="1478067403647" expanded="true" signature="10581:10838" ph="SELECT a.id,... courseware" />
+            <marker date="1478067403647" expanded="true" signature="10893:11133" ph="SELECT count... courseware" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/controllers/VideoShootController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
+          <folding>
+            <element signature="e#1503#2804#0#PHP" expanded="false" />
+            <element signature="e#15891#16035#0#PHP" expanded="false" />
+            <marker date="1478051090160" expanded="true" signature="4758:4983" ph="select * fro... video_shoot" />
+            <marker date="1478051090160" expanded="true" signature="4758:4997" ph="SELECT a.id,... video_shoot" />
+            <marker date="1478051090160" expanded="true" signature="4758:5020" ph="SELECT a.id,... video_shoot" />
+            <marker date="1478051090160" expanded="true" signature="4758:5022" ph="SELECT a.id,... video_shoot" />
+            <marker date="1478051090160" expanded="true" signature="5074:5309" ph="SELECT COUNT... video_shoot" />
+            <marker date="1478051090160" expanded="true" signature="6867:6906" ph="select id fr... video_making" />
+            <marker date="1478051090160" expanded="true" signature="6867:6957" ph="select id fr... video_making" />
+            <marker date="1478051090160" expanded="true" signature="9283:9322" ph="select schoo... project" />
+            <marker date="1478051090160" expanded="true" signature="9283:9324" ph="select schoo... project" />
+            <marker date="1478051090160" expanded="true" signature="9439:9494" ph="select courc... video_making" />
+            <marker date="1478051090160" expanded="true" signature="9690:9716" ph="select schoo... project" />
+            <marker date="1478051090160" expanded="true" signature="9808:9843" ph="select courc... video_making" />
+            <marker date="1478051090160" expanded="true" signature="10873:10930" ph="select id, p... pic" />
+            <marker date="1478051090160" expanded="true" signature="11224:11263" ph="select pid f... video_making" />
+            <marker date="1478051090160" expanded="true" signature="11224:11264" ph="select pid f... video_making" />
+            <marker date="1478051090160" expanded="true" signature="11420:11458" ph="select schoo... project" />
+            <marker date="1478051090160" expanded="true" signature="11605:11654" ph="select courc... video_making" />
+            <marker date="1478051090160" expanded="true" signature="12341:12431" ph="select id fr... video_making" />
+            <marker date="1478051090160" expanded="true" signature="14535:14570" ph="select path pic" />
+            <marker date="1478051090160" expanded="true" signature="14771:14801" ph="delete from " />
+            <marker date="1478051090160" expanded="true" signature="15193:15252" ph="update video... " />
+            <marker date="1478051090160" expanded="true" signature="15321:15380" ph="update video... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="147" column="37" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/config/bootstrap.php">
+    <entry file="file://$PROJECT_DIR$/backend/views/videoshoot/_search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/config/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="720">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <marker date="1478066687304" expanded="true" signature="624:648" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
