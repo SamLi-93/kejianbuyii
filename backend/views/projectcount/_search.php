@@ -9,6 +9,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ProjectSearch*/
@@ -27,8 +28,13 @@ use yii\widgets\ActiveForm;
                 ],
             ]);
             ?>
-            <?= $form->field($model, 'teacher')->dropDownList($teacher_list ,['prompt'=>'请选择']) ?>
-            <?= $form->field($model, 'college')->dropDownList($pro_school ,['prompt'=>'请选择']) ?>
+            <?php if (!empty($query['ProjectSearch'])) {
+                $model->projectname = $query['ProjectSearch']['projectname'];
+                $model->school = $query['ProjectSearch']['school'];
+            }?>
+
+            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' => $pro_projectname, 'options' => ['placeholder' => '请选择项目'], ]); ?>
+            <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school,'options' => ['placeholder' => '请选择学校'],  ]); ?>
 
             <table style="width: 100%;">
                 <tr>
@@ -36,7 +42,6 @@ use yii\widgets\ActiveForm;
                         <div class="form-group">
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
-                            <?= Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success'])?>
                         </div>
                     </td>
                 </tr>
@@ -45,12 +50,3 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $("#teacher-teacher").chosen({
-        width : "150px",
-    });
-
-    $("#teacher-college").chosen({
-        width : "150px",
-    });
-</script>

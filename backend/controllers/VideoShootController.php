@@ -428,4 +428,24 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         echo $is_delete;
     }
 
+    public function actionGetteacher()
+    {
+        $params = Yii::$app->request->post();
+        $school_name = $params['value'];
+        if (!empty($school_name)) {
+            $conn = Yii::$app->db;
+            $command = $conn->createCommand("select teacher from teacher where college = :college ", [':college' => $school_name]);
+            $list1 = $command->queryAll();
+
+        } else {
+            $sql = "select teacher from teacher";
+            $list1 = Project::findBySql($sql)->all();
+        }
+        $teacher_list = [];
+        foreach ($list1 as $k =>$v) {
+            $teacher_list[$v['teacher']] = $v['teacher'];
+        }
+        return $return_info = json_encode(array('teacher' => $teacher_list));
+    }
+
 }

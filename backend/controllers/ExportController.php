@@ -107,11 +107,22 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', '学校');
             $objectPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(32);
             $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('E3', '课程名');
-            $objectPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('F3', '主讲人');
-            $objectPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
-            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('G3', '备注');
-            $objectPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('F3', '录制人员');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(5);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('G3', '主讲人');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('H3', '拍摄时间');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(5);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('I3', '拍摄时长');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(5);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('J3', '机位');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('K3', '上传人');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+            $objectPHPExcel->setActiveSheetIndex(0)->setCellValue('L3', '备注');
+            $objectPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(15);
+
 
             //设置居中
             $objectPHPExcel->getActiveSheet()->getStyle('B3:G3')
@@ -130,7 +141,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 ->getBorders()->getVertical()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
 
             //设置颜色
-            $objectPHPExcel->getActiveSheet()->getStyle('B3:G3')->getFill()
+            $objectPHPExcel->getActiveSheet()->getStyle('B3:L3')->getFill()
                 ->setFillType(\PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FF66CCCC');
 
             //明细的输出
@@ -138,8 +149,14 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $objectPHPExcel->getActiveSheet()->setCellValue('C' . ($n + 4), $product['projectname']);
             $objectPHPExcel->getActiveSheet()->setCellValue('D' . ($n + 4), $product['school']);
             $objectPHPExcel->getActiveSheet()->setCellValue('E' . ($n + 4), $product['courcename']);
-            $objectPHPExcel->getActiveSheet()->setCellValue('F' . ($n + 4), $product['teacher']);
-            $objectPHPExcel->getActiveSheet()->setCellValue('G' . ($n + 4), $product['remark']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('F' . ($n + 4), $product['recordname']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('G' . ($n + 4), $product['teacher']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('H' . ($n + 4), $product['time']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('I' . ($n + 4), $product['capture_time']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('J' . ($n + 4), $product['seat']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('K' . ($n + 4), $product['uploadname']);
+            $objectPHPExcel->getActiveSheet()->setCellValue('L' . ($n + 4), $product['remark']);
+
             //设置边框
             $currentRowNum = $n + 4;
             $objectPHPExcel->getActiveSheet()->getStyle('B' . ($n + 4) . ':G' . $currentRowNum)
@@ -155,18 +172,11 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $n = $n + 1;
         }
 
-        //设置分页显示
-        //$objectPHPExcel->getActiveSheet()->setBreak( 'I55' , PHPExcel_Worksheet::BREAK_ROW );
-        //$objectPHPExcel->getActiveSheet()->setBreak( 'I10' , PHPExcel_Worksheet::BREAK_COLUMN );
-//        $objectPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
-//        $objectPHPExcel->getActiveSheet()->getPageSetup()->setVerticalCentered(false);
-
-
         ob_end_clean();
         ob_start();
 
         header('Content-Type : application/vnd.ms-excel');
-        header('Content-Disposition:attachment;filename="' . '测试数据-' . date("Y年m月j日") . '.xls"');
+        header('Content-Disposition:attachment;filename="' . '视频拍摄-' . date("Y年m月j日") . '.xls"');
         $objWriter = \PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
         $objWriter->save('php://output');
     }

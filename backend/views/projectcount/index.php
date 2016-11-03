@@ -19,122 +19,50 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php echo $this->render('_search', [
     'model' => $searchModel,
-    'teacher_list' => $teacher_list,
+    'pro_projectname' => $pro_projectname,
     'pro_school' => $pro_school,
+    'pro_teacher' => $pro_teacher,
+    'pro_over' => $pro_over,
+    'query' => $query
     ]); ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
-//    'id' => "waitforcheck",
     'columns' => [
         ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
-//        'id',
-//        'school',
 
         [
-            'header' => '院校',
-            'attribute' => 'college',
+            'header' => '项目名称',
+            'attribute' => 'projectname',
             'value' => function ($model) {
-                if ($model['college'] == null ){
-                    return '';
-                }
-                return $model['college'];
+                return $model['projectname'];
             }
         ],
 
         [
-            'header' => '讲师姓名',
-            'attribute' => 'teacher',
+            'header' => '学校',
+            'attribute' => 'school',
             'value' => function ($model) {
-                if ($model['teacher'] == null ){
-                    return '';
-                }
-                return $model['teacher'];
+                return $model['school'];
             }
         ],
 
-        [
-            'header' => '性别',
-            'attribute' => 'sex',
-            'value' => function ($model) {
-                if ($model['sex'] == null ){
-                    return '';
-                }
-                return $model['sex'];
-            }
-        ],
-
-        [
-            'header' => '联系电话',
-            'attribute' => 'phone',
-            'value' => function ($model) {
-                if ($model['phone'] == null ){
-                    return '';
-                }
-                return $model['phone'];
-            }
-        ],
-
-        [
-            'header' => 'qq或邮箱',
-            'attribute' => 'qq',
-            'value' => function ($model) {
-                if ($model['qq'] == null ){
-                    return '';
-                }
-                return $model['qq'];
-            }
-        ],
-
-        [
-            'header' => '备注',
-            'attribute' => 'remarks',
-            'value' => function ($model) {
-                if ($model['remarks'] == null ){
-                    return '';
-                }
-                return $model['remarks'];
-            }
-        ],
+//        [
+//            'header' => '项目联系人',
+//            'attribute' => 'teacher',
+//            'value' => function ($model) {
+//                if ($model['teacher'] == null ){
+//                    return '';
+//                }
+//                return $model['teacher'];
+//            }
+//        ],
 
 
-        ['class' => 'yii\grid\ActionColumn',
-            'header' => '操作',
-            'template' => '{edit} {delete}',
-            'buttons' => [
-                'edit' => function ($url, $model, $key) {
-                    $options = [
-                        'title' => '修改',
-                        'class' =>'btn btn-success btn-sm',
-                        'id' => 'edit-btn',
-                    ];
-                    $url = Url::to(['teacher/edit','id'=>$model['id']]);
-                    return Html::a('修改', $url, $options);
-                },
-                'delete' => function ($url, $model, $key) {
-                    $options = [
-                        'class' => 'btn btn-success',
-                    ];
-                    $url = Url::to(['teacher/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
-                },
-            ],
-        ],
     ],
 ]);
 
 ?>
-<script>
-    function check() {
-        if(confirm('您确定要删除吗？')){
-            return true;
-        }else{
-            return false;
-        }
-    }
-</script>
-
-
 

@@ -36,7 +36,9 @@ AppAsset::register($this);
     <span class="sims_top3"> 访问课件部！ </span>
     <span class="sims_top4"></span>
     <span class="sims_top5" id="stimer"></span>
+    <span class="logout fright"><a href='../default/logout'>退出</a></span>
 </div>
+
 <div class="main-container" id="main-container">
     <div class="main-container-inner">
         <div class="sims_left sidebar" id="sidebar">

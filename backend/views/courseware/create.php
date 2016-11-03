@@ -28,15 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-<!--    --><?//= $form->field($model, 'projectname')->dropDownList($pro_projectname,['prompt'=>'选择项目', 'onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ] ) ?>
-<!--    <span id="school">--><?//= $form->field($model, 'school')->dropDownList($pro_school,['prompt'=>'选择学校']) ?><!--</span>-->
-<!--    <span id="coursename">--><?//= $form->field($model, 'coursename')->dropDownList($course_list,['prompt'=>'选择课程']) ?><!--</span>-->
-
     <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname ,
         'options' => ['placeholder' => '选择项目','onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ],
     ]); ?>
     <?= $form->field($model, 'school')->widget(Select2::classname(), [
-        'initValueText' => $pro_school, 'options' => ['placeholder' => '选择学校'] ]); ?>
+        'initValueText' => $pro_school, 'options' => ['placeholder' => '选择学校','onchange' => "getteacher(this.options[this.options.selectedIndex].value)"] ]); ?>
     <?= $form->field($model, 'coursename')->widget(Select2::classname(), ['data' =>$course_list , 'options' => ['placeholder' => '选择课程'], ]); ?>
 
 
@@ -161,6 +157,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 school_list +="</select>";
                 $('#courseware-school').html(school_list);
+            }
+        });
+    }
+
+    function getteacher(value) {
+        $.ajax({
+            type: "post",
+            method: "post",
+            dataType: "json",
+            data: {"value": value},
+            url: "<?= Url::to(['courseware/getteacher']);?>",
+            success: function(data){
+                console.log(data);
+                var teacher = data.teacher;
+
+                var teacher_list = "<select id=\"courseware-teacher\" class=\"form-control select2-hidden-accessible\" name=\"Courseware[teacher]\" ><option value=\"\">选择讲师</option>";
+                for(key in teacher){
+                    teacher_list +="<option value="+teacher[key]+"> "+teacher[key]+" </option>";
+                }
+                teacher_list +="</select>";
+                $('#courseware-teacher').html(teacher_list);
             }
         });
     }

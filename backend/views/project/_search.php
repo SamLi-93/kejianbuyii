@@ -28,7 +28,7 @@ use kartik\select2\Select2;
                 ],
             ]);
             ?>
-            <? if (!empty($query['ProjectSearch'])) {
+            <?php if (!empty($query['ProjectSearch'])) {
                 $model->projectname = $query['ProjectSearch']['projectname'];
                 $model->school = $query['ProjectSearch']['school'];
                 $model->teacher = $query['ProjectSearch']['teacher'];

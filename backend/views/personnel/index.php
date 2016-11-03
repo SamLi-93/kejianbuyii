@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="test">
-    <? if (Yii::$app->user->identity->orgid==2) {
+    <?php if (Yii::$app->user->identity->orgid==2) {
         echo Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success']);
     } ?>
 </div>

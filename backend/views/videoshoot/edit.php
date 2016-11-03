@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'options' => ['placeholder' => '选择项目','onchange' => "changecheck(this.options[this.options.selectedIndex].value)" ],
     ]); ?>
     <?= $form->field($model, 'school')->widget(Select2::classname(), [
-        'initValueText' => $pro_school,'options' => ['placeholder' => '选择学校'], ]); ?>
+        'initValueText' => $pro_school,'options' => ['placeholder' => '选择学校','onchange' => "getteacher(this.options[this.options.selectedIndex].value)"], ]); ?>
     <?= $form->field($model, 'courcename')->widget(Select2::classname(), ['data' =>$course_list , 'options' => ['placeholder' => '选择课程'], ]); ?>
     <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' =>$teacher_list , 'options' => ['placeholder' => '选择主讲人'], ]); ?>
     <?= $form->field($model, 'recordname', ['template' => "{label}\n<div class=\"col-lg-6\">{input}</div>",]
@@ -173,6 +173,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 school_list +="</select>";
                 $('#videoshoot-school').html(school_list);
+            }
+        });
+    }
+
+    function getteacher(value) {
+        $.ajax({
+            type: "post",
+            method: "post",
+            dataType: "json",
+            data: {"value": value},
+            url: "<?= Url::to(['videoshoot/getteacher']);?>",
+            success: function(data){
+                console.log(data);
+                var teacher = data.teacher;
+
+                var teacher_list = "<select id=\"videoshoot-teacher\" class=\"form-control select2-hidden-accessible\" name=\"VideoShoot[teacher]\" ><option value=\"\">选择讲师</option>";
+                for(key in teacher){
+                    teacher_list +="<option value="+teacher[key]+"> "+teacher[key]+" </option>";
+                }
+                teacher_list +="</select>";
+                $('#videoshoot-teacher').html(teacher_list);
             }
         });
     }
