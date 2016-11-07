@@ -10,6 +10,7 @@ namespace backend\controllers;
 
 use yii\data\SqlDataProvider;
 use yii\web\Controller;
+use PHPExcel_IOFactory;
 
 class ExportController extends Controller
 {
@@ -186,11 +187,6 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         $query_parms = \Yii::$app->request->queryParams;
         $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
 
-//        if (!empty($query['Courseware'])) {
-//            $query_parms = array_filter($query['Courseware']);
-//            $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
-//        }
-
         if (!empty($query_parms['projectname'])) {
             $sql_parms .= " and b.pid = '" . $query_parms['projectname'] . "'";
         }
@@ -333,20 +329,15 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms );
             $n = $n + 1;
         }
 
-        //设置分页显示
-        //$objectPHPExcel->getActiveSheet()->setBreak( 'I55' , PHPExcel_Worksheet::BREAK_ROW );
-        //$objectPHPExcel->getActiveSheet()->setBreak( 'I10' , PHPExcel_Worksheet::BREAK_COLUMN );
-//        $objectPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
-//        $objectPHPExcel->getActiveSheet()->getPageSetup()->setVerticalCentered(false);
-
-
         ob_end_clean();
         ob_start();
 
         header('Content-Type : application/vnd.ms-excel');
         header('Content-Disposition:attachment;filename="' . '课件管理-' . date("Y年m月j日") . '.xls"');
-        $objWriter = \PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
+        $objWriter = PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
         $objWriter->save('php://output');
+
+
     }
 
 

@@ -99,7 +99,7 @@ class VideoMaking extends \yii\db\ActiveRecord
                 $pic_name = $v->name;
                 $this->pic_name = $v->name;
                 $type = strpos($pic_name, '.jpg') === false ? '.png' : '.jpg';
-                $path = 'upload_files\pic\\' . date("Y-m-d-H-i-s") . '_' . $k . $type ;
+                $path = 'upload_files/pic/' . date("Y-m-d-H-i-s") . '_' . $k . $type ;
                 $pic_model->setAttributes([
                     'type' => 0,
                     'name' => $pic_name,
@@ -107,7 +107,8 @@ class VideoMaking extends \yii\db\ActiveRecord
                     'cid' => $cid,
                 ]);
                 $pic_model->save();
-                $v->saveAs(dirname(__DIR__) . '\\web\\' . $path);
+//                $v->saveAs('./backend/web/'.$path);
+                $v->saveAs( $path );
             }
         }
     }

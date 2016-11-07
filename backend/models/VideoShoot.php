@@ -94,7 +94,8 @@ class VideoShoot extends \yii\db\ActiveRecord
                     'shoot_id' => $shoot_id,
                 ]);
                 $pic_model->save();
-                $v->saveAs(dirname(__DIR__) . '\\web\\' . $path);
+//                $v->saveAs(dirname(__DIR__) . '\\web\\' . $path);
+                $v->saveAs($path);
             }
         }
     }

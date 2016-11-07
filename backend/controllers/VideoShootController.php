@@ -180,7 +180,6 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         $model->uploadname = Yii::$app->user->identity->name;
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-//            var_dump($params);exit;
             $status = 0;
             // 保存图片   ---------------------------------------------
             $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
@@ -196,9 +195,6 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $command->bindParam(':school', $params['VideoShoot']['school']);
             $command->bindParam(':courcename', $params['VideoShoot']['courcename']);
             $cid = $command->queryAll();
-//            var_dump($params['VideoShoot']['school']);
-//            var_dump($params['VideoShoot']['courcename']);
-//            var_dump($cid);exit;
 
             $model->setAttributes([
                 'status' => $status,
@@ -206,7 +202,6 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'school' => $params['VideoShoot']['school'],
                 'courcename' => $params['VideoShoot']['courcename'],
                 'teacher' => $params['VideoShoot']['teacher'],
-                'status' => $status,
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => floatval($params['VideoShoot']['capture_time']),
