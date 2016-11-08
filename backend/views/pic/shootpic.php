@@ -5,7 +5,7 @@
                 <div class="pic_name" style="text-align: center">
                     <span> <?= ($value['path']); ?> </span>
                 </div>
-                <img src="<?= '../' .$value['path']?>">
+                <img src="<?= '../../' .$value['path']?>">
             </div>
         <? } ?>
     </div>

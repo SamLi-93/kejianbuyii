@@ -5,7 +5,7 @@
             <div class="pic_name" style="text-align: center">
                 <span> <?= ($path); ?> </span>
             </div>
-            <img src="<?= '../web/' .$path?>">
+            <img src="<?= '../../web/' .$path?>">
         </div>
 
 </div>

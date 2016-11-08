@@ -87,7 +87,7 @@ class VideoShoot extends \yii\db\ActiveRecord
                 $pic_name = $v->name;
                 $this->pic_name = $v->name;
                 $type = strpos($pic_name, '.jpg') === false ? '.png' : '.jpg';
-                $path = 'upload_files\videoshoot\\' . date("Y-m-d-H-i-s") . '_' . $k . $type ;
+                $path = 'upload_files/videoshoot/' . date("Y-m-d-H-i-s") . '_' . $k . $type ;
                 $pic_model->setAttributes([
                     'name' => $pic_name,
                     'path' => $path,

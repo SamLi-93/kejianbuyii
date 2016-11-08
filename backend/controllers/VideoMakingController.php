@@ -260,7 +260,7 @@ from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
         //删除数据同时删除pic表中的数据 和文件
         $pic_date = Pic::findBySql("select path from pic where cid=:cid", [':cid' => $id])->all();
         foreach ($pic_date as $k => $v) {
-            $is_delete = unlink(dirname(__DIR__) . '\\web\\' . $v['path']);
+            $is_delete = unlink($v['path']);
         }
 
         $conn = Yii::$app->db;
