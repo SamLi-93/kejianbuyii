@@ -29,6 +29,7 @@ use kartik\select2\Select2;
             ?>
             <?php if (!empty($query['VideoShoot'])) {
                 $model->projectname = $query['VideoShoot']['projectname'];
+                $model->school = $query['VideoShoot']['school'];
                 $model->courcename = $query['VideoShoot']['courcename'];
                 $model->recordname = $query['VideoShoot']['recordname'];
                 $model->uploadname = $query['VideoShoot']['uploadname'];
@@ -37,6 +38,7 @@ use kartik\select2\Select2;
                 $model->status = $query['VideoShoot']['status'];
             }?>
             <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' =>$pro_projectname , 'options' => ['placeholder' => '选择项目'], ]); ?>
+            <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school, 'options' => ['placeholder' => '请选择学校'], ]); ?>
             <?= $form->field($model, 'courcename')->widget(Select2::classname(), ['data' => $course_list, 'options' => ['placeholder' => '选择课程名称'], ]); ?>
             <?= $form->field($model, 'recordname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择录制人'], ]); ?>
             <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
@@ -55,6 +57,7 @@ use kartik\select2\Select2;
                             <?= Html::a('批量审核', "", ['class' => 'btn btn-primary btn-sm gridviewverified']) ?>
                             <?= Html::a('导出excel', ['export/videoshoot',
                                 'projectname' => $model->projectname,
+                                'school' => $model->school,
                                 'courcename' => $model->courcename,
                                 'recordname' => $model->recordname,
                                 'uploadname' => $model->uploadname,

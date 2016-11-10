@@ -31,6 +31,7 @@ class Courseware extends \yii\db\ActiveRecord
     public $time0;
     public $time1;
     public $time2;
+    public $excelFile;
     /**
      * @inheritdoc
      */
@@ -47,6 +48,7 @@ class Courseware extends \yii\db\ActiveRecord
         return [
             [['time0','time1','time2','time', 'state', 'totalday', 'cid'], 'integer'],
             [['cid','date','enddate',], 'required'],
+            [['excelFile'], 'file', 'extensions' => 'xls'],
             [['title', 'teacher', 'makingname', 'uploadname', 'projectname', 'school', 'coursename', 'status', 'auditor1', 'auditor2', 'remark'], 'string', 'max' => 100],
         ];
     }
@@ -78,6 +80,7 @@ class Courseware extends \yii\db\ActiveRecord
             'time1' => '分 *',
             'time2' => '秒 *',
             'time0' => '时 *',
+            'excelFile' =>'excel文件' ,
 
         ];
     }

@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'pro_projectname' => $pro_projectname,
     'course_list' => $course_list,
     'person_list' => $person_list,
+    'pro_school' => $pro_school,
     'query' => $query,
 ]); ?>
 

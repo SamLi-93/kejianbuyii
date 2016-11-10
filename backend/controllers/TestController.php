@@ -25,7 +25,6 @@ class TestController extends Controller
     {
         for ($id = 6086; $id < 6133; $id++) {
             $course_list = Courseware::findBySql("select * from courseware where id = :id", ['id' => $id])->all();
-
             $times = $course_list[0]['remark'];
             for ($i=0;$i<$times;$i++) {
                 $model = new Courseware();
@@ -48,19 +47,22 @@ class TestController extends Controller
             }
 
         }
-
-
     }
 
     public function actionCourse()
     {
         $dir = dirname(__FILE__);
         $objReader = PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($dir . '/test.xls');
+        $objPHPExcel = $objReader->load($dir . '/3333.xls');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
+//        var_dump($highestRow);exit;
         $c_list = [];
         $school = [];
+
+//        $time = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(9, 1378)->getValue();
+//        var_dump(intval($time));exit;
+
         for ($j = 2; $j <= $highestRow; $j++) {
             $a = $objPHPExcel->getActiveSheet()->getCell("D" . $j)->getValue();//获取B列的值
             $c_list[$j - 2] = $a;
@@ -76,7 +78,7 @@ class TestController extends Controller
         $m = [];
         $s = [];
         $remark = [];
-        for ($i = 0; $i <= $highestRow; $i++) {
+        for ($i = 0; $i <= $highestRow-2; $i++) {
             $prolist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $i + 2)->getValue();
             $school[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $i + 2)->getValue();
             $courselist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $i + 2)->getValue();
@@ -124,7 +126,7 @@ class TestController extends Controller
     {
         $dir = dirname(__FILE__);
         $objReader = PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($dir . '/test.xls');
+        $objPHPExcel = $objReader->load($dir . '/3333.xls');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数
@@ -193,7 +195,7 @@ class TestController extends Controller
         $dir = dirname(__FILE__);
 //        var_dump($dir);exit;
         $objReader = PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($dir . '/test.xls');
+        $objPHPExcel = $objReader->load($dir . '/1111.xls');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数

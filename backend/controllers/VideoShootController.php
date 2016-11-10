@@ -105,6 +105,10 @@ class VideoshootController extends Controller
             $sql_parms .= " and b.pid = '" . $query_parms['projectname'] . "'";
         }
 
+        if (isset($query_parms['school'])) {
+            $sql_parms .= " and c.school = '" . $query_parms['school'] . "'";
+        }
+
         if (isset($query_parms['courcename'])) {
             $sql_parms .= " and b.id = '" . $query_parms['courcename'] . "'";
         }
@@ -167,6 +171,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pro_school' => $this->pro_school,
             'pro_projectname' => $this->pro_projectname,
             'course_list' => $this->course_list,
             'person_list' => $this->person_list,

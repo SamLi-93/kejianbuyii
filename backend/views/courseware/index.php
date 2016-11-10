@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'model' => $searchModel,
     'pro_projectname' => $pro_projectname,
     'course_list' => $course_list,
+    'pro_school' => $pro_school,
     'person_list' => $person_list,
     'teacher_list' => $teacher_list,
     'query' => $query,

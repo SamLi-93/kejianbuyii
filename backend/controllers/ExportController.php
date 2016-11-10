@@ -23,8 +23,13 @@ class ExportController extends Controller
         $sql_parms = 'where a.cid = b.id and b.pid = c.id';
         $query_parms = \Yii::$app->request->queryParams;
 
+
         if (!empty($query_parms['projectname'])) {
             $sql_parms .= " and b.pid = '" . $query_parms['projectname'] . "'";
+        }
+
+        if (!empty($query_parms['school'])) {
+            $sql_parms .= " and c.school = '" . $query_parms['school'] . "'";
         }
 
         if (!empty($query_parms['courcename'])) {
@@ -178,17 +183,24 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
 
         header('Content-Type : application/vnd.ms-excel');
         header('Content-Disposition:attachment;filename="' . '视频拍摄-' . date("Y年m月j日") . '.xls"');
-        $objWriter = \PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
+        $objWriter = PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
         $objWriter->save('php://output');
     }
 
     public function actionCouseware()
     {
+        error_reporting(E_ALL);
+        date_default_timezone_set('Europe/London');
+
         $query_parms = \Yii::$app->request->queryParams;
         $sql_parms = 'where a.cid = b.id and b.pid = c.id ';
 
         if (!empty($query_parms['projectname'])) {
             $sql_parms .= " and b.pid = '" . $query_parms['projectname'] . "'";
+        }
+
+        if (!empty($query_parms['school'])) {
+            $sql_parms .= " and c.school = '" . $query_parms['school'] . "'";
         }
 
         if (!empty($query_parms['coursename'])) {
@@ -336,6 +348,13 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms );
         header('Content-Disposition:attachment;filename="' . '课件管理-' . date("Y年m月j日") . '.xls"');
         $objWriter = PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
         $objWriter->save('php://output');
+
+//        header('Content-Type: application/vnd.ms-excel');
+//        header('Content-Disposition: attachment;filename="sss.xls"');
+//        header('Cache-Control: max-age=0');
+//        $objWriter = \PHPExcel_IOFactory::createWriter($objectPHPExcel, 'Excel5');
+//        $objWriter->save('php://output');
+//        exit;
 
 
     }
