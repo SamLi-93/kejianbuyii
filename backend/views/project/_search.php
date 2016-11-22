@@ -33,12 +33,14 @@ use kartik\select2\Select2;
                 $model->school = $query['ProjectSearch']['school'];
                 $model->teacher = $query['ProjectSearch']['teacher'];
                 $model->over = $query['ProjectSearch']['over'];
+                $model->is_neibu = $query['ProjectSearch']['is_neibu'];
             }?>
 
             <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' => $pro_projectname, 'options' => ['placeholder' => '请选择项目'], ]); ?>
             <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school,'options' => ['placeholder' => '请选择学校'],  ]); ?>
             <?= $form->field($model, 'teacher')->widget(Select2::classname(), ['data' => $pro_teacher,'options' => ['placeholder' => '请选择讲师'],  ]); ?>
             <?= $form->field($model, 'over')->widget(Select2::classname(), ['data' => ['2' => '否', '1' => '是'],'options' => ['placeholder' => '请选择费用结算'],  ]); ?>
+            <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'],'options' => ['placeholder' => '请选择是否内部课程'],  ]); ?>
 
             <table style="width: 100%;">
                 <tr>

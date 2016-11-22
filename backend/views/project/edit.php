@@ -31,12 +31,10 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 
     <?= $form->field($model, 'projectname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'school')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
     <?= $form->field($model, 'over')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
     <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
 
-<!--    --><?//= $form->field($model, 'over')->dropDownList(['0' => '否', '1' => '是'], ['prompt'=>'选择是否结束']) ?>
-<!--    --><?//= $form->field($model, 'free')->dropDownList(['0' => '否', '1' => '是'], ['prompt'=>'选择是否结算']) ?>
     <?= $form->field($model, 'teacher')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'time')->widget(DatePicker::classname(), [
         'options' => ['placeholder' => ''],
@@ -57,7 +55,6 @@ $this->params['breadcrumbs'][] = ['label' => $model->projectname, 'url' => ['vie
 
     <?= $form->field($model, 'original_path')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'making_path')->textInput(['maxlength' => true]) ?>
-<!--    --><?//= $form->field($model, 'uploadname')->dropDownList($person_list, ['prompt'=>'选择上传人', 'disabled'=> true]) ?>
     <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' => $person_list ]); ?>
 
     <div class="form-group-btn">

@@ -51,12 +51,12 @@ class ProjectcountController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new ProjectSearch();
+        $model = new Project();
         $query = Yii::$app->request->queryParams;
-        $sql_parms = '';
+        $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
         if (!empty($query['ProjectSearch'])) {
             $query_parms = array_filter($query['ProjectSearch']);
-            $sql_parms = 'where true';
+            $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
         }
 
         if (isset($query_parms['projectname'])) {
@@ -67,11 +67,11 @@ class ProjectcountController extends Controller
             $sql_parms .= " and school = '" . $query_parms['school'] . "'";
         }
 
-        $sql = "select projectname, school from project " . $sql_parms . " order by id desc";
+        $sql = "SELECT a.id, sum(a.capture_time) as record_time, c.projectname,c.school FROM `video_shoot` as a, `video_making` as b, `project` as c "
+            . $sql_parms . " GROUP BY b.pid ORDER BY `record_time` DESC ";
 
-        $command = Yii::$app->db->createCommand('SELECT COUNT(*) FROM project ' . $sql_parms);
-        $command->bindParam(':projectname', $projectname);
-        $command->bindParam(':school', $school);
+        $command = Yii::$app->db->createCommand("select count(*) from (select  a.id, sum(a.capture_time) as record_time, c.projectname,c.school
+ FROM `video_shoot` as a, `video_making` as b, `project` as c " . $sql_parms . " GROUP BY b.pid) as test " );
         $count = $command->queryScalar();
 
         $dataProvider = new SqlDataProvider([
@@ -91,8 +91,120 @@ class ProjectcountController extends Controller
             'dataProvider' => $dataProvider,
         ]);
 
+//        var_dump($dataProvider);exit;
+
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'pro_projectname' => $this->pro_projectname,
+            'pro_school' => $this->pro_school,
+            'pro_teacher' => $this->teacher_list,
+            'pro_over' => $this->pro_over,
+            'query' => $query,
+        ]);
+    }
+
+    public function actionCoursetotal()
+    {
+        $model = new Project();
+        $query = Yii::$app->request->queryParams;
+        $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
+        if (!empty($query['ProjectSearch'])) {
+            $query_parms = array_filter($query['ProjectSearch']);
+            $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
+        }
+
+        if (isset($query_parms['projectname'])) {
+            $sql_parms .= " and id = '" . $query_parms['projectname'] . "'";
+        }
+
+        if (isset($query_parms['school'])) {
+            $sql_parms .= " and school = '" . $query_parms['school'] . "'";
+        }
+
+        $sql = "SELECT sum(a.time) as video_total,COUNT(*) as total_num,a.id, c.projectname,c.school FROM `courseware` as a, `video_making` as b, `project` as c "
+            . $sql_parms . " GROUP BY b.pid";
+
+        $command = Yii::$app->db->createCommand("select count(*) from (select  a.id, c.projectname,c.school
+ FROM `courseware` as a, `video_making` as b, `project` as c " . $sql_parms . " GROUP BY b.pid) as test " );
+        $count = $command->queryScalar();
+
+        $dataProvider = new SqlDataProvider([
+            'sql' => $sql,
+            'totalCount' => $count,
+            'pagination' => [
+                'pageSize' => 15,
+            ],
+            'sort' => [
+                'attributes' => [
+                    'id',
+                ],
+            ],
+        ]);
+
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+        ]);
+
+//        var_dump($dataProvider);exit;
+
+        return $this->render('coursetotal', [
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'pro_projectname' => $this->pro_projectname,
+            'pro_school' => $this->pro_school,
+            'pro_teacher' => $this->teacher_list,
+            'pro_over' => $this->pro_over,
+            'query' => $query,
+        ]);
+    }
+
+    public function actionVideototal()
+    {
+        $model = new Project();
+        $query = Yii::$app->request->queryParams;
+        $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
+        if (!empty($query['ProjectSearch'])) {
+            $query_parms = array_filter($query['ProjectSearch']);
+            $sql_parms = ' where a.cid = b.id and b.pid = c.id ';
+        }
+
+        if (isset($query_parms['projectname'])) {
+            $sql_parms .= " and id = '" . $query_parms['projectname'] . "'";
+        }
+
+        if (isset($query_parms['school'])) {
+            $sql_parms .= " and school = '" . $query_parms['school'] . "'";
+        }
+
+        $sql = "SELECT sum(a.time) as total_num,a.id, c.projectname,c.school FROM `courseware` as a, `video_making` as b, `project` as c "
+            . $sql_parms . " GROUP BY b.pid";
+
+        $command = Yii::$app->db->createCommand("select count(*) from (select  a.id, c.projectname,c.school
+ FROM `courseware` as a, `video_making` as b, `project` as c " . $sql_parms . " GROUP BY b.pid) as test " );
+        $count = $command->queryScalar();
+
+        $dataProvider = new SqlDataProvider([
+            'sql' => $sql,
+            'totalCount' => $count,
+            'pagination' => [
+                'pageSize' => 15,
+            ],
+            'sort' => [
+                'attributes' => [
+                    'id',
+                ],
+            ],
+        ]);
+
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+        ]);
+
+//        var_dump($dataProvider);exit;
+
+        return $this->render('videototal', [
+            'model' => $model,
             'dataProvider' => $dataProvider,
             'pro_projectname' => $this->pro_projectname,
             'pro_school' => $this->pro_school,

@@ -383,15 +383,16 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
             $m = [];
             $s = [];
             $remark = [];
+
             for ($i = 0; $i <= $highestRow-2; $i++) {
-                $title[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $i + 2)->getValue();
-                $makingname[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $i + 2)->getValue();
-                $teacher[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $i + 2)->getValue();
-                $time[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $i + 2)->getValue();
-                $totalday[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(8, $i + 2)->getValue();
-                $m[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(9, $i + 2)->getValue();
-                $s[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(10, $i + 2)->getValue();
-                $remark[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(12, $i + 2)->getValue();
+                $title[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $i + 2)->getValue();
+                $makingname[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $i + 2)->getValue();
+                $teacher[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $i + 2)->getValue();
+                $time[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $i + 2)->getValue();
+                $totalday[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $i + 2)->getValue();
+                $m[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $i + 2)->getValue();
+                $s[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $i + 2)->getValue();
+                $remark[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(9, $i + 2)->getValue();
 
                 $time_long = $m[$i] * 60 + $s[$i];
 

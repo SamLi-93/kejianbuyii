@@ -8,3 +8,4 @@ Options +FollowSymLinks
 
     # otherwise forward it to index.php
     RewriteRule . index.php
+

@@ -17,15 +17,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <span>项目管理</span>
 </div>
 
+
 <?php echo $this->render('_search', [
-    'model' => $searchModel,
+    'model' => $model,
     'pro_projectname' => $pro_projectname,
     'pro_school' => $pro_school,
     'pro_teacher' => $pro_teacher,
     'pro_over' => $pro_over,
     'query' => $query
     ]); ?>
-
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
@@ -48,16 +48,30 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         ],
 
+        [
+            'header' => '录制时长',
+            'attribute' => 'record_time',
+            'value' => function ($model) {
+                return $model['record_time'];
+            }
+        ],
+//
 //        [
-//            'header' => '项目联系人',
-//            'attribute' => 'teacher',
+//            'header' => '课时总数',
+//            'attribute' => 'course_total',
 //            'value' => function ($model) {
-//                if ($model['teacher'] == null ){
-//                    return '';
-//                }
-//                return $model['teacher'];
+//                return $model['course_total'];
 //            }
 //        ],
+//
+//        [
+//            'header' => '视频总时长',
+//            'attribute' => 'video_time',
+//            'value' => function ($model) {
+//                return $model['video_time'];
+//            }
+//        ],
+
 
 
 

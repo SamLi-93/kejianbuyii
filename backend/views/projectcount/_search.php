@@ -42,6 +42,9 @@ use kartik\select2\Select2;
                         <div class="form-group">
                             <?= Html::submitButton("查询", ["class" => "btn btn-primary btn-sm"]) ?>
                             <?= Html::a("重置", ['index'], ["class" => "btn btn-primary btn-sm"]) ?>
+                            <?= Html::a('录制时长', ['index'], ['class' => 'btn btn-sm btn-success']) ?>
+                            <?= Html::a('课时总数', ['coursetotal'], ['class' => 'btn btn-sm btn-success']) ?>
+                            <?= Html::a('视频总时长', ['videototal'], ['class' => 'btn btn-sm btn-success']) ?>
                         </div>
                     </td>
                 </tr>

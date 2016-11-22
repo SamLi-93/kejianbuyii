@@ -128,16 +128,16 @@ class VideoshootController extends Controller
 
         if (isset($query_parms['time'])) {
             if (isset($query_parms['test'])) { //年份月份全有
-                $year = $query_parms['time'];
-                $month = $query_parms['test'];
-                $time1 = $query_parms['time'] . '/' . $query_parms['test'];
+                $year = $query_parms['time']; //年
+                $month = $query_parms['test']; //月
+                $time1 = $query_parms['time'] . '/' . $query_parms['test'];  // 2016/11 类似'/'格式
                 if ($month > 9) {
-                    $time2 = $year . '-' . $month;
+                    $time2 = $year . '-' . $month;   // 2016-11 格式
                 } else {
-                    $time2 = $year . '-0' . $month;
+                    $time2 = $year . '-0' . $month;  // 2016-04 格式
                 }
 
-                $sql_parms .= " and a.time like '" . $time1 . '%' . "'" . " or a.time like '" . $time2 . '%' . "'";
+                $sql_parms .= " and (a.time like '" . $time1 . '%' . "'" . " or a.time like '" . $time2 . '%'  . "')";
             } else {
                 $sql_parms .= " and a.time like '" . $query_parms['time'] . '%' . "'";
             }

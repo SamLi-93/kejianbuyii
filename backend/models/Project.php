@@ -14,6 +14,7 @@ use Yii;
  * @property integer $free
  * @property string $teacher
  * @property integer $time
+ * @property integer $is_neibu
  * @property integer $endtime
  * @property string $original_path
  * @property string $making_path
@@ -22,6 +23,10 @@ use Yii;
  */
 class Project extends \yii\db\ActiveRecord
 {
+    public $record_time;
+    public $course_total;
+    public $video_time;
+
     /**
      * @inheritdoc
      */
@@ -36,7 +41,7 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['over', 'free',], 'integer'],
+            [['over', 'free','is_neibu','record_time','course_total','video_time'], 'integer'],
             [['projectname', 'school',], 'string', 'max' => 100],
             ['projectname', 'unique', ],
             [['time','endtime'], 'filter','filter' => function($value) {
@@ -64,6 +69,10 @@ class Project extends \yii\db\ActiveRecord
             'original_path' => '原始路径',
             'making_path' => '制作路径',
             'uploadname' => '上传人 *',
+            'is_neibu' =>'是否内部课程',
+            'record_time' => '录制时长',
+            'course_total' => '课时总数',
+            'video_time' => '视频总时长',
         ];
     }
 

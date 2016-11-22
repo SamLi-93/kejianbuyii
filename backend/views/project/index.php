@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'pro_teacher' => $pro_teacher,
     'pro_over' => $pro_over,
     'query' => $query
-    ]); ?>
+]); ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -53,12 +53,26 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         [
+            'header' => '课程类型',
+            'attribute' => 'is_neibu',
+            'value' => function ($model) {
+                if ($model['is_neibu'] == 0) {
+                    return '外部';
+                }
+                if ($model['is_neibu'] == 1) {
+                    return '内部';
+                }
+                return $model['is_neibu'];
+            }
+        ],
+
+        [
             'header' => '是否结束',
             'attribute' => 'over',
             'format' => 'raw',
             'value' => function ($model) {
-                    return Html::dropDownList('over', $model['over'], ['0'=>'否', '1'=>'是'],
-                        ['onchange' => "changeover(this.options[this.options.selectedIndex].value,". $model['id'] . ")"  ,]);
+                return Html::dropDownList('over', $model['over'], ['0' => '否', '1' => '是'],
+                    ['onchange' => "changeover(this.options[this.options.selectedIndex].value," . $model['id'] . ")",]);
             }
         ],
 
@@ -67,8 +81,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'free',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::dropDownList('free', $model['free'], ['0'=>'否', '1'=>'是'],
-                    ['onchange' => "changefree(this.options[this.options.selectedIndex].value,". $model['id'] . ")"  ,]);
+                return Html::dropDownList('free', $model['free'], ['0' => '否', '1' => '是'],
+                    ['onchange' => "changefree(this.options[this.options.selectedIndex].value," . $model['id'] . ")",]);
             }
         ],
 
@@ -76,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '项目联系人',
             'attribute' => 'teacher',
             'value' => function ($model) {
-                if ($model['teacher'] == null ){
+                if ($model['teacher'] == null) {
                     return '';
                 }
                 return $model['teacher'];
@@ -87,12 +101,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '开始日期	',
             'attribute' => 'time',
             'value' => function ($model) {
-                if ($model['time'] == null ){
+                if ($model['time'] == null) {
                     return '';
                 } elseif ($model['time'] == 0) {
                     return '';
                 }
-                return date('Y-m-d',$model['time']);
+                return date('Y-m-d', $model['time']);
             }
         ],
 
@@ -100,12 +114,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '结束时间',
             'attribute' => 'endtime',
             'value' => function ($model) {
-                if ($model['endtime'] == null ){
+                if ($model['endtime'] == null) {
                     return '';
                 } elseif ($model['endtime'] == 0) {
                     return '';
                 }
-                return date('Y-m-d',$model['endtime']);
+                return date('Y-m-d', $model['endtime']);
             }
         ],
 
@@ -113,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'header' => '上传路径',
             'attribute' => 'making_path',
             'value' => function ($model) {
-                if ($model['making_path'] == null ){
+                if ($model['making_path'] == null) {
                     return '';
                 }
                 return $model['making_path'];
@@ -127,18 +141,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'edit' => function ($url, $model, $key) {
                     $options = [
                         'title' => '修改',
-                        'class' =>'btn btn-success btn-sm',
+                        'class' => 'btn btn-success btn-sm',
                         'id' => 'edit-btn',
                     ];
-                    $url = Url::to(['project/edit','id'=>$model['id']]);
+                    $url = Url::to(['project/edit', 'id' => $model['id']]);
                     return Html::a('修改', $url, $options);
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
                         'class' => 'btn btn-success',
                     ];
-                    $url = Url::to(['project/delete','id'=>$model['id']]);
-                    return Html::a('删除', $url, ['onclick'=> 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+                    $url = Url::to(['project/delete', 'id' => $model['id']]);
+                    return Html::a('删除', $url, ['onclick' => 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn']);
 
                 },
             ],
@@ -149,23 +163,23 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <script>
     function check() {
-        if(confirm('您确定要删除吗？')){
+        if (confirm('您确定要删除吗？')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    function changeover(value, id){
-        if(confirm("是否修改")){
+    function changeover(value, id) {
+        if (confirm("是否修改")) {
             $.ajax({
                 type: "post",
                 method: "post",
                 dataType: "json",
-                data: {"id": id,"value": value,},
+                data: {"id": id, "value": value,},
                 url: "<?= Url::to(['project/changeover']);?>",
-                success: function(data){
-                    if (data.flag ==1) {
+                success: function (data) {
+                    if (data.flag == 1) {
                         alert('修改成功');
                         window.location.reload()
                     }
@@ -178,16 +192,16 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 
-    function changefree(value, id){
-        if(confirm("是否修改")){
+    function changefree(value, id) {
+        if (confirm("是否修改")) {
             $.ajax({
                 type: "post",
                 method: "post",
                 dataType: "json",
-                data: {"id": id,"value": value,},
+                data: {"id": id, "value": value,},
                 url: "<?= Url::to(['project/changefree']);?>",
-                success: function(data){
-                    if (data.flag ==1) {
+                success: function (data) {
+                    if (data.flag == 1) {
                         alert('修改成功');
                         window.location.reload()
                     }

@@ -53,10 +53,10 @@ class TestController extends Controller
     {
         $dir = dirname(__FILE__);
         $objReader = PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($dir . '/3333.xls');
+        $objPHPExcel = $objReader->load($dir . '/55.xls');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
-//        var_dump($highestRow);exit;
+        var_dump($highestRow);exit;
         $c_list = [];
         $school = [];
 
@@ -78,30 +78,33 @@ class TestController extends Controller
         $m = [];
         $s = [];
         $remark = [];
+//        $title = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3,  3)->getValue();
+//        var_dump($title);exit;
         for ($i = 0; $i <= $highestRow-2; $i++) {
-            $prolist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $i + 2)->getValue();
-            $school[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $i + 2)->getValue();
-            $courselist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $i + 2)->getValue();
-            $title[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $i + 2)->getValue();
-            $makingname[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $i + 2)->getValue();
-            $teacher[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $i + 2)->getValue();
-            $time[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $i + 2)->getValue();
-            $totalday[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(8, $i + 2)->getValue();
-            $m[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(9, $i + 2)->getValue();
-            $s[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(10, $i + 2)->getValue();
-            $remark[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(12, $i + 2)->getValue();
+//            $prolist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $i + 2)->getValue();
+//            $school[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $i + 2)->getValue();
+//            $courselist[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $i + 2)->getValue();
+            $title[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $i + 2)->getValue();
+            $makingname[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $i + 2)->getValue();
+            $teacher[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $i + 2)->getValue();
+            $time[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(4, $i + 2)->getValue();
+            $totalday[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(5, $i + 2)->getValue();
+            $m[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(6, $i + 2)->getValue();
+            $s[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(7, $i + 2)->getValue();
+            $remark[$i] = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(9, $i + 2)->getValue();
 
-            $cid = VideoMaking::findBySql("select id from video_making where 
-              projectname = :projectname and school =:school and courcename = :coucename ",
-                [':projectname' => $prolist[$i], 'school' => $school[$i], ':coucename' => $courselist[$i]])->one();
+            var_dump($title);
+//            $cid = VideoMaking::findBySql("select id from video_making where
+//              projectname = :projectname and school =:school and courcename = :coucename ",
+//                [':projectname' => $prolist[$i], 'school' => $school[$i], ':coucename' => $courselist[$i]])->one();
 
             $time_long = $m[$i] * 60 + $s[$i];
 
             $model = new Courseware();
             $model->setAttributes([
-                'projectname' => $prolist[$i],
-                'school' => $school[$i],
-                'coursename' => $courselist[$i],
+                'projectname' => '$prolist[$i]',
+                'school' => '$school[$i]',
+                'coursename' => '$courselist[$i]',
                 'title' => strval($title[$i]),
                 'teacher' => $teacher[$i],
                 'time' => intval($time_long),
@@ -111,12 +114,13 @@ class TestController extends Controller
                 'enddate' => 0,                                   // u can delete this attribute of the table!!
                 'totalday' => intval($totalday[$i]),
                 'remark' => strval($remark[$i]),
-                'cid' => $cid['id'],
+                'cid' => 0,
             ]);
-            var_dump($i);
-            var_dump($title[$i]);
-            var_dump($cid['id']);
-            var_dump($model->save());
+//            var_dump($model);
+//            var_dump($i);
+//            var_dump($title[$i]);
+//            var_dump($cid['id']);
+//            var_dump($model->save());
         }
 
 

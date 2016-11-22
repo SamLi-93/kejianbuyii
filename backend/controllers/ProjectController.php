@@ -94,6 +94,10 @@ class ProjectController extends Controller
             $sql_parms .= " and teacher = '" . $query_parms['teacher'] . "'";
         }
 
+        if (isset($query_parms['is_neibu'])) {
+            $sql_parms .= " and is_neibu = '" . $query_parms['is_neibu'] . "'";
+        }
+
         if (isset($query_parms['over'])) {
             if ($query_parms['over'] == 2) {
                 $query_parms['over'] = 0;
@@ -163,6 +167,7 @@ class ProjectController extends Controller
                 'original_path' => $params['Project']['original_path'],
                 'making_path' => $params['Project']['making_path'],
                 'uploadname' => $params['Project']['uploadname'],
+                'is_neibu' => $params['Project']['is_neibu'],
             ]);
         }
 
@@ -201,6 +206,7 @@ class ProjectController extends Controller
                 'original_path' => $params['Project']['original_path'],
                 'making_path' => $params['Project']['making_path'],
                 'uploadname' => $params['Project']['uploadname'],
+                'is_neibu' => $params['Project']['is_neibu'],
             ]);
         }
 
