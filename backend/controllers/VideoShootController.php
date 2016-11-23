@@ -78,7 +78,7 @@ class VideoshootController extends Controller
             'uploadname' => $params['VideoShoot']['uploadname'],
             'recordname' => $recordname,
             'capture_time' => 00,
-            'time1' => (string)strtotime(date('Y-m-d H:0:0')),
+            'time_int' => strtotime(date('Y-m-d H:0:0')),
             'time' => $params['VideoShoot']['time'],
             'cid' => intval($params['VideoShoot']['seat']),
         ]);
@@ -143,10 +143,10 @@ class VideoshootController extends Controller
             }
         }
 
-        $sql = "SELECT a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, a.remark, 
+        $sql = "SELECT a.id, a.recordname, a.time, a.time_int, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, a.remark, 
 c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c " . $sql_parms . " order by a.id desc ";
 
-        $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.id, a.recordname, a.time, a.time1, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
+        $command = Yii::$app->db->createCommand('SELECT COUNT(a.id) as num,a.id, a.recordname, a.time, a.time_int, a.capture_time, a.uploadname, a.seat, a.teacher, a.status, 
 c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `video_making` as b, `project` as c  ' . $sql_parms);
 
         $count = $command->queryScalar();
@@ -210,12 +210,14 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => floatval($params['VideoShoot']['capture_time']),
-                'time1' => (string)strtotime(date('Y-m-d H:0:0')),
+                'time_int' => strtotime(date('Y-m-d H:0:0')),
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
                 'cid' => $params['VideoShoot']['courcename'],
             ]);
         }
+
+//        var_dump($model->time_int);exit;
 
         if (!empty(Yii::$app->request->post())&&$model->save()) {
             Yii::$app->cache->delete('index');
@@ -338,7 +340,7 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => floatval($params['VideoShoot']['capture_time']),
-                'time1' => (string)strtotime(date('Y-m-d H:0:0')),
+                'time_int' => strtotime(date('Y-m-d H:0:0')),
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
                 'cid' => $params['VideoShoot']['courcename'],

@@ -46,7 +46,7 @@ class VideoShoot extends \yii\db\ActiveRecord
     {
         return [
             [['test','capture_time'], 'number'],
-            [['seat', 'cid','status'], 'integer'],
+            [['seat', 'cid','status','time_int'], 'integer'],
             [['time2','recordname', 'time', 'time1', 'uploadname', 'projectname', 'school', 'courcename', 'teacher','remark'], 'string', 'max' => 100],
             [['imageFiles'], 'file', 'maxFiles' => 14],
         ];

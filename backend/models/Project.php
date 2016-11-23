@@ -23,9 +23,8 @@ use Yii;
  */
 class Project extends \yii\db\ActiveRecord
 {
-    public $record_time;
-    public $course_total;
-    public $video_time;
+    public $from_date;
+    public $to_date;
 
     /**
      * @inheritdoc

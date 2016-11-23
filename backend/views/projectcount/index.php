@@ -17,15 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <span>项目管理</span>
 </div>
 
+<?// var_dump($model);exit; ?>
 
 <?php echo $this->render('_search', [
     'model' => $model,
-    'pro_projectname' => $pro_projectname,
-    'pro_school' => $pro_school,
-    'pro_teacher' => $pro_teacher,
-    'pro_over' => $pro_over,
     'query' => $query
-    ]); ?>
+]); ?>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
@@ -51,28 +48,46 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'header' => '录制时长',
             'attribute' => 'record_time',
+            'format' => 'raw',
             'value' => function ($model) {
-                return $model['record_time'];
+                return Html::a($model['record_time'], ['videosearch', [
+                    'id' => $model['id'],
+                    'from_date' => $model['from_date'],
+                    'to_date' =>   $model['to_date'],
+                    ]]);
             }
         ],
-//
-//        [
-//            'header' => '课时总数',
-//            'attribute' => 'course_total',
-//            'value' => function ($model) {
-//                return $model['course_total'];
-//            }
-//        ],
-//
-//        [
-//            'header' => '视频总时长',
-//            'attribute' => 'video_time',
-//            'value' => function ($model) {
-//                return $model['video_time'];
-//            }
-//        ],
 
+        [
+            'header' => '课时总数',
+            'attribute' => 'total_num',
+            'format' => 'raw',
+            'value' => function ($model) {
+//                return $model['total_num'];
+                return Html::a($model['total_num'], ['coursesearch', [
+                    'id' => $model['id'],
+                    'from_date' => $model['from_date'],
+                    'to_date' =>   $model['to_date'],
+                ]]);
+            }
+        ],
 
+        [
+            'header' => '视频总时长',
+            'attribute' => 'video_time',
+            'format' => 'raw',
+            'value' => function ($model) {
+                $h = intval($model['video_time'] / 3600);
+                $min = intval($model['video_time'] % 3600 / 60);
+                $sec = $model['video_time'] % 60;
+//                return $h . ':' . $min . ':' . $sec;
+                return Html::a($h . ':' . $min . ':' . $sec, ['coursesearch', [
+                    'id' => $model['id'],
+                    'from_date' => $model['from_date'],
+                    'to_date' =>   $model['to_date'],
+                ]]);
+            }
+        ],
 
 
     ],
