@@ -46,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         [
-            'header' => '录制时长',
+            'header' => '录制时长(小时)',
+            'headerOptions' => ['width' => '100'],
             'attribute' => 'record_time',
             'format' => 'raw',
             'value' => function ($model) {
@@ -59,7 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         [
-            'header' => '课时总数',
+            'header' => '课时总数(个数)',
+            'headerOptions' => ['width' => '100'],
             'attribute' => 'total_num',
             'format' => 'raw',
             'value' => function ($model) {
@@ -74,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'header' => '视频总时长',
+            'headerOptions' => ['width' => '100'],
             'attribute' => 'video_time',
             'format' => 'raw',
             'value' => function ($model) {
@@ -88,10 +91,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]]);
             }
         ],
-
-
     ],
 ]);
-
 ?>
 
+
+<div class="total_count" style="float: right;margin-right: 8%;width: 500px;margin-top: 30px;">
+
+    <div class="count_word" style="font-size: 20px;float: left;">总计</div>
+    <div style="font-size: 20px;float: left;margin: 0 10%;"><?= $record_time_total;?></div>
+    <div style="font-size: 20px;float: left;margin: 0 10%;"><?= $total_num_total;?></div>
+    <div style="font-size: 20px;float: left;margin-left: 10%;">
+        <?
+        $h = intval($video_time_total / 3600);
+        $min = intval($video_time_total % 3600 / 60);
+        $sec = $video_time_total % 60;
+        echo $h . ':' . $min . ':' . $sec;
+        ?>
+    </div>
+
+</div>

@@ -24,6 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
 
         [
+            'header' => '项目名称',
+            'attribute' => 'projectname',
+            'value' => function ($model) {
+                return $model['projectname'];
+            }
+        ],
+
+        [
             'header' => '学校',
             'attribute' => 'school',
             'value' => function ($model) {

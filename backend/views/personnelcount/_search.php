@@ -6,7 +6,7 @@
  * Time: 14:34
  */
 
-
+use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
@@ -23,18 +23,40 @@ use kartik\select2\Select2;
                 'action' => ['index'],
                 'method' => 'get',
                 'fieldConfig' => [
-                    'template' => "<div class='form-group' style='float: left;width:150px;'>{input}</div>",
+                    'template' => "<div class='form-group' style='float: left;width:220px;'>{input}</div>",
                     'labelOptions' => ['style' => 'width:60px;'],
                 ],
             ]);
             ?>
-            <?php if (!empty($query['ProjectSearch'])) {
-                $model->projectname = $query['ProjectSearch']['projectname'];
-                $model->school = $query['ProjectSearch']['school'];
+            <?php if (!empty($query['Project'])) {
+                $model->from_date = $query['Project']['from_date'];
+                $model->to_date = $query['Project']['to_date'];
             }?>
 
-            <?= $form->field($model, 'projectname')->widget(Select2::classname(), ['data' => $pro_projectname, 'options' => ['placeholder' => '请选择项目'], ]); ?>
-            <?= $form->field($model, 'school')->widget(Select2::classname(), ['data' => $pro_school,'options' => ['placeholder' => '请选择学校'],  ]); ?>
+            <div>
+                <div class="fleft from_date">
+                    <?= $form->field($model, 'from_date')->widget(DatePicker::classname(), [
+                        'options' => ['placeholder' => '开始日期',],
+                        'pluginOptions' => [
+                            'autoclose' => true,
+                            'todayHighlight' => true,
+                            'format' => 'yyyy-mm-dd ' ,
+                        ]
+                    ]); ?>
+                </div>
+                <div class="fleft to_word" style="height: 34px; line-height: 34px"><span>&nbsp&nbsp到&nbsp&nbsp</span></div>
+                <div class="to_date">
+                    <?= $form->field($model, 'to_date')->widget(DatePicker::classname(), [
+                        'options' => ['placeholder' => '结束日期',],
+                        'pluginOptions' => [
+                            'autoclose' => true,
+                            'todayHighlight' => true,
+                            'format' => 'yyyy-mm-dd ' ,
+                        ]
+                    ]); ?>
+                </div>
+
+            </div>
 
             <table style="width: 100%;">
                 <tr>

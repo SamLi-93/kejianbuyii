@@ -22,3 +22,4 @@ body{margin: 0px;padding: 0px;background-color: #fff;}
 .left_cons{margin: 0px;padding: 0px;}
 .logout{float: right;color: red; display: block; width: 50px; margin-right: 100px; background-color: #00b3ee;
     text-align: center; margin-top: 10px;font-size: 16px; }
+.fright{float: right;}

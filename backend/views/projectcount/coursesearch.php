@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'header' => '课程名称',
-            'attribute' => 'coursename',
+            'attribute' => 'courcename',
             'value' => function ($model) {
-                return $model['coursename'];
+                return $model['courcename'];
             }
         ],
 

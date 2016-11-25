@@ -9,41 +9,77 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\ProjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '项目管理';
+$this->title = '人员统计';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="center subject_name">
-    <span>项目管理</span>
+    <span>人员统计</span>
 </div>
 
-<?php //echo $this->render('_search', [
-//    'model' => $searchModel,
-//    'pro_projectname' => $pro_projectname,
-//    'pro_school' => $pro_school,
-//    'pro_teacher' => $pro_teacher,
-//    'pro_over' => $pro_over,
-//    'query' => $query
-//    ]); ?>
+<?php echo $this->render('_search', [
+    'model' => $model,
+    'query' => $query
+]); ?>
+<!---->
+<? //= GridView::widget([
+//    'dataProvider' => $dataProvider,
+//    'summary' => '',
+//    'columns' => [
+//        [
+//            'header' => '姓名',
+//            'headerOptions' => ['width' => '100'],
+//            'attribute' => 'name',
+//            'value' => function ($model) {
+//                return $model['name'];
+//            }
+//        ],
+//
+//        [
+//            'label' => $test,
+//        ],
+//
+//    ],
+//]);
+//
+//?>
 
-<?= GridView::widget([
-    'dataProvider' => $dataProvider,
-    'summary' => '',
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
+<? //print_r($data);exit;?>
 
-        [
-            'header' => '姓名',
-            'attribute' => 'name',
-            'value' => function ($model) {
-                return $model['name'];
+<table class="list_table" width="100%" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <?
+        foreach ($project_list as $k => $v) {
+            echo "<th>" . $v['projectname'] . "</th>";
+        }
+        ?>
+    </tr>
+    </thead>
+    <tbody>
+    <?
+    foreach ($person_list as $key => $value) {
+        echo "<tr>";
+        echo "<td>" . $value['name'] . "</td>";
+        foreach ($data as $k => $v) {
+            foreach ($project_list as $item => $j) {
+                if ($v['makingname'] == $value['name'] && $v['pid'] == $j['pid']) {
+                    echo "<td>" . $v['count_num'] . "</td>";
+                } elseif ($v['makingname'] == $value['name'] && $v['pid'] != $j['pid']) {
+//                    echo "<td>" . 0 . "</td>";
+                } else {
+
+                }
             }
-        ],
 
 
+        }
 
-    ],
-]);
+        echo "</tr>";
+    }
 
-?>
+    ?>
 
+    </tbody>
+</table>
