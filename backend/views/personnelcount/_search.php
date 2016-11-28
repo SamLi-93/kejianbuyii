@@ -31,6 +31,7 @@ use kartik\select2\Select2;
             <?php if (!empty($query['Project'])) {
                 $model->from_date = $query['Project']['from_date'];
                 $model->to_date = $query['Project']['to_date'];
+                $model->is_neibu = $query['Project']['is_neibu'];
             }?>
 
             <div>
@@ -57,6 +58,7 @@ use kartik\select2\Select2;
                 </div>
 
             </div>
+            <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['2' => '外部', '1' => '内部'],'options' => ['placeholder' => '请选择是否内部课程'],  ]); ?>
 
             <table style="width: 100%;">
                 <tr>

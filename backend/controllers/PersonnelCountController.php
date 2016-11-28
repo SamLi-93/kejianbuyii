@@ -75,41 +75,27 @@ class PersonnelcountController extends Controller
 //        print_r($arr);exit;
 
         $test = $db->createCommand("select a.makingname, a.pid, count(makingname) as count_num, b.projectname  from courseware as a, project as b where date between " . $firstday . " and " . $lastday . " and a.pid = b.id group by a.pid,a.makingname")->queryAll();
+        $sam = [];
+        foreach ($test as $key => $value) {
+//            array_push($sam, [$value['makingname'] => [$value['pid'] => $value['count_num']]]);
+            if (isset($sam[$value['makingname']])) {
+//                $sam[$value['makingname']] = [$value['pid'] => $value['count_num']];
+                $sam[$value['makingname']][$value['pid']] = $value['count_num'];
+            } else {
+                $sam[$value['makingname']] = [$value['pid'] => $value['count_num']];
+            }
 
+
+        }
+
+//        print_r($sam);exit;
 //        print_r($test);exit;
-//        foreach ($test as $item => $v) {
-//            foreach ($v as $k =>$value) {
-//                var_dump($k);exit;
-//            }
-//        }
-//        var_dump(count($person_list));exit;
 
-//        $tt = [];
-//        $project_list = $db->createCommand("select id,projectname from project")->queryAll();
-//        foreach ($project_list as $key => $value) {
-//            print_r($value);
-//            foreach ($person_list as $k => $v) {
-//                print_r($v);exit;
-//            }
-//        }
-
-//        $dataProvider = new ArrayDataProvider([
-//            'allModels' => $test,
-//            'pagination' => [
-//                'pageSize' => 100,
-//            ],
-//            'sort' => [
-//                'attributes' => ['id', 'name'],
-//            ],
-//        ]);
-//
-//        GridView::widget([
-//            'dataProvider' => $dataProvider,
-//        ]);
+//        $arr = array_unshift($project_list, array('pid' => '', 'projectname' => '姓名', 'is_neibu' => ''));
 
         return $this->render('index', [
             'model' => $model,
-            'data' => $test,
+            'data' => $sam,
 //            'dataProvider' => $dataProvider,
             'project_list' => $project_list,
             'person_list' => $person_list,

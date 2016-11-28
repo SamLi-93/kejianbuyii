@@ -44,15 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
 //
 //?>
 
-<? //print_r($data);exit;?>
+<? // print_r($data[4]['张竹妃']['275']);exit;?>
 
-<table class="list_table" width="100%" cellpadding="0" cellspacing="0">
+<table border="1" class="list_table" width="100%" cellpadding="0" cellspacing="0">
     <thead>
     <tr>
         <th>姓名</th>
         <?
         foreach ($project_list as $k => $v) {
-            echo "<th>" . $v['projectname'] . "</th>";
+            echo "<th >" . $v['projectname'] . "</th>";
         }
         ?>
     </tr>
@@ -60,24 +60,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <tbody>
     <?
     foreach ($person_list as $key => $value) {
-        echo "<tr>";
-        echo "<td>" . $value['name'] . "</td>";
-        foreach ($data as $k => $v) {
-            foreach ($project_list as $item => $j) {
-                if ($v['makingname'] == $value['name'] && $v['pid'] == $j['pid']) {
-                    echo "<td>" . $v['count_num'] . "</td>";
-                } elseif ($v['makingname'] == $value['name'] && $v['pid'] != $j['pid']) {
-//                    echo "<td>" . 0 . "</td>";
+        echo "<tr><td>" . $value['name'] . "</td>";
+        foreach ($project_list as $k => $v) {
+            if ( isset($data[$value['name']])) {
+                if ( isset($data[$value['name']][$v['pid']])  ) {
+                    echo "<td>" . $data[$value['name']][$v['pid']] . "</td>";
                 } else {
-
+                    echo "<td>" . 0 . "</td>";
                 }
+            } else {
+                echo "<td>" . 0 . "</td>";
             }
-
-
         }
-
-        echo "</tr>";
+        echo '</tr>';
     }
+
 
     ?>
 

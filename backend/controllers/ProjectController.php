@@ -80,6 +80,7 @@ class ProjectController extends Controller
         if (!empty($query['ProjectSearch'])) {
             $query_parms = array_filter($query['ProjectSearch']);
             $sql_parms = 'where true';
+//            var_dump($query_parms);
         }
 
         if (isset($query_parms['projectname'])) {
@@ -95,6 +96,9 @@ class ProjectController extends Controller
         }
 
         if (isset($query_parms['is_neibu'])) {
+            if ($query_parms['is_neibu'] == 2) {
+                $query_parms['is_neibu'] = 0;
+            }
             $sql_parms .= " and is_neibu = '" . $query_parms['is_neibu'] . "'";
         }
 

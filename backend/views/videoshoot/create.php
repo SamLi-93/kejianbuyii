@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model, 'capture_time')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'seat')->input('text',['class'=>'input-small']) ?>
     <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
+    <?= $form->field($model, 'remark')->input('text',['class'=>'input-small']) ?>
 
     <div class="form-group-btn">
         <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>

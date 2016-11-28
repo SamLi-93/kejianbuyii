@@ -13,7 +13,7 @@ use kartik\select2\Select2;
 use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProjectSearch*/
+/* @var $model app\models\Project*/
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -32,6 +32,7 @@ use kartik\date\DatePicker;
             <?php if (!empty($query['Project'])) {
                 $model->from_date = $query['Project']['from_date'];
                 $model->to_date = $query['Project']['to_date'];
+                $model->is_neibu = $query['Project']['is_neibu'];
             }?>
 
             <div>
@@ -58,6 +59,8 @@ use kartik\date\DatePicker;
                 </div>
 
             </div>
+            <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['0' => '外部', '1' => '内部'],'options' => ['placeholder' => '请选择是否内部课程'],  ]); ?>
+
 
             <table style="width: 100%;">
                 <tr>

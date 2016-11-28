@@ -68,7 +68,7 @@ class Project extends \yii\db\ActiveRecord
             'original_path' => '原始路径',
             'making_path' => '制作路径',
             'uploadname' => '上传人 *',
-            'is_neibu' =>'是否内部课程',
+            'is_neibu' =>'课程类型 ',
             'record_time' => '录制时长',
             'course_total' => '课时总数',
             'video_time' => '视频总时长',

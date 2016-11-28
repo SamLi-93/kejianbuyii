@@ -32,6 +32,7 @@ class ProjectcountController extends Controller
 
     public function actionIndex()
     {
+        $is_neibu = '';
         $firstday = strtotime(date('Y-m-01  ', time()));
         $lastday = strtotime(date('Y-m-31  ', time()));
         $model = new Project();
@@ -48,14 +49,21 @@ class ProjectcountController extends Controller
             $lastday = $to_date;
             $sql_parms = ' where time_int between ' . $from_date . ' and ' . $to_date;
             $sql_parms_2 = ' where date between ' . $from_date . ' and ' . $to_date;
+
+            if (isset($query['Project']['is_neibu'])) {
+                $is_neibu .= " where is_neibu = '" . $query['Project']['is_neibu'] . "'";
+                var_dump($query['Project']['is_neibu']);
+            }
         }
 
         $record_time_total = $db->createCommand("SELECT sum(capture_time) as total_time  FROM video_shoot where time_int between " . $firstday . " and " . $lastday)->queryAll();
         $total_num_total = $db->createCommand("SELECT count(*) as total_time  FROM courseware where date between " . $firstday . " and " . $lastday)->queryAll();
         $video_time_total = $db->createCommand("SELECT sum(time) as total_time  FROM courseware where date between " . $firstday . " and " . $lastday)->queryAll();
-        $sql_pro = "select id,projectname,school from project";
+        $sql_pro = "select id,projectname,school,is_neibu from project " . $is_neibu ;
         $pro_data = $db->createCommand($sql_pro)->queryAll();
+        //录制时长
         $video_data = $db->createCommand("select time_int,sum(capture_time) as record_time,pid from video_shoot " . $sql_parms . " GROUP BY pid")->queryAll();
+        //课时总数和视频总时长
         $course_data = $db->createCommand("select date,count(*) as total_num, sum(time) as video_time,pid from courseware " . $sql_parms_2 . " group by pid")->queryAll();
         foreach ($video_data as $key => $value) {
             if (empty($value['record_time'])) {
@@ -117,87 +125,87 @@ class ProjectcountController extends Controller
         ]);
     }
 
-    public function actionCoursesearch()
-    {
-        $model = new Project();
-        $query = Yii::$app->request->queryParams;
-        $from_date = $query[1]['from_date'];
-        $to_date = $query[1]['to_date'];
-        $pid = $query[1]['id'];
-        $sql_params = '';
-        if (!empty($query[1]['from_date'])) {
-            $sql_params = " and date between " . $from_date . " and " . $to_date;
-        }
-
-        $sql = "select c.courcename, a.projectname,a.school,b.id,b.title,b.teacher,b.time,b.makingname,b.uploadname,b.state,b.date,b.enddate,b.totalday,b.remark
-from project as a, courseware as b,video_making as c where b.pid = " . $pid . " and a.id = " . $pid . " and c.id = b.cid " . $sql_params;
-        $command = Yii::$app->db->createCommand("select COUNT(id) from courseware where pid =" . $pid . $sql_params);
-        $count = $command->queryScalar();
-
-        $dataProvider = new SqlDataProvider([
-            'sql' => $sql,
-            'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 30,
-            ],
-            'sort' => [
-                'attributes' => [
-                    'id',
-                ],
-            ],
-        ]);
-
-        GridView::widget([
-            'dataProvider' => $dataProvider,
-        ]);
-
-        return $this->render('coursesearch', [
-            'model' => $model,
-            'dataProvider' => $dataProvider,
-            'query' => $query,
-        ]);
-    }
-
-    public function actionVideosearch()
-    {
-        $model = new Project();
-        $query = Yii::$app->request->queryParams;
-        $pid = $query[1]['id'];
-        $from_date = $query[1]['from_date'];
-        $to_date = $query[1]['to_date'];
-        $sql_params = '';
-        if (!empty($query[1]['from_date'])) {
-            $sql_params = " and time_int between " . $from_date . " and " . $to_date;
-        }
-
-//        $sql = "select * from video_shoot where pid =" . $pid . $sql_params;
-        $sql = "select c.courcename, a.projectname,a.school,b.id,b.recordname,b.time,b.time_int,b.capture_time,b.uploadname,b.seat,b.teacher,b.status,b.remark
-from project as a, video_shoot as b,video_making as c where b.pid = " . $pid . " and a.id = " . $pid . " and c.id = b.cid " . $sql_params;
-        $command = Yii::$app->db->createCommand("select COUNT(id) from video_shoot where pid =" . $pid . $sql_params);
-        $count = $command->queryScalar();
-
-        $dataProvider = new SqlDataProvider([
-            'sql' => $sql,
-            'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 30,
-            ],
-            'sort' => [
-                'attributes' => [
-                    'id',
-                ],
-            ],
-        ]);
-
-        GridView::widget([
-            'dataProvider' => $dataProvider,
-        ]);
-
-        return $this->render('videosearch', [
-            'model' => $model,
-            'dataProvider' => $dataProvider,
-            'query' => $query,
-        ]);
-    }
+//    public function actionCoursesearch()
+//    {
+//        $model = new Project();
+//        $query = Yii::$app->request->queryParams;
+//        $from_date = $query[1]['from_date'];
+//        $to_date = $query[1]['to_date'];
+//        $pid = $query[1]['id'];
+//        $sql_params = '';
+//        if (!empty($query[1]['from_date'])) {
+//            $sql_params = " and date between " . $from_date . " and " . $to_date;
+//        }
+//
+//        $sql = "select c.courcename, a.projectname,a.school,b.id,b.title,b.teacher,b.time,b.makingname,b.uploadname,b.state,b.date,b.enddate,b.totalday,b.remark
+//from project as a, courseware as b,video_making as c where b.pid = " . $pid . " and a.id = " . $pid . " and c.id = b.cid " . $sql_params;
+//        $command = Yii::$app->db->createCommand("select COUNT(id) from courseware where pid =" . $pid . $sql_params);
+//        $count = $command->queryScalar();
+//
+//        $dataProvider = new SqlDataProvider([
+//            'sql' => $sql,
+//            'totalCount' => $count,
+//            'pagination' => [
+//                'pageSize' => 30,
+//            ],
+//            'sort' => [
+//                'attributes' => [
+//                    'id',
+//                ],
+//            ],
+//        ]);
+//
+//        GridView::widget([
+//            'dataProvider' => $dataProvider,
+//        ]);
+//
+//        return $this->render('coursesearch', [
+//            'model' => $model,
+//            'dataProvider' => $dataProvider,
+//            'query' => $query,
+//        ]);
+//    }
+//
+//    public function actionVideosearch()
+//    {
+//        $model = new Project();
+//        $query = Yii::$app->request->queryParams;
+//        $pid = $query[1]['id'];
+//        $from_date = $query[1]['from_date'];
+//        $to_date = $query[1]['to_date'];
+//        $sql_params = '';
+//        if (!empty($query[1]['from_date'])) {
+//            $sql_params = " and time_int between " . $from_date . " and " . $to_date;
+//        }
+//
+////        $sql = "select * from video_shoot where pid =" . $pid . $sql_params;
+//        $sql = "select c.courcename, a.projectname,a.school,b.id,b.recordname,b.time,b.time_int,b.capture_time,b.uploadname,b.seat,b.teacher,b.status,b.remark
+//from project as a, video_shoot as b,video_making as c where b.pid = " . $pid . " and a.id = " . $pid . " and c.id = b.cid " . $sql_params;
+//        $command = Yii::$app->db->createCommand("select COUNT(id) from video_shoot where pid =" . $pid . $sql_params);
+//        $count = $command->queryScalar();
+//
+//        $dataProvider = new SqlDataProvider([
+//            'sql' => $sql,
+//            'totalCount' => $count,
+//            'pagination' => [
+//                'pageSize' => 30,
+//            ],
+//            'sort' => [
+//                'attributes' => [
+//                    'id',
+//                ],
+//            ],
+//        ]);
+//
+//        GridView::widget([
+//            'dataProvider' => $dataProvider,
+//        ]);
+//
+//        return $this->render('videosearch', [
+//            'model' => $model,
+//            'dataProvider' => $dataProvider,
+//            'query' => $query,
+//        ]);
+//    }
 
 }
