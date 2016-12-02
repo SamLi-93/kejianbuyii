@@ -9,12 +9,12 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\ProjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '项目课时统计';
+$this->title = '统计';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="center subject_name">
-    <span>项目管理</span>
+    <span>课件统计</span>
 </div>
 
 <?= GridView::widget([

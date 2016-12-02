@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <? // print_r($data[4]['张竹妃']['275']);exit;?>
 
-<table border="1" class="list_table" width="100%" cellpadding="0" cellspacing="0">
+<table border="1" class="list_table" width="80%" cellpadding="0" cellspacing="0" <!--style="margin-top: 120px;margin-left: 240px"-->>
     <thead>
     <tr>
         <th>姓名</th>
@@ -55,16 +55,20 @@ $this->params['breadcrumbs'][] = $this->title;
             echo "<th >" . $v['projectname'] . "</th>";
         }
         ?>
+        <th>个人总计</th>
     </tr>
     </thead>
     <tbody>
     <?
+
     foreach ($person_list as $key => $value) {
         echo "<tr><td>" . $value['name'] . "</td>";
+        $test = 0;
         foreach ($project_list as $k => $v) {
             if ( isset($data[$value['name']])) {
                 if ( isset($data[$value['name']][$v['pid']])  ) {
                     echo "<td>" . $data[$value['name']][$v['pid']] . "</td>";
+                    $test += $data[$value['name']][$v['pid']];
                 } else {
                     echo "<td>" . 0 . "</td>";
                 }
@@ -72,11 +76,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "<td>" . 0 . "</td>";
             }
         }
+        echo "<td>" . $test . "</td>";
+//        echo "<td>总计</td>";
         echo '</tr>';
     }
+    echo "<tr><td>总计</td> <td></td></tr>";
 
 
     ?>
 
     </tbody>
 </table>
+
+<div style="height: 100px" ></div>

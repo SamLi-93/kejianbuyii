@@ -144,6 +144,26 @@ a:visited {
     padding-top: 10px;
     padding-left: 4%;
 }
-
-
+/*表格*/
+.list_table {
+    margin: 0 auto;
+    margin-top: 100px;
+    /*border-radius: 10px;*/
+    /*border: 1px solid #167F92;*/
+}
+.list_table>thead>tr{
+    height: 35px;
+}
+.list_table>thead>tr>th {
+    border-bottom-width: 2px;
+    padding: 8px;
+    /*width: 100px;*/
+}
+.list_table>tbody>tr>td {
+    height: 35px;
+    padding: 8px;
+}
+.list_table>thead>tr>th:first-child {
+    width: 70px;
+}
 

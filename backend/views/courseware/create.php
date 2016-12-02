@@ -102,15 +102,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 return false;
             }
             if($.trim($('#courseware-time0').val()) == ''){
-                alert('请输入拍摄时间！');
+                alert('请输入时！');
                 return false;
             }
             if($.trim($('#courseware-time1').val()) == ''){
-                alert('请输入拍摄时间！');
+                alert('请输入分！');
                 return false;
             }
             if($.trim($('#courseware-time2').val()) == ''){
-                alert('请输入拍摄时间！');
+                alert('请输入秒！');
                 return false;
             }
             if($.trim($('#courseware-makingname').val()) == ''){
@@ -161,24 +161,24 @@ $this->params['breadcrumbs'][] = $this->title;
         });
     }
 
-    function getteacher(value) {
-        $.ajax({
-            type: "post",
-            method: "post",
-            dataType: "json",
-            data: {"value": value},
-            url: "<?= Url::to(['courseware/getteacher']);?>",
-            success: function(data){
-                console.log(data);
-                var teacher = data.teacher;
-
-                var teacher_list = "<select id=\"courseware-teacher\" class=\"form-control select2-hidden-accessible\" name=\"Courseware[teacher]\" ><option value=\"\">选择讲师</option>";
-                for(key in teacher){
-                    teacher_list +="<option value="+teacher[key]+"> "+teacher[key]+" </option>";
-                }
-                teacher_list +="</select>";
-                $('#courseware-teacher').html(teacher_list);
-            }
-        });
-    }
+//    function getteacher(value) {
+//        $.ajax({
+//            type: "post",
+//            method: "post",
+//            dataType: "json",
+//            data: {"value": value},
+//            url: "<?//= Url::to(['courseware/getteacher']);?>//",
+//            success: function(data){
+//                console.log(data);
+//                var teacher = data.teacher;
+//
+//                var teacher_list = "<select id=\"courseware-teacher\" class=\"form-control select2-hidden-accessible\" name=\"Courseware[teacher]\" ><option value=\"\">选择讲师</option>";
+//                for(key in teacher){
+//                    teacher_list +="<option value="+teacher[key]+"> "+teacher[key]+" </option>";
+//                }
+//                teacher_list +="</select>";
+//                $('#courseware-teacher').html(teacher_list);
+//            }
+//        });
+//    }
 </script>

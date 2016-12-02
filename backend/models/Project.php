@@ -25,6 +25,9 @@ class Project extends \yii\db\ActiveRecord
 {
     public $from_date;
     public $to_date;
+    public $record_time;
+    public $course_total;
+    public $video_time;
 
     /**
      * @inheritdoc
@@ -40,7 +43,7 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['over', 'free','is_neibu','record_time','course_total','video_time'], 'integer'],
+            [['over', 'free','is_neibu'], 'integer'],
             [['projectname', 'school',], 'string', 'max' => 100],
             ['projectname', 'unique', ],
             [['time','endtime'], 'filter','filter' => function($value) {

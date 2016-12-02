@@ -196,6 +196,7 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
                 'totalday' => intval($params['Courseware']['totalday']),
                 'remark' => $params['Courseware']['remark'],
                 'cid' => intval($params['Courseware']['coursename']),
+                'pid' => intval($params['Courseware']['projectname']),
             ]);
 //            var_dump($model);exit;
         }
@@ -307,12 +308,16 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
                 'totalday' => intval($params['Courseware']['totalday']),
                 'remark' => $params['Courseware']['remark'],
                 'cid' => intval($params['Courseware']['coursename']),
+                'pid' => intval($params['Courseware']['projectname']),
             ]);
         }
 
         if (!empty(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->cache->delete('index');
-            return $this->redirect(['index']);
+//            return $this->redirect(['index']);
+            $last_url = Yii::$app->request->referrer;
+            echo "<script type='text/javascript'> self.history.go(-2); </script>";
+//            return $this->redirect($last_url);
         } else {
             return $this->render('edit', [
                 'model' => $model,
@@ -334,6 +339,15 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
 
         Yii::$app->cache->delete('index');
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteall()
+    {
+        $id_list = Yii::$app->request->post('ids');
+        foreach ($id_list as $k => $v) {
+            $data = Courseware::findOne($v);
+            $data->delete();
+        }
     }
 
     public function actionGetteacher()
@@ -374,6 +388,7 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
             $objPHPExcel = $objReader->load($test->tempName);
             $sheet = $objPHPExcel->getSheet(0);
             $highestRow = $sheet->getHighestRow(); // 取得总行数
+//            var_dump($highestRow);exit;
 
             $teacher = [];
             $time = [];
@@ -411,6 +426,7 @@ FROM `courseware` as a , `video_making` as b, `project` as c ' . $sql_parms);
                     'totalday' => intval($totalday[$i]),
                     'remark' => strval($remark[$i]),
                     'cid' => $cid,
+                    'pid' => $projectname,
                 ]);
             var_dump($model->save());
             }

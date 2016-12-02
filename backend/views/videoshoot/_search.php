@@ -44,7 +44,7 @@ use kartik\select2\Select2;
             <?= $form->field($model, 'uploadname')->widget(Select2::classname(), ['data' =>$person_list , 'options' => ['placeholder' => '选择上传人'], ]); ?>
             <?= $form->field($model, 'time')->input('text',['class'=>'input-small']) ?>
             <?= $form->field($model, 'test')->widget(Select2::classname(), ['data' =>Yii::$app->params , 'options' => ['placeholder' => '月份'], ]); ?>
-            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' =>['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' =>['9' => '未审核', '1' => '一级审核中','2' => '一级通过',
                 '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'] , 'options' => ['placeholder' => '请选择审核状态'], ]); ?>
 
             <table style="width: 100%;">

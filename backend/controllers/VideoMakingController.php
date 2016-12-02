@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use app\models\Courseware;
 use app\models\Pic;
 use app\models\SmsAdmin;
 use app\models\Teacher;
@@ -75,6 +76,9 @@ class VideomakingController extends Controller
         }
 
         if (isset($query_parms['status'])) {
+            if ($query_parms['status'] == 9) {
+                $query_parms['status'] = 0;
+            }
             $sql_parms .= " and a.status = '" . $query_parms['status'] . "'";
         }
 
@@ -179,6 +183,7 @@ from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
 
     public function actionEdit()
     {
+//        var_dump($this->teacher_list);exit;
         //获得项目名称和图片路径和id
         $id = Yii::$app->request->get('id');
         $model = VideoMaking::findOne($id);
@@ -196,18 +201,26 @@ from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
-
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             if ($model['status'] == 2) {
-                $status = 6;
+                if (!empty($model->imageFiles) ) {
+                    $status = 2;
+                } else {
+                    $status = 6;
+                }
             } elseif ($model['status'] == 5) {
                 $status = 6;
             } elseif ($model['status'] == 3) {
                 $status = 1;
             } elseif ($model['status'] == 0) {
-                $status = 1;
+                if (!empty($model->imageFiles) ) {
+                    $status = 1;
+                } else {
+                    $status = 0;
+                }
             }
             // 保存图片   ---------------------------------------------
-            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+
             if ($model->imageFiles) {
 //                if ($model['status'] == 2) {
 //                    $status = 6;
@@ -254,22 +267,37 @@ from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
     {
         $query = Yii::$app->request->queryParams;
         $id = $query['id'];
-        $data = VideoMaking::findOne($id);
-        $data->delete();
 
-        //删除数据同时删除pic表中的数据 和文件
-        $pic_date = Pic::findBySql("select path from pic where cid=:cid", [':cid' => $id])->all();
-        foreach ($pic_date as $k => $v) {
-            $is_delete = unlink($v['path']);
+        //查找出课件或视频拍摄是否有关联的课程
+        $courseware = Courseware::findBySql("select * from courseware where cid=:cid", ['cid' => $id])->all();
+        $video_shoot = VideoShoot::findBySql("select * from video_shoot where cid=:cid", ['cid' => $id])->all();
+        if (empty($courseware) && empty($video_shoot)) {
+            $data = VideoMaking::findOne($id);
+            $data->delete();
+
+            //删除数据同时删除pic表中的数据 和文件
+            $pic_date = Pic::findBySql("select path from pic where cid=:cid", [':cid' => $id])->all();
+            foreach ($pic_date as $k => $v) {
+                $is_delete = unlink($v['path']);
+            }
+
+            $conn = Yii::$app->db;
+            $sql = "delete from pic where cid=:cid";
+            $command = $conn->createCommand($sql, [':cid' => $id]);
+            $command->execute();
+
+            Yii::$app->cache->delete('index');
+            return $this->redirect(['index']);
+        } elseif (!empty($courseware) && empty($video_shoot)) {
+            echo "<script type='text/javascript'> alert('课件表还有数据'); window.history.back(-1);  </script>";
+//            return $this->redirect(['index']);
+        } elseif(empty($courseware) && !empty($video_shoot)) {
+            echo "<script type='text/javascript'> alert('视频拍摄表还有数据'); window.history.back(-1);</script>";
+//            return $this->redirect(['index']);
+        } else {
+            echo "<script type='text/javascript'> alert('课件表、视频拍摄表还有数据'); window.history.back(-1);</script>";
+//            return $this->redirect(['index']);
         }
-
-        $conn = Yii::$app->db;
-        $sql = "delete from pic where cid=:cid";
-        $command = $conn->createCommand($sql, [':cid' => $id]);
-        $command->execute();
-
-        Yii::$app->cache->delete('index');
-        return $this->redirect(['index']);
     }
 
     public function actionVerified()
@@ -369,7 +397,7 @@ from video_making as a,project as b " . $sql_parms . " order by a.id desc ";
             $list1 = Project::findBySql($sql)->all();
         }
         $teacher_list = [];
-        foreach ($list1 as $k =>$v) {
+        foreach ($list1 as $k => $v) {
             $teacher_list[$v['teacher']] = $v['teacher'];
         }
         return $return_info = json_encode(array('teacher' => $teacher_list));

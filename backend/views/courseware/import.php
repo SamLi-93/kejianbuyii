@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group-btn">
         <?= Html::submitButton('导入', ['class' => 'btn btn-primary', 'id' => 'submit-btn']) ?>
         <?= Html::a("返回", ['index'], ["class" => "btn btn-primary back-btn"]) ?>
-        <?= Html::a('模板', ['./222.xls'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('模板', ['./kjdrmb.xls'], ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

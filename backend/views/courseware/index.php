@@ -29,9 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'summary' => '',
-//    'id' => "waitforcheck",
+    'id' => "grid",
     'columns' => [
         ['class' => 'yii\grid\SerialColumn', 'header' => '序号'],
+
+        [
+            'class' => 'yii\grid\CheckboxColumn',
+            'checkboxOptions' => function ($model, $key, $index, $column) {
+                return ['value' => $model['id'], 'id' => $model['id']];
+            },
+        ],
 
         [
             'header' => '项目名称',
@@ -161,14 +168,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'id' => 'edit-btn',
                     ];
                     $url = Url::to(['courseware/edit', 'id' => $model['id']]);
-                    return Html::a('修改', $url, $options);
+                    return Html::a('修改', $url, ['onclick'=> ' return checkedit("' . $model['uploadname'] . '"' . ')', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
+
                 },
                 'delete' => function ($url, $model, $key) {
                     $options = [
                         'class' => 'btn btn-success',
                     ];
                     $url = Url::to(['courseware/delete', 'id' => $model['id']]);
-                    return Html::a('删除', $url, ['onclick' => 'return check()', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn']);
+//                    return Html::a('删除', $url, ['onclick' => 'return check()','class' => 'btn btn-success btn-sm', 'id' => 'delete-btn']);
+                    return Html::a('删除', $url, ['onclick'=> ' return check("' . $model['uploadname'] . '"' . ')', 'class' => 'btn btn-success btn-sm', 'id' => 'delete-btn' ]);
 
                 },
             ],
@@ -178,13 +187,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <script>
-    function check() {
-        if (confirm('您确定要删除吗？')) {
-            return true;
+    function check(makingname) {
+        var orgid = <?= Yii::$app->user->identity->orgid?>;
+        var current_user = "<?= Yii::$app->user->identity->name?>";
+        if (orgid == 2 || current_user == makingname) {
+            if (confirm('您确定要删除吗？')) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            alert('只有管理员和本人可以删除!')
+            return false
         }
     }
+
+    function checkedit(makingname) {
+        var orgid = <?= Yii::$app->user->identity->orgid?>;
+        var current_user = "<?= Yii::$app->user->identity->name?>";
+        if (orgid == 2 || current_user == makingname) {
+            return true
+        } else {
+            alert('只有管理员和本人可以修改!')
+            return false
+        }
+    }
+</script>
+
+<script>
+    $(".gridviewdelete").on("click", function () {
+        var orgid = <?= Yii::$app->user->identity->orgid?>;
+        if (orgid == 0) {
+            alert("只有管理员或审核人可以审核！");
+            return false
+        } else {
+            if (confirm('您确定要批量删除吗？')) {
+                var ids = $("#grid").yiiGridView("getSelectedId");
+                $.ajax({
+                    type: "post",
+                    method: "post",
+                    dataType: "json",
+                    data: {"ids": ids},
+                    url: "<?= Url::to(['courseware/deleteall']);?>",
+                    success: function (data) {
+
+                    }
+                });
+            } else {
+                return false
+            }
+        }
+    });
+
 </script>
 
 

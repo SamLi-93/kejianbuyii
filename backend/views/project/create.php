@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'projectname')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'school')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'projectname')->textInput(['maxlength' => true,'placeholder' =>'项目名称（年份 学校简称）']) ?>
+    <?= $form->field($model, 'school')->textInput(['maxlength' => true,'placeholder' =>'学校必须写全称']) ?>
     <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['0' => '外部', '1' => '内部'], ]); ?>
     <?= $form->field($model, 'over')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>
     <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' => ['0' => '否', '1' => '是'], ]); ?>

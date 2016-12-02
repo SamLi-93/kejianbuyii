@@ -34,6 +34,8 @@ class PersonnelcountController extends Controller
 
     public function actionIndex()
     {
+        $is_neibu = '';
+        $is_neibu_total = '';
         $firstday = strtotime(date('Y-m-01  ', time()));
         $lastday = strtotime(date('Y-m-31  ', time()));
         $db = Yii::$app->db;
@@ -43,56 +45,45 @@ class PersonnelcountController extends Controller
         $from_date = '';
         $to_date = '';
         if (!empty($query['Project'])) {
-            $from_date = strtotime($query['Project']['from_date']);
-            $to_date = strtotime($query['Project']['to_date']);
-            $firstday = $from_date;
-            $lastday = $to_date;
-            $sql_parms = ' and a.date between ' . $from_date . ' and ' . $to_date;
+            if (!empty($query['Project']['from_date'])) {
+                if (!empty($query['Project']['to_date'])) {
+                    $to_date = strtotime($query['Project']['to_date']);
+                } else {
+                    $to_date = $lastday;
+                }
+                $from_date = strtotime($query['Project']['from_date']);
+                $firstday = $from_date;
+                $lastday = $to_date;
+                $sql_parms = ' and a.date between ' . $from_date . ' and ' . $to_date;
+            }
+            if (!empty($query['Project']['is_neibu'])) {
+                if ($query['Project']['is_neibu'] == 2) {
+                    $query['Project']['is_neibu'] = 0;
+                }
+                $is_neibu .= " and b.is_neibu = '" . $query['Project']['is_neibu'] . "'";
+                $is_neibu_total = " and is_neibu = '" . $query['Project']['is_neibu'] . "'";
+            }
         }
+        //
+        $total_num_total = $db->createCommand("SELECT count(b.pid) as total_time  FROM courseware as b,project as a 
+where date between " . $firstday . " and " . $lastday . " and a.id = b.pid " .$is_neibu_total)->queryAll();
         //人员全部姓名
         $person_list = $db->createCommand("select name from sms_admin ")->queryAll();
-        //人员课件表有课件存在时的姓名
-        $person_filter = $db->createCommand("SELECT distinct a.makingname FROM courseware as a,project as b where a.pid =b.id  and date between " . $firstday . " and " . $lastday)->queryAll();
-//        var_dump($person_filter);exit;
         //课件中存在的项目名
-        $project_list = $db->createCommand("SELECT a.pid,b.projectname,b.is_neibu FROM courseware as a,project as b where a.pid =b.id  and date between " . $firstday . " and " . $lastday . " group by a.pid ")->queryAll();
-        //获取筛选过的人员的项目统计结果
-//        foreach ($person_filter as $k => $v) {
-//            $sql = "SELECT a.makingname,count(a.id) as count_num, a.pid,b.projectname,b.is_neibu FROM courseware as a,project as b where a.pid =b.id and a.makingname = '" . $v['makingname'] . "'" . $sql_parms . " group by a.pid,a.makingname ";
-//            $data = $db->createCommand($sql)->queryAll();
-////            var_dump($sql);
-//            print_r($data);
-//            foreach ($data as $key => $value) {
-//                $arr[] = [
-//                    array(0 => $value['projectname']),
-//                    array(1 => $value['makingname']),
-//                    array(2 => $value['count_num']),
-//                    array(3 => $value['is_neibu']),
-//                    array(5 => $value['pid']),
-//                ];
-//            }
-//        }
-//        print_r($arr);exit;
+        $project_list = $db->createCommand("SELECT a.pid,b.projectname,b.is_neibu FROM courseware as a,project as b where a.pid =b.id and date between " . $firstday . " and " . $lastday .$is_neibu . " group by a.pid ")->queryAll();
 
         $test = $db->createCommand("select a.makingname, a.pid, count(makingname) as count_num, b.projectname  from courseware as a, project as b where date between " . $firstday . " and " . $lastday . " and a.pid = b.id group by a.pid,a.makingname")->queryAll();
         $sam = [];
         foreach ($test as $key => $value) {
-//            array_push($sam, [$value['makingname'] => [$value['pid'] => $value['count_num']]]);
             if (isset($sam[$value['makingname']])) {
-//                $sam[$value['makingname']] = [$value['pid'] => $value['count_num']];
                 $sam[$value['makingname']][$value['pid']] = $value['count_num'];
             } else {
                 $sam[$value['makingname']] = [$value['pid'] => $value['count_num']];
             }
-
-
         }
 
 //        print_r($sam);exit;
 //        print_r($test);exit;
-
-//        $arr = array_unshift($project_list, array('pid' => '', 'projectname' => '姓名', 'is_neibu' => ''));
-
         return $this->render('index', [
             'model' => $model,
             'data' => $sam,

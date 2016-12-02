@@ -47,11 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'header' => '录制时长(小时)',
-            'headerOptions' => ['width' => '100'],
+            'headerOptions' => ['width' => '160'],
             'attribute' => 'record_time',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a($model['record_time'], ['videosearch', [
+                return Html::a(round($model['record_time'],1), ['videosearch', [
                     'id' => $model['id'],
                     'from_date' => $model['from_date'],
                     'to_date' =>   $model['to_date'],
@@ -61,12 +61,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'header' => '课时总数(个数)',
-            'headerOptions' => ['width' => '100'],
+            'headerOptions' => ['width' => '160'],
             'attribute' => 'total_num',
             'format' => 'raw',
             'value' => function ($model) {
 //                return $model['total_num'];
-                return Html::a($model['total_num'], ['coursesearch', [
+                return Html::a(round($model['total_num'],1), ['coursesearch', [
                     'id' => $model['id'],
                     'from_date' => $model['from_date'],
                     'to_date' =>   $model['to_date'],
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'header' => '视频总时长',
-            'headerOptions' => ['width' => '100'],
+            'headerOptions' => ['width' => '160'],
             'attribute' => 'video_time',
             'format' => 'raw',
             'value' => function ($model) {
@@ -99,8 +99,22 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="total_count" style="float: right;margin-right: 8%;width: 500px;margin-top: 30px;">
 
     <div class="count_word" style="font-size: 20px;float: left;">总计</div>
-    <div style="font-size: 20px;float: left;margin: 0 10%;"><?= $record_time_total;?></div>
-    <div style="font-size: 20px;float: left;margin: 0 10%;"><?= $total_num_total;?></div>
+    <div style="font-size: 20px;float: left;margin: 0 10%;">
+        <?
+        if (empty($record_time_total)){
+            echo 0;
+        } else {
+            echo round($record_time_total,1);
+        }
+        ?></div>
+    <div style="font-size: 20px;float: left;margin: 0 10%;">
+        <?
+        if (empty($total_num_total)) {
+            echo 0;
+        } else {
+            echo round($total_num_total,1);
+        }
+        ?></div>
     <div style="font-size: 20px;float: left;margin-left: 10%;">
         <?
         $h = intval($video_time_total / 3600);

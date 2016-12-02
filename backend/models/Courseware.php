@@ -46,7 +46,7 @@ class Courseware extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['time0','time1','time2','time', 'state', 'totalday', 'cid'], 'integer'],
+            [['time0','time1','time2','time', 'state', 'totalday', 'cid','pid'], 'integer'],
             [['cid','date','enddate',], 'required'],
             [['excelFile'], 'file', 'extensions' => 'xls'],
             [['title', 'teacher', 'makingname', 'uploadname', 'projectname', 'school', 'coursename', 'status', 'auditor1', 'auditor2', 'remark'], 'string', 'max' => 100],

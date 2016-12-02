@@ -114,6 +114,9 @@ class VideoshootController extends Controller
         }
 
         if (isset($query_parms['status'])) {
+            if ($query_parms['status'] == 9) {
+                $query_parms['status'] = 0;
+            }
             $sql_parms .= " and a.status = '" . $query_parms['status'] . "'";
         }
 
@@ -201,6 +204,10 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $command->bindParam(':courcename', $params['VideoShoot']['courcename']);
             $cid = $command->queryAll();
 
+            //为了统计把$params['VideoShoot']['time']转换成时间戳
+            $tmp = explode(" ",$params['VideoShoot']['time']);
+            $timestamp = strtotime($tmp[0]);
+
             $model->setAttributes([
                 'status' => $status,
                 'projectname' => $params['VideoShoot']['projectname'],
@@ -211,10 +218,11 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'remark' => $params['VideoShoot']['remark'],
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => floatval($params['VideoShoot']['capture_time']),
-                'time_int' => strtotime(date('Y-m-d H:0:0')),
+                'time_int' => $timestamp,
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
                 'cid' => $params['VideoShoot']['courcename'],
+                'pid' => $params['VideoShoot']['projectname'],
             ]);
         }
 
@@ -310,18 +318,36 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
 
         if (!empty(Yii::$app->request->post())) {
             $params = Yii::$app->request->post();
+            // 保存图片   ---------------------------------------------
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
             $status = 0;
+//            if ($model['status'] == 2) {
+//                $status = 6;
+//            } elseif ($model['status'] == 5) {
+//                $status = 6;
+//            } elseif ($model['status'] == 3) {
+//                $status = 1;
+//            } elseif ($model['status'] == 0) {
+//                $status = 1;
+//            }
             if ($model['status'] == 2) {
-                $status = 6;
+                if (!empty($model->imageFiles) ) {
+                    $status = 2;
+                } else {
+                    $status = 6;
+                }
             } elseif ($model['status'] == 5) {
                 $status = 6;
             } elseif ($model['status'] == 3) {
                 $status = 1;
             } elseif ($model['status'] == 0) {
-                $status = 1;
+                if (!empty($model->imageFiles)) {
+                    $status = 1;
+                } else {
+                    $status = 0;
+                }
             }
-            // 保存图片   ---------------------------------------------
-            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+
 
             $sql = "select id from video_making where pid =:pid and school =:school and courcename=:courcename ";
             $command = Yii::$app->db->createCommand($sql);
@@ -331,7 +357,10 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
             $cid = $command->queryAll();
 //            $params = Yii::$app->request->post();
             $recordname = implode('、', $params['VideoShoot']['recordname']);
-
+            //为了统计把$params['VideoShoot']['time']转换成时间戳
+            $tmp = explode(" ",$params['VideoShoot']['time']);
+            $timestamp = strtotime($tmp[0]);
+            
             $model->setAttributes([
                 'status' => $status,
                 'projectname' => $params['VideoShoot']['projectname'],
@@ -341,11 +370,12 @@ c.projectname,c.school,b.courcename,b.pid, a.cid  FROM `video_shoot` as a, `vide
                 'seat' => intval($params['VideoShoot']['seat']),
                 'uploadname' => $params['VideoShoot']['uploadname'],
                 'capture_time' => floatval($params['VideoShoot']['capture_time']),
-                'time_int' => strtotime(date('Y-m-d H:0:0')),
+                'time_int' => $timestamp,
                 'time' => $params['VideoShoot']['time'],
                 'recordname' => $recordname,
                 'remark' => $params['VideoShoot']['remark'],
                 'cid' => $params['VideoShoot']['courcename'],
+                'pid' => $params['VideoShoot']['projectname'],
             ]);
 
         }

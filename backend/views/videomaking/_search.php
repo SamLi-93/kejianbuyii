@@ -45,7 +45,7 @@ use kartik\select2\Select2;
             <?= $form->field($model, 'makingname')->widget(Select2::classname(), ['data' => $person_list, 'options' => ['placeholder' => '请选择上传人'], ]); ?>
             <?= $form->field($model, 'free')->widget(Select2::classname(), ['data' => ['2' => '否', '1' => '是'], 'options' => ['placeholder' => '请选择费用结算'], ]); ?>
             <?= $form->field($model, 'subtitle')->widget(Select2::classname(), ['data' => ['2' => '无', '1' => '有'], 'options' => ['placeholder' => '请选择有无字幕'], ]); ?>
-            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' => ['0' => '未审核', '1' => '一级审核中','2' => '一级通过',
+            <?= $form->field($model, 'status')->widget(Select2::classname(), ['data' => ['9' => '未审核', '1' => '一级审核中','2' => '一级通过',
                 '3' => '一级驳回','4' => '二级通过','5' => '二级驳回','6' => '二级审核中'],
                 'options' => ['placeholder' => '请选择状态'], ]); ?>
 

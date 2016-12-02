@@ -60,6 +60,7 @@ use kartik\select2\Select2;
                                 'enddate' => $model->enddate,],
                                 ['class' => 'btn btn-sm btn-success']) ?>
                             <?= Html::a('导入', ['import'], ['class' => 'btn btn-sm btn-success']) ?>
+                            <?= Html::a('批量删除', "", ['class' => 'btn btn-primary btn-sm gridviewdelete']) ?>
                         </div>
                     </td>
                 </tr>

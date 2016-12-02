@@ -59,7 +59,7 @@ use kartik\date\DatePicker;
                 </div>
 
             </div>
-            <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['0' => '外部', '1' => '内部'],'options' => ['placeholder' => '请选择是否内部课程'],  ]); ?>
+            <?= $form->field($model, 'is_neibu')->widget(Select2::classname(), ['data' => ['2' => '外部', '1' => '内部'],'options' => ['placeholder' => '请选择是否内部课程'],  ]); ?>
 
 
             <table style="width: 100%;">
