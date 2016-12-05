@@ -58961,3 +58961,624 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1480575068.2814
     'REQUEST_TIME' => 1480575068
 ]
+2016-12-05 09:51:04 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 09:51:03 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1764'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53333'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480902663.9947
+    'REQUEST_TIME' => 1480902663
+]
+2016-12-05 09:53:56 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 09:53:56 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1800'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53397'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480902836.2766
+    'REQUEST_TIME' => 1480902836
+]
+2016-12-05 09:54:05 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 09:54:05 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1800'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53398'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480902845.3521
+    'REQUEST_TIME' => 1480902845
+]
+2016-12-05 09:54:57 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 09:54:57 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1800'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53437'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480902897.002
+    'REQUEST_TIME' => 1480902897
+]
+2016-12-05 10:00:41 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 10:00:41 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1800'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53769'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480903241.4667
+    'REQUEST_TIME' => 1480903241
+]
+2016-12-05 10:02:21 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 10:02:21 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1776'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53837'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480903341.4324
+    'REQUEST_TIME' => 1480903341
+]
+2016-12-05 10:02:53 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 10:02:53 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1776'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53852'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480903373.6303
+    'REQUEST_TIME' => 1480903373
+]
+2016-12-05 10:03:54 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 10:03:54 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1776'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53877'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480903434.8528
+    'REQUEST_TIME' => 1480903434
+]
+2016-12-05 10:04:39 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: personnelcount/index.js.map' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('index.js.map', Array)
+#1 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('personnelcount/...', Array)
+#2 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 D:\phpstudy\WWW\kejianbuyii\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\kejianbuyii\backend\web\index.php(21): yii\base\Application->run()
+#2 {main}
+2016-12-05 10:04:39 [127.0.0.1][][tium70p3hiacdvmjub74n9pe47][info][application] $_COOKIE = [
+    'pgv_pvid' => '4182895908'
+    '1e604dc1900aed139091f17c7fce1290' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'c6e5ff69be841e506380e594c83fcafc' => '4b0a73aee3e61e2dbe62d645a72c313740e37a19a:4:{i:0;s:1:\"1\";i:1;s:5:\"admin\";i:2;i:36288000;i:3;a:0:{}}'
+    'Hm_lvt_7b1919221e89d2aa5711e4deb935debd' => '1474421070,1474507079,1474852186,1475912717'
+    '_csrf-backend' => '4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"-tC1S7EswZDTcXuCMLiD8m2bmsgALXte\";}'
+    'advanced-backend' => 'tium70p3hiacdvmjub74n9pe47'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 25
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\nodejs\\;C:\\Python27\\Scripts\\;D:\\phpstudy\\MySQL\\bin\\;D:\\androidsdk\\platform-tools\\;D:\\androidsdk\\tools\\;D:\\phpstudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin\\;C:\\cygwin64\\bin;C:\\Users\\Administrator\\AppData\\Roaming\\npm;C:\\Users\\Administrator\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'D:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1776'
+    'SCRIPT_NAME' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_URI' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/kejianbuyii/backend/web/personnelcount/index.js.map'
+    'REMOTE_PORT' => '53907'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/kejianbuyii/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'pgv_pvid=4182895908; 1e604dc1900aed139091f17c7fce1290=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; c6e5ff69be841e506380e594c83fcafc=4b0a73aee3e61e2dbe62d645a72c313740e37a19a%3A4%3A%7Bi%3A0%3Bs%3A1%3A%221%22%3Bi%3A1%3Bs%3A5%3A%22admin%22%3Bi%3A2%3Bi%3A36288000%3Bi%3A3%3Ba%3A0%3A%7B%7D%7D; Hm_lvt_7b1919221e89d2aa5711e4deb935debd=1474421070,1474507079,1474852186,1475912717; _csrf-backend=4647801ad9aec28906d0f42787e063705f71c436f28d5ac0c622941daccf652ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22-tC1S7EswZDTcXuCMLiD8m2bmsgALXte%22%3B%7D; advanced-backend=tium70p3hiacdvmjub74n9pe47'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/kejianbuyii/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1480903479.2233
+    'REQUEST_TIME' => 1480903479
+]

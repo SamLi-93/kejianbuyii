@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //
 //?>
 
-<? // print_r($data[4]['张竹妃']['275']);exit;?>
+<?// print_r($data);exit;?>
 
 <table border="1" class="list_table" width="80%" cellpadding="0" cellspacing="0" <!--style="margin-top: 120px;margin-left: 240px"-->>
     <thead>
@@ -75,12 +75,18 @@ $this->params['breadcrumbs'][] = $this->title;
             } else {
                 echo "<td>" . 0 . "</td>";
             }
+//            echo "<td>总计</td> <td></td>";
         }
         echo "<td>" . $test . "</td>";
 //        echo "<td>总计</td>";
         echo '</tr>';
     }
-    echo "<tr><td>总计</td> <td></td></tr>";
+    echo "<tr><td>总计</td>";
+    foreach ($person_count_total as $k => $v) {
+        echo "<td>" . $v['count_num'] . "</td>";
+    }
+    echo "<td>" . $total_count . "</td>";
+    echo "</tr>";
 
 
     ?>

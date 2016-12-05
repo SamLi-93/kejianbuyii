@@ -82,9 +82,19 @@ where date between " . $firstday . " and " . $lastday . " and a.id = b.pid " .$i
             }
         }
 
+        $person_count_total = $db->createCommand("select a.pid, count(makingname) as count_num, b.projectname from courseware as a, project as b where date between " . $firstday . " and " . $lastday . " and a.pid = b.id group by a.pid")->queryAll();
+        $total_count = 0;
+        foreach ($person_count_total as $k => $v) {
+            $total_count += $v['count_num'];
+        }
+//        echo  $total_count;exit;
+//        print_r($person_count_total);exit;
+
 //        print_r($sam);exit;
 //        print_r($test);exit;
         return $this->render('index', [
+            'person_count_total' => $person_count_total,
+            'total_count' => $total_count,
             'model' => $model,
             'data' => $sam,
 //            'dataProvider' => $dataProvider,
